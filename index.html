@@ -12,7 +12,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="leaflet.js"></script>
-        <script src="leaflet.ajax.min.js"></script>
         <script src="leaflet.zoomhome.min.js"></script>
         <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
             
@@ -23,6 +22,15 @@
         <div id="key"></div>
         <div id="logo"></div>
         <button id="alaska" type="button" onclick="alaska()">Alaska</button>
+        <div id='selector_menu'>
+            <select id='selector' style='width: 220px; height: 40px; font-family: "PT Sans", Arial; font-size: 15px; font-weight:bold; padding:6px; padding-left: 11px;'>
+
+                <!-- might have to find a different way of doing this as the onclick element doesn't work in Safari? -->
+                <option value='one' onclick="allStates()">All</option>
+                <option value='two' onclick="alaska()">Alaska</option>
+            </select>
+    
+        </div>
         <script type="text/javascript" src="script.js"></script>
     </body>
 </html>

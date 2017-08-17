@@ -128,8 +128,11 @@ var states = [
 
 var group = L.layerGroup();
 
-var promise = $.getJSON("us-energy.geojson");
-promise.then(function(data) {
+//markers
+
+function allMarkers (data) {
+    var promise = $.getJSON("us-energy.geojson");
+    promise.then(function(data) {
     var allStates = L.geoJSON(data, {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng);
@@ -138,7 +141,8 @@ promise.then(function(data) {
             style: style
     });
     group.addLayer(allStates);
-});
+    });
+}
 
 function alaskaMarkers (data) {
     var promise = $.getJSON("us-energy.geojson");
@@ -156,6 +160,8 @@ function alaskaMarkers (data) {
         group.addLayer(markers);
     });
 }
+
+//polygons
 
 var myPolygonStyle = {
     "color": "#2f8fce",
@@ -175,19 +181,14 @@ function alaskaPolygon () {
 
 group.addTo(map);
 
-// function alaskaPolygon () {
-//     var promise = $.getJSON("states.geojson");
-//     promiseTwo.then(function(data){
-//         var polygon = filter: function (feature, layer) {
-//             return (feature.properties.id === "49");
-//         },
-//         pointToLayer: function (feature, coordinates) {
-//             return L.polygon(coordinates);
-//         }
+function allStates () {
+    group.clearLayers();
+    allMarkers();
+    map.setView([28, -100], 4);
+    group.addTo(map);
+}
 
-//     }).addTo(map);
-// });
-// }
+allStates();
 
 function alaska () {
         group.clearLayers();

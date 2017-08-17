@@ -29,6 +29,48 @@ h1 {
 	font-size: 13px;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(https://s3-eu-west-1.amazonaws.com/cbbranding/new+folder/arrow-for-map.png) 96% / 15% no-repeat #ffffff;
+    background-size: 20px 13px;
+    border:0px;
+    outline:0px;
+    -webkit-box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
+    -moz-box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
+    box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
+}
+
+#selector_menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 9000;
+  box-shadow: none;
+  border:0px;
+  outline:0px;
+  border-radius: 5px;
+  opacity:.75;
+}
+
+
+#selector_menu option {
+  padding: 15px 30px;
+  font-family: "PT Sans", Arial;
+  font-size: 15px;
+  color: #000000;
+  cursor: auto;
+  border:0px;
+  outline:0px;
+}
+#selector_menu option:hover {
+  cursor: pointer;
+}
+ #selector_menu option.selected {
+  font-family: "PT Sans", Arial;
+}
+
 #key {
     position: absolute;
     top: 695px;
