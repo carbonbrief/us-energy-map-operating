@@ -74,9 +74,20 @@ function onEachFeature(feature, layer) {
 	// does this feature have a property named popupContent?
 	if (feature.properties) {
 		layer.bindPopup('<h1><b>'+feature.properties["Plant Name"]+'</h1>Capacity: </b>'+feature.properties["Capacity (MW)"]+'MW <br /><b>Type: </b>'+feature.properties["Fuel type"]+'<b>Year opened: </b>'+feature.properties["Year opened"], {closeButton: false, offset: L.point(0, -20)});
-				layer.on('mouseclick', function() { layer.openPopup(); });
-				layer.on('dblclick', function() { layer.openPopup(); });
-				layer.on('mouseclick', function() { layer.closePopup(); });
+				layer.on('mouseover', function() { layer.openPopup(); });
+				layer.on('mouseout', function() { layer.closePopup(); });
 	};
 
 }
+
+// add zoom on marker double click
+
+function onDoubleClick(e) {
+    mymap.setView(e.latlng, 7);
+	console.log("click-zoom");
+}
+
+//add zoomHome plugin
+
+var zoomHome = L.Control.zoomHome();
+zoomHome.addTo(map);
