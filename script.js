@@ -9,14 +9,6 @@ var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 
-// L.tileLayer('https://api.mapbox.com/styles/v1/rospearce/ciwgju4yv00cy2pmqeggx1mx8/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm9zcGVhcmNlIiwiYSI6ImNpdm1sczJsZjAwOGMyeW1xNHc4ejJ0N28ifQ.4B24e0_HgfJj4sgqimETqA', {
-//     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-//     maxZoom: 5,
-// 	minZoom: 1,
-//     id: 'mapbox://styles/rospearce/ciwgju4yv00cy2pmqeggx1mx8',
-//     accessToken: 'pk.eyJ1Ijoicm9zcGVhcmNlIiwiYSI6ImNpdm1sczJsZjAwOGMyeW1xNHc4ejJ0N28ifQ.4B24e0_HgfJj4sgqimETqA'
-// }).addTo(map);
-
 //disable scroll wheel zoom
 
 map.scrollWheelZoom.disable();
@@ -126,6 +118,8 @@ var states = [
     
 ]
 
+//
+
 var group = L.layerGroup();
 
 //markers
@@ -133,14 +127,14 @@ var group = L.layerGroup();
 function allMarkers (data) {
     var promise = $.getJSON("us-energy.geojson");
     promise.then(function(data) {
-    var allStates = L.geoJSON(data, {
+    var markers = L.geoJSON(data, {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng);
         },
             onEachFeature: onEachFeature,
             style: style
     });
-    group.addLayer(allStates);
+    group.addLayer(markers);
     });
 }
 
@@ -237,14 +231,15 @@ function style(feature) {
     };
 }
 
+//add pop up
+
 function onEachFeature(feature, layer) {
 	// does this feature have a property named popupContent?
 	if (feature.properties) {
-		layer.bindPopup('<h1><b>'+feature.properties["Plant Name"]+'</h1>Capacity: </b>'+feature.properties["Capacity (MW)"]+'MW <br /><b>Type: </b>'+feature.properties["Fuel type"]+'<br /><b>Year opened: </b>'+feature.properties["Year opened"], {closeButton: false, offset: L.point(0, -20)});
-				layer.on('mouseover', function() { layer.openPopup(); });
-				layer.on('mouseout', function() { layer.closePopup(); });
+		layer.bindPopup('<h1 style= color:'+ colors[feature.properties["Fuel type"]] +';><b>'+feature.properties["Plant Name"]+'</h1>Capacity: </b>'+feature.properties["Capacity (MW)"]+'MW <br /><b>Type: </b>'+feature.properties["Fuel type"]+'<br /><b>Year opened: </b>'+feature.properties["Year opened"], {closeButton: false, offset: L.point(0, -20)});
+        layer.on('mouseover', function() { layer.openPopup(); });
+        layer.on('mouseout', function() { layer.closePopup(); });
 	};
-
 }
 
 //add zoomHome plugin
