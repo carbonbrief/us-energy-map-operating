@@ -1,4 +1,4 @@
-var map = L.map('mapid', {zoomControl: false}).setView([28, -100], 4)
+var map = L.map('mapid', {zoomControl: false}).setView([38, -100], 4)
 
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -184,7 +184,7 @@ group.addTo(map);
 function allStates () {
     group.clearLayers();
     allMarkers();
-    map.setView([28, -100], 4);
+    map.setView([38, -100], 4);
     group.addTo(map);
 }
 

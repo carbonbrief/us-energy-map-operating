@@ -42,7 +42,7 @@ select {
     box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
 }
 
-#selector_menu {
+.selector_menu {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -54,8 +54,18 @@ select {
   opacity:.75;
 }
 
+#selector_menu_1 {
+  top: 10px;
+  right: 10px;
+}
 
-#selector_menu option {
+#selector_menu_2 {
+  top: 10px;
+  right: 240px;
+}
+
+
+.selector_menu option {
   padding: 15px 30px;
   font-family: "PT Sans", Arial;
   font-size: 15px;
@@ -64,10 +74,10 @@ select {
   border:0px;
   outline:0px;
 }
-#selector_menu option:hover {
+.selector_menu option:hover {
   cursor: pointer;
 }
- #selector_menu option.selected {
+ .selector_menu option.selected {
   font-family: "PT Sans", Arial;
 }
 

@@ -21,13 +21,17 @@
         <div id="mapid"></div>
         <div id="key"></div>
         <div id="logo"></div>
-        <button id="alaska" type="button" onclick="alaska()">Alaska</button>
-        <div id='selector_menu'>
+        <div class='selector_menu'id="selector_menu_1">
             <select id='selector' style='width: 220px; height: 40px; font-family: "PT Sans", Arial; font-size: 15px; font-weight:bold; padding:6px; padding-left: 11px;'>
-
-                <!-- might have to find a different way of doing this as the onclick element doesn't work in Safari? -->
-                <option value='all' selected='selected'>All</option>
+                <option value='all' selected='selected'>All states</option>
                 <option value='alaska' >Alaska</option>
+            </select>
+    
+        </div>
+        <div class='selector_menu'id="selector_menu_2">
+            <select id='selector2' style='width: 220px; height: 40px; font-family: "PT Sans", Arial; font-size: 15px; font-weight:bold; padding:6px; padding-left: 11px;'>
+                <option value='all' selected='selected'>All types</option>
+                <option value='hydro' >Hydro</option>
             </select>
     
         </div>
