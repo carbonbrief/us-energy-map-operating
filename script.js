@@ -251,3 +251,19 @@ function onEachFeature(feature, layer) {
 
 var zoomHome = L.Control.zoomHome();
 zoomHome.addTo(map);
+
+// link up buttons to functions
+
+// $(document).on('click', ".state-selector", function (){
+
+// })
+
+$('#selector').change(function(){ 
+    if($(this).val() == "all"){
+      allStates();
+    }
+    if($(this).val() == "alaska"){
+      alaska();
+    }
+
+});
