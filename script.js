@@ -509,6 +509,7 @@ $('#selector1').change(function(){
         else if ($("#selector2").val() == "Biomass") {
             refilterLayersAlabama(02);
         }
+
         else if ($("#selector2").val() == "Coal") {
             refilterLayersAlabama(03);
         }
@@ -629,7 +630,7 @@ $('#selector2').change(function() {
             refilterLayersAlaska(01);
         }
         
-      }
+    }
 
     else if ($(this).val() == "Biomass") {
         if ($("#selector1").val() == "All") {
@@ -644,6 +645,162 @@ $('#selector2').change(function() {
             refilterLayersAlaska(02);
         }
     }
+
+    else if ($(this).val() == "Coal") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(03);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(03);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(03);
+        }
+    }
+
+    else if ($(this).val() == "Gas") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(04);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(04);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(04);
+        }
+    }
+
+    else if ($(this).val() == "Geothermal") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(05);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(05);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(05);
+        }
+    }
+
+    else if ($(this).val() == "Hydro") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(06);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(06);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(06);
+        }
+    }
+
+    else if ($(this).val() == "Nuclear") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(07);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(07);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(07);
+        }
+    }
+
+    else if ($(this).val() == "Oil") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(08);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(08);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(08);
+        }
+    }
+
+    else if ($(this).val() == "Other") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(09);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(09);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(09);
+        }
+    }
+
+    else if ($(this).val() == "Solar") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(10);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(10);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(10);
+        }
+    }
+
+    else if ($(this).val() == "Storage") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(11);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(11);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(11);
+        }
+    }
+
+    else if ($(this).val() == "Waste") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(12);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(12);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(12);
+        }
+    }
+
+    else if ($(this).val() == "Wind") {
+        if ($("#selector1").val() == "All") {
+            refilterLayersAll(13);
+        }
+
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(13);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
+            refilterLayersAlaska(13);
+        }
+    }
+
+
 })
 
 //reset dropdown on window reload
