@@ -122,6 +122,19 @@ var states = [
 
 var group = L.layerGroup();
 
+// set up type state
+
+var varState = "01";
+
+// set polygon style
+
+var myPolygonStyle = {
+    "color": "#333333",
+    "weight": 3,
+    "opacity": 0.3,
+    "fillOpacity": 0.05
+};
+
 //markers
 
 function allMarkers (data) {
@@ -138,32 +151,73 @@ function allMarkers (data) {
     });
 }
 
-function alaskaMarkers (data) {
-    var promise = $.getJSON("us-energy.geojson");
-    promise.then(function(data){
+//call first set of markers
+
+allMarkers();
+
+group.addTo(map);
+
+// refilter options
+
+function refilterLayersAll (varState) {
+
+    function allMarkers (data) {
+        var promise = $.getJSON("us-energy.geojson");
+        promise.then(function(data) {
         var markers = L.geoJSON(data, {
             filter: function (feature, layer) {
-               return (feature.properties.State === "AK");
+                if (varState == "01") {
+                    return(feature.properties["Fuel type"] == "Biomass" || "Coal" || "Gas" || "Geothermal" || "Hydro" || "Nuclear" || "Oil" || "Other" || "Solar" || "Storage"  || "Waste" || "Wind" );
+                }
+                else if (varState == "02") {
+                    return(feature.properties["Fuel type"] == "Hydro");
+                }
             },
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng);
             },
-            onEachFeature: onEachFeature,
-            style: style
+                onEachFeature: onEachFeature,
+                style: style
         });
         group.addLayer(markers);
-    });
+        });
+
+        console.log("refilterLayersAll");
+
+    }
+
+    group.clearLayers();
+    allMarkers();
+    map.setView([38, -100], 4);
+    group.addTo(map);
+
 }
 
-//polygons
+function refilterLayersAlaska (varState) {
 
-var myPolygonStyle = {
-    "color": "#2f8fce",
-    "weight": 5,
-    "opacity": 0.05
-};
+    function alaskaMarkers (data) {
+        var promise = $.getJSON("us-energy.geojson");
+        promise.then(function(data){
+            var markers = L.geoJSON(data, {
+                filter: function (feature, layer) {
+                    if (varState == "01") {
+                        return (feature.properties.State === "AK");
+                    }
+                    else if (varState == "02") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Hydro")
+                    }
+                },
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng);
+                },
+                onEachFeature: onEachFeature,
+                style: style
+            });
+            group.addLayer(markers);
+        });
+    }
 
-function alaskaPolygon () {
+    function alaskaPolygon () {
         var polygon = L.geoJSON(states, {
             filter: function (feature) {
                 return (feature.properties["adm1_code"] === "USA-3563");
@@ -171,27 +225,22 @@ function alaskaPolygon () {
             style: myPolygonStyle
         });
         group.addLayer(polygon);
-}
+    }
 
-group.addTo(map);
-
-function allStates () {
     group.clearLayers();
-    allMarkers();
-    map.setView([38, -100], 4);
+    alaskaPolygon();
+    alaskaMarkers();
+    map.setView([64.2, -149.4], 4);
     group.addTo(map);
-}
 
-allStates();
-
-function alaska () {
-        group.clearLayers();
-        alaskaPolygon();
-        alaskaMarkers();
-        map.setView([64.2, -149.4], 4);
-        group.addTo(map);
+    console.log("refilterLayersAlaska");
 
 }
+
+
+// find radius of marker
+
+
 
 function getRadius(d) {
     return d > 6400  ? 22 :
@@ -204,6 +253,8 @@ function getRadius(d) {
             d > 50  ? 6 :
                     4;
 }
+
+//colors to be used
 
 var colors = {
     "Coal": "#333333",
@@ -247,18 +298,64 @@ function onEachFeature(feature, layer) {
 var zoomHome = L.Control.zoomHome();
 zoomHome.addTo(map);
 
-// link up buttons to functions
+// states dropdown menu
 
-// $(document).on('click', ".state-selector", function (){
-
-// })
-
-$('#selector').change(function(){ 
+$('#selector1').change(function(){ 
     if($(this).val() == "all"){
-      allStates();
+
+        if ($("#selector2").val() == "all") {
+            refilterLayersAll(01);
+        }
+
+        else if ($("#selector2").val() == "hydro") {
+            refilterLayersAll(02);
+        }
+
     }
     if($(this).val() == "alaska"){
-      alaska();
+
+        if ($("#selector2").val() == "all") {
+            refilterLayersAlaska(01);
+        }
+
+        else if ($("#selector2").val() == "hydro") {
+            refilterLayersAlaska(02);
+        }
     }
 
 });
+
+//type dropdown menu
+
+$('#selector2').change(function() {
+
+    if($(this).val() == "all") {
+
+        if ($("#selector1").val() == "all") {
+            refilterLayersAll(01);
+        }
+
+        else if ($("#selector1").val() == "alaska") {
+            refilterLayersAlaska(01);
+        }
+        
+      }
+
+    else if ($(this).val() == "hydro") {
+        if ($("#selector1").val() == "all") {
+            refilterLayersAll(02);
+        }
+
+        else if ($("#selector1").val() == "alaska") {
+            refilterLayersAlaska(02);
+        }
+    }
+})
+
+//reset dropdown on window reload
+
+$(document).ready(function () {
+    $("select").each(function () {
+        $(this).val($(this).find('option[selected]').val());
+    });
+})
