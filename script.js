@@ -382,78 +382,78 @@ function refilterLayersAlaska (varState) {
 
 function refilterLayersArizona (varState) {
     
-        function arizonaMarkers (data) {
-            var promise = $.getJSON("us-energy.geojson");
-            promise.then(function(data){
-                var markers = L.geoJSON(data, {
-                    filter: function (feature, layer) {
-                        if (varState == "01") {
-                            return (feature.properties.State === "AZ");
-                        }
-                        else if (varState == "02") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Biomass")
-                        }
-                        else if (varState == "03") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Coal");
-                        }
-                        else if (varState == "04") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Gas");
-                        }
-                        else if (varState == "05") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Geothermal");
-                        }
-                        else if (varState == "06") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Hydro");
-                        }
-                        else if (varState == "07") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Nuclear");
-                        }
-                        else if (varState == "08") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Oil");
-                        }
-                        else if (varState == "09") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Other");
-                        }
-                        else if (varState == "10") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Solar");
-                        }
-                        else if (varState == "11") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Storage");
-                        }
-                        else if (varState == "12") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Waste");
-                        }
-                        else if (varState == "13") {
-                            return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Wind");
-                        }
-                    },
-                    pointToLayer: function (feature, latlng) {
-                        return L.circleMarker(latlng);
-                    },
-                    onEachFeature: onEachFeature,
-                    style: style
-                });
-                group.addLayer(markers);
-            });
-        }
-    
-        function arizonaPolygon () {
-            var polygon = L.geoJSON(states, {
-                filter: function (feature) {
-                    return (feature.properties["adm1_code"] === "USA-3520");
+    function arizonaMarkers (data) {
+        var promise = $.getJSON("us-energy.geojson");
+        promise.then(function(data){
+            var markers = L.geoJSON(data, {
+                filter: function (feature, layer) {
+                    if (varState == "01") {
+                        return (feature.properties.State === "AZ");
+                    }
+                    else if (varState == "02") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Biomass")
+                    }
+                    else if (varState == "03") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Coal");
+                    }
+                    else if (varState == "04") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Gas");
+                    }
+                    else if (varState == "05") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Geothermal");
+                    }
+                    else if (varState == "06") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Hydro");
+                    }
+                    else if (varState == "07") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Nuclear");
+                    }
+                    else if (varState == "08") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Oil");
+                    }
+                    else if (varState == "09") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Other");
+                    }
+                    else if (varState == "10") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Solar");
+                    }
+                    else if (varState == "11") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Storage");
+                    }
+                    else if (varState == "12") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Waste");
+                    }
+                    else if (varState == "13") {
+                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Wind");
+                    }
                 },
-                style: myPolygonStyle
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng);
+                },
+                onEachFeature: onEachFeature,
+                style: style
             });
-            group.addLayer(polygon);
-        }
-    
-        group.clearLayers();
-        arizonaPolygon();
-        arizonaMarkers();
-        map.setView([34.048, -111.09], 6);
-        group.addTo(map);
-    
-        console.log("refilterLayersArizona");
+            group.addLayer(markers);
+        });
+    }
+
+    function arizonaPolygon () {
+        var polygon = L.geoJSON(states, {
+            filter: function (feature) {
+                return (feature.properties["adm1_code"] === "USA-3520");
+            },
+            style: myPolygonStyle
+        });
+        group.addLayer(polygon);
+    }
+
+    group.clearLayers();
+    arizonaPolygon();
+    arizonaMarkers();
+    map.setView([34.048, -111.09], 6);
+    group.addTo(map);
+
+    console.log("refilterLayersArizona");
     
 }
 
@@ -531,6 +531,160 @@ function refilterLayersArkansas (varState) {
     group.addTo(map);
 
     console.log("refilterLayersArkansas");
+    
+}
+
+function refilterLayersCalifornia (varState) {
+    
+    function californiaMarkers (data) {
+        var promise = $.getJSON("us-energy.geojson");
+        promise.then(function(data){
+            var markers = L.geoJSON(data, {
+                filter: function (feature, layer) {
+                    if (varState == "01") {
+                        return (feature.properties.State === "CA");
+                    }
+                    else if (varState == "02") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Biomass")
+                    }
+                    else if (varState == "03") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Coal");
+                    }
+                    else if (varState == "04") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Gas");
+                    }
+                    else if (varState == "05") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Geothermal");
+                    }
+                    else if (varState == "06") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Hydro");
+                    }
+                    else if (varState == "07") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Nuclear");
+                    }
+                    else if (varState == "08") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Oil");
+                    }
+                    else if (varState == "09") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Other");
+                    }
+                    else if (varState == "10") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Solar");
+                    }
+                    else if (varState == "11") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Storage");
+                    }
+                    else if (varState == "12") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Waste");
+                    }
+                    else if (varState == "13") {
+                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Wind");
+                    }
+                },
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng);
+                },
+                onEachFeature: onEachFeature,
+                style: style
+            });
+            group.addLayer(markers);
+        });
+    }
+
+    function californiaPolygon () {
+        var polygon = L.geoJSON(states, {
+            filter: function (feature) {
+                return (feature.properties["adm1_code"] === "USA-3521");
+            },
+            style: myPolygonStyle
+        });
+        group.addLayer(polygon);
+    }
+
+    group.clearLayers();
+    californiaPolygon();
+    californiaMarkers();
+    map.setView([36.778, -119.417], 6);
+    group.addTo(map);
+
+    console.log("refilterLayersCalifornia");
+    
+}
+
+function refilterLayersColorado (varState) {
+    
+    function coloradoMarkers (data) {
+        var promise = $.getJSON("us-energy.geojson");
+        promise.then(function(data){
+            var markers = L.geoJSON(data, {
+                filter: function (feature, layer) {
+                    if (varState == "01") {
+                        return (feature.properties.State === "CO");
+                    }
+                    else if (varState == "02") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Biomass")
+                    }
+                    else if (varState == "03") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Coal");
+                    }
+                    else if (varState == "04") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Gas");
+                    }
+                    else if (varState == "05") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Geothermal");
+                    }
+                    else if (varState == "06") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Hydro");
+                    }
+                    else if (varState == "07") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Nuclear");
+                    }
+                    else if (varState == "08") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Oil");
+                    }
+                    else if (varState == "09") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Other");
+                    }
+                    else if (varState == "10") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Solar");
+                    }
+                    else if (varState == "11") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Storage");
+                    }
+                    else if (varState == "12") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Waste");
+                    }
+                    else if (varState == "13") {
+                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Wind");
+                    }
+                },
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng);
+                },
+                onEachFeature: onEachFeature,
+                style: style
+            });
+            group.addLayer(markers);
+        });
+    }
+
+    function coloradoPolygon () {
+        var polygon = L.geoJSON(states, {
+            filter: function (feature) {
+                return (feature.properties["adm1_code"] === "USA-3522");
+            },
+            style: myPolygonStyle
+        });
+        group.addLayer(polygon);
+    }
+
+    group.clearLayers();
+    coloradoPolygon();
+    coloradoMarkers();
+    map.setView([39.55, -105.782], 7);
+    group.addTo(map);
+
+    console.log("refilterLayersColorado");
     
 }
 
@@ -874,6 +1028,116 @@ $('#selector1').change(function(){
         }
     }
 
+    if($(this).val() == "California"){
+        
+        if ($("#selector2").val() == "All") {
+            refilterLayersCalifornia(01);
+        }
+
+        else if ($("#selector2").val() == "Biomass") {
+            refilterLayersCalifornia(02);
+        }
+
+        else if ($("#selector2").val() == "Coal") {
+            refilterLayersCalifornia(03);
+        }
+
+        else if ($("#selector2").val() == "Gas") {
+            refilterLayersCalifornia(04);
+        }
+
+        else if ($("#selector2").val() == "Geothermal") {
+            refilterLayersCalifornia(05);
+        }
+
+        else if ($("#selector2").val() == "Hydro") {
+            refilterLayersCalifornia(06);
+        }
+
+        else if ($("#selector2").val() == "Nuclear") {
+            refilterLayersCalifornia(07);
+        }
+
+        else if ($("#selector2").val() == "Oil") {
+            refilterLayersCalifornia(08);
+        }
+
+        else if ($("#selector2").val() == "Other") {
+            refilterLayersCalifornia(09);
+        }
+
+        else if ($("#selector2").val() == "Solar") {
+            refilterLayersCalifornia(10);
+        }
+
+        else if ($("#selector2").val() == "Storage") {
+            refilterLayersCalifornia(11);
+        }
+
+        else if ($("#selector2").val() == "Waste") {
+            refilterLayersCalifornia(12);
+        }
+
+        else if ($("#selector2").val() == "Wind") {
+            refilterLayersCalifornia(13);
+        }
+    }
+
+    if($(this).val() == "Colorado"){
+        
+        if ($("#selector2").val() == "All") {
+            refilterLayersColorado(01);
+        }
+
+        else if ($("#selector2").val() == "Biomass") {
+            refilterLayersColorado(02);
+        }
+
+        else if ($("#selector2").val() == "Coal") {
+            refilterLayersColorado(03);
+        }
+
+        else if ($("#selector2").val() == "Gas") {
+            refilterLayersColorado(04);
+        }
+
+        else if ($("#selector2").val() == "Geothermal") {
+            refilterLayersColorado(05);
+        }
+
+        else if ($("#selector2").val() == "Hydro") {
+            refilterLayersColorado(06);
+        }
+
+        else if ($("#selector2").val() == "Nuclear") {
+            refilterLayersColorado(07);
+        }
+
+        else if ($("#selector2").val() == "Oil") {
+            refilterLayersColorado(08);
+        }
+
+        else if ($("#selector2").val() == "Other") {
+            refilterLayersColorado(09);
+        }
+
+        else if ($("#selector2").val() == "Solar") {
+            refilterLayersColorado(10);
+        }
+
+        else if ($("#selector2").val() == "Storage") {
+            refilterLayersColorado(11);
+        }
+
+        else if ($("#selector2").val() == "Waste") {
+            refilterLayersColorado(12);
+        }
+
+        else if ($("#selector2").val() == "Wind") {
+            refilterLayersColorado(13);
+        }
+    }
+
 });
 
 //type dropdown menu
@@ -901,6 +1165,14 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(01);
         }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(01);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(01);
+        }
         
     }
 
@@ -924,6 +1196,14 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(02);
         }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(02);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(02);
+        }
     }
 
     else if ($(this).val() == "Coal") {
@@ -945,6 +1225,14 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(03);
+        }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(03);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(03);
         }
     }
 
@@ -968,6 +1256,14 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(04);
         }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(04);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(04);
+        }
     }
 
     else if ($(this).val() == "Geothermal") {
@@ -989,6 +1285,14 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(05);
+        }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(05);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(05);
         }
     }
 
@@ -1012,6 +1316,14 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(06);
         }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(06);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(06);
+        }
     }
 
     else if ($(this).val() == "Nuclear") {
@@ -1033,6 +1345,14 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(07);
+        }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(07);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(07);
         }
     }
 
@@ -1056,6 +1376,14 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(08);
         }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(08);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(08);
+        }
     }
 
     else if ($(this).val() == "Other") {
@@ -1077,6 +1405,14 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(09);
+        }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(09);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(09);
         }
     }
 
@@ -1100,6 +1436,14 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(10);
         }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(10);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(10);
+        }
     }
 
     else if ($(this).val() == "Storage") {
@@ -1120,7 +1464,15 @@ $('#selector2').change(function() {
         }
 
         else if ($("#selector1").val() == "Arkansas") {
-            refilterLayersArkansas(1);
+            refilterLayersArkansas(11);
+        }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(11);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(11);
         }
     }
 
@@ -1144,6 +1496,14 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(12);
         }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(12);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(12);
+        }
     }
 
     else if ($(this).val() == "Wind") {
@@ -1165,6 +1525,14 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arkansas") {
             refilterLayersArkansas(13);
+        }
+
+        else if ($("#selector1").val() == "California") {
+            refilterLayersCalifornia(13);
+        }
+
+        else if ($("#selector1").val() == "Colorado") {
+            refilterLayersColorado(13);
         }
     }
 
