@@ -1227,6 +1227,83 @@ function refilterLayersIllinois (varState) {
     
 }
 
+function refilterLayersIndiana (varState) {
+    
+    function indianaMarkers (data) {
+        var promise = $.getJSON("us-energy.geojson");
+        promise.then(function(data){
+            var markers = L.geoJSON(data, {
+                filter: function (feature, layer) {
+                    if (varState == "01") {
+                        return (feature.properties.State === "IN");
+                    }
+                    else if (varState == "02") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Biomass")
+                    }
+                    else if (varState == "03") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Coal");
+                    }
+                    else if (varState == "04") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Gas");
+                    }
+                    else if (varState == "05") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Geothermal");
+                    }
+                    else if (varState == "06") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Hydro");
+                    }
+                    else if (varState == "07") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Nuclear");
+                    }
+                    else if (varState == "08") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Oil");
+                    }
+                    else if (varState == "09") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Other");
+                    }
+                    else if (varState == "10") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Solar");
+                    }
+                    else if (varState == "11") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Storage");
+                    }
+                    else if (varState == "12") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Waste");
+                    }
+                    else if (varState == "13") {
+                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Wind");
+                    }
+                },
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng);
+                },
+                onEachFeature: onEachFeature,
+                style: style
+            });
+            group.addLayer(markers);
+        });
+    }
+
+    function indianaPolygon () {
+        var polygon = L.geoJSON(states, {
+            filter: function (feature) {
+                return (feature.properties["adm1_code"] === "USA-3547");
+            },
+            style: myPolygonStyle
+        });
+        group.addLayer(polygon);
+    }
+
+    group.clearLayers();
+    indianaPolygon();
+    indianaMarkers();
+    map.setView([40.267, -86.134], 6);
+    group.addTo(map);
+
+    console.log("refilterLayersIndiana");
+    
+}
+
 // find radius of marker
 
 
@@ -2060,6 +2137,61 @@ $('#selector1').change(function(){
         }
     }
 
+    if($(this).val() == "Indiana"){
+        
+        if ($("#selector2").val() == "All") {
+            refilterLayersIndiana(01);
+        }
+
+        else if ($("#selector2").val() == "Biomass") {
+            refilterLayersIndiana(02);
+        }
+
+        else if ($("#selector2").val() == "Coal") {
+            refilterLayersIndiana(03);
+        }
+
+        else if ($("#selector2").val() == "Gas") {
+            refilterLayersIndiana(04);
+        }
+
+        else if ($("#selector2").val() == "Geothermal") {
+            refilterLayersIndiana(05);
+        }
+
+        else if ($("#selector2").val() == "Hydro") {
+            refilterLayersIndiana(06);
+        }
+
+        else if ($("#selector2").val() == "Nuclear") {
+            refilterLayersIndiana(07);
+        }
+
+        else if ($("#selector2").val() == "Oil") {
+            refilterLayersIndiana(08);
+        }
+
+        else if ($("#selector2").val() == "Other") {
+            refilterLayersIndiana(09);
+        }
+
+        else if ($("#selector2").val() == "Solar") {
+            refilterLayersIndiana(10);
+        }
+
+        else if ($("#selector2").val() == "Storage") {
+            refilterLayersIndiana(11);
+        }
+
+        else if ($("#selector2").val() == "Waste") {
+            refilterLayersIndiana(12);
+        }
+
+        else if ($("#selector2").val() == "Wind") {
+            refilterLayersIndiana(13);
+        }
+    }
+
 });
 
 //type dropdown menu
@@ -2123,6 +2255,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(01);
         }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(01);
+        }
         
     }
 
@@ -2182,6 +2318,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(02);
         }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(02);
+        }
     }
 
     else if ($(this).val() == "Coal") {
@@ -2239,6 +2379,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(03);
+        }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(03);
         }
     }
 
@@ -2298,6 +2442,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(04);
         }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(04);
+        }
     }
 
     else if ($(this).val() == "Geothermal") {
@@ -2355,6 +2503,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(05);
+        }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(05);
         }
     }
 
@@ -2414,6 +2566,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(06);
         }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(06);
+        }
     }
 
     else if ($(this).val() == "Nuclear") {
@@ -2471,6 +2627,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(07);
+        }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(07);
         }
     }
 
@@ -2530,6 +2690,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(08);
         }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(08);
+        }
     }
 
     else if ($(this).val() == "Other") {
@@ -2587,6 +2751,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(09);
+        }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(09);
         }
     }
 
@@ -2646,6 +2814,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(10);
         }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(10);
+        }
     }
 
     else if ($(this).val() == "Storage") {
@@ -2703,6 +2875,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(11);
+        }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(11);
         }
     }
 
@@ -2762,6 +2938,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(12);
         }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(12);
+        }
     }
 
     else if ($(this).val() == "Wind") {
@@ -2819,6 +2999,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Illinois") {
             refilterLayersIllinois(13);
+        }
+
+        else if ($("#selector1").val() == "Indiana") {
+            refilterLayersIndiana(13);
         }
     }
 
