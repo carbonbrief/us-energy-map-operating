@@ -151,13 +151,13 @@ function allMarkers (data) {
     });
 }
 
-//call first set of markers
+// call first set of markers
 
 allMarkers();
 
 group.addTo(map);
 
-// refilter options
+// refilter options for states
 
 function refilterLayersAll (varState) {
 
@@ -170,7 +170,40 @@ function refilterLayersAll (varState) {
                     return(feature.properties["Fuel type"] == "Biomass" || "Coal" || "Gas" || "Geothermal" || "Hydro" || "Nuclear" || "Oil" || "Other" || "Solar" || "Storage"  || "Waste" || "Wind" );
                 }
                 else if (varState == "02") {
+                    return(feature.properties["Fuel type"] == "Biomass");
+                }
+                else if (varState == "03") {
+                    return(feature.properties["Fuel type"] == "Coal");
+                }
+                else if (varState == "04") {
+                    return(feature.properties["Fuel type"] == "Gas");
+                }
+                else if (varState == "05") {
+                    return(feature.properties["Fuel type"] == "Geothermal");
+                }
+                else if (varState == "06") {
                     return(feature.properties["Fuel type"] == "Hydro");
+                }
+                else if (varState == "07") {
+                    return(feature.properties["Fuel type"] == "Nuclear");
+                }
+                else if (varState == "08") {
+                    return(feature.properties["Fuel type"] == "Oil");
+                }
+                else if (varState == "09") {
+                    return(feature.properties["Fuel type"] == "Other");
+                }
+                else if (varState == "10") {
+                    return(feature.properties["Fuel type"] == "Solar");
+                }
+                else if (varState == "11") {
+                    return(feature.properties["Fuel type"] == "Storage");
+                }
+                else if (varState == "12") {
+                    return(feature.properties["Fuel type"] == "Waste");
+                }
+                else if (varState == "13") {
+                    return(feature.properties["Fuel type"] == "Wind");
                 }
             },
             pointToLayer: function (feature, latlng) {
@@ -193,6 +226,83 @@ function refilterLayersAll (varState) {
 
 }
 
+function refilterLayersAlabama (varState) {
+    
+        function alabamaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "01") {
+                            return (feature.properties.State === "AL");
+                        }
+                        else if (varState == "02") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "03") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "04") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "05") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "06") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "07") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "08") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "09") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "10") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "11") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "12") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "13") {
+                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function alabamaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3541");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        alabamaPolygon();
+        alabamaMarkers();
+        map.setView([32.31, -86.90], 7);
+        group.addTo(map);
+    
+        console.log("refilterLayersAlabama");
+    
+}
+
 function refilterLayersAlaska (varState) {
 
     function alaskaMarkers (data) {
@@ -204,7 +314,40 @@ function refilterLayersAlaska (varState) {
                         return (feature.properties.State === "AK");
                     }
                     else if (varState == "02") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Hydro")
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Biomass")
+                    }
+                    else if (varState == "03") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Coal");
+                    }
+                    else if (varState == "04") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Gas");
+                    }
+                    else if (varState == "05") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Geothermal");
+                    }
+                    else if (varState == "06") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Hydro");
+                    }
+                    else if (varState == "07") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Nuclear");
+                    }
+                    else if (varState == "08") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Oil");
+                    }
+                    else if (varState == "09") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Other");
+                    }
+                    else if (varState == "10") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Solar");
+                    }
+                    else if (varState == "11") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Storage");
+                    }
+                    else if (varState == "12") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Waste");
+                    }
+                    else if (varState == "13") {
+                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
                 pointToLayer: function (feature, latlng) {
@@ -230,7 +373,7 @@ function refilterLayersAlaska (varState) {
     group.clearLayers();
     alaskaPolygon();
     alaskaMarkers();
-    map.setView([64.2, -149.4], 4);
+    map.setView([64.2, -149.4], 5);
     group.addTo(map);
 
     console.log("refilterLayersAlaska");
@@ -301,25 +444,168 @@ zoomHome.addTo(map);
 // states dropdown menu
 
 $('#selector1').change(function(){ 
-    if($(this).val() == "all"){
+    if($(this).val() == "All"){
 
-        if ($("#selector2").val() == "all") {
+        if ($("#selector2").val() == "All") {
             refilterLayersAll(01);
         }
 
-        else if ($("#selector2").val() == "hydro") {
+        else if ($("#selector2").val() == "Biomass") {
             refilterLayersAll(02);
         }
 
-    }
-    if($(this).val() == "alaska"){
+        else if ($("#selector2").val() == "Coal") {
+            refilterLayersAll(03);
+        }
 
-        if ($("#selector2").val() == "all") {
+        else if ($("#selector2").val() == "Gas") {
+            refilterLayersAll(04);
+        }
+
+        else if ($("#selector2").val() == "Geothermal") {
+            refilterLayersAll(05);
+        }
+
+        else if ($("#selector2").val() == "Hydro") {
+            refilterLayersAll(06);
+        }
+
+        else if ($("#selector2").val() == "Nuclear") {
+            refilterLayersAll(07);
+        }
+
+        else if ($("#selector2").val() == "Oil") {
+            refilterLayersAll(08);
+        }
+
+        else if ($("#selector2").val() == "Other") {
+            refilterLayersAll(09);
+        }
+
+        else if ($("#selector2").val() == "Solar") {
+            refilterLayersAll(10);
+        }
+
+        else if ($("#selector2").val() == "Storage") {
+            refilterLayersAll(11);
+        }
+
+        else if ($("#selector2").val() == "Waste") {
+            refilterLayersAll(12);
+        }
+
+        else if ($("#selector2").val() == "Wind") {
+            refilterLayersAll(13);
+        }
+
+    }
+
+    if($(this).val() == "Alabama"){
+        
+        if ($("#selector2").val() == "All") {
+            refilterLayersAlabama(01);
+        }
+
+        else if ($("#selector2").val() == "Biomass") {
+            refilterLayersAlabama(02);
+        }
+        else if ($("#selector2").val() == "Coal") {
+            refilterLayersAlabama(03);
+        }
+
+        else if ($("#selector2").val() == "Gas") {
+            refilterLayersAlabama(04);
+        }
+
+        else if ($("#selector2").val() == "Geothermal") {
+            refilterLayersAlabama(05);
+        }
+
+        else if ($("#selector2").val() == "Hydro") {
+            refilterLayersAlabamal(06);
+        }
+
+        else if ($("#selector2").val() == "Nuclear") {
+            refilterLayersAlabama(07);
+        }
+
+        else if ($("#selector2").val() == "Oil") {
+            refilterLayersAlabama(08);
+        }
+
+        else if ($("#selector2").val() == "Other") {
+            refilterLayersAlabama(09);
+        }
+
+        else if ($("#selector2").val() == "Solar") {
+            refilterLayersAlabama(10);
+        }
+
+        else if ($("#selector2").val() == "Storage") {
+            refilterLayersAlabama(11);
+        }
+
+        else if ($("#selector2").val() == "Waste") {
+            refilterLayersAlabama(12);
+        }
+
+        else if ($("#selector2").val() == "Wind") {
+            refilterLayersAlabama(13);
+        }
+    }
+
+    if($(this).val() == "Alaska"){
+
+        if ($("#selector2").val() == "All") {
             refilterLayersAlaska(01);
         }
 
-        else if ($("#selector2").val() == "hydro") {
+        else if ($("#selector2").val() == "Biomass") {
             refilterLayersAlaska(02);
+        }
+
+        else if ($("#selector2").val() == "Coal") {
+            refilterLayersAlaska(03);
+        }
+
+        else if ($("#selector2").val() == "Gas") {
+            refilterLayersAlaska(04);
+        }
+
+        else if ($("#selector2").val() == "Geothermal") {
+            refilterLayersAlaska(05);
+        }
+
+        else if ($("#selector2").val() == "Hydro") {
+            refilterLayersAlaska(06);
+        }
+
+        else if ($("#selector2").val() == "Nuclear") {
+            refilterLayersAlaska(07);
+        }
+
+        else if ($("#selector2").val() == "Oil") {
+            refilterLayersAlaska(08);
+        }
+
+        else if ($("#selector2").val() == "Other") {
+            refilterLayersAlaska(09);
+        }
+
+        else if ($("#selector2").val() == "Solar") {
+            refilterLayersAlaska(10);
+        }
+
+        else if ($("#selector2").val() == "Storage") {
+            refilterLayersAlaska(11);
+        }
+
+        else if ($("#selector2").val() == "Waste") {
+            refilterLayersAlaska(12);
+        }
+
+        else if ($("#selector2").val() == "Wind") {
+            refilterLayersAlaska(13);
         }
     }
 
@@ -329,24 +615,32 @@ $('#selector1').change(function(){
 
 $('#selector2').change(function() {
 
-    if($(this).val() == "all") {
+    if($(this).val() == "All") {
 
-        if ($("#selector1").val() == "all") {
+        if ($("#selector1").val() == "All") {
             refilterLayersAll(01);
         }
 
-        else if ($("#selector1").val() == "alaska") {
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(01);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
             refilterLayersAlaska(01);
         }
         
       }
 
-    else if ($(this).val() == "hydro") {
-        if ($("#selector1").val() == "all") {
+    else if ($(this).val() == "Biomass") {
+        if ($("#selector1").val() == "All") {
             refilterLayersAll(02);
         }
 
-        else if ($("#selector1").val() == "alaska") {
+        else if ($("#selector1").val() == "Alabama") {
+            refilterLayersAlabama(02);
+        }
+
+        else if ($("#selector1").val() == "Alaska") {
             refilterLayersAlaska(02);
         }
     }
