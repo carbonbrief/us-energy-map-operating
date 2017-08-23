@@ -457,6 +457,83 @@ function refilterLayersArizona (varState) {
     
 }
 
+function refilterLayersArkansas (varState) {
+    
+    function arkansasMarkers (data) {
+        var promise = $.getJSON("us-energy.geojson");
+        promise.then(function(data){
+            var markers = L.geoJSON(data, {
+                filter: function (feature, layer) {
+                    if (varState == "01") {
+                        return (feature.properties.State === "AR");
+                    }
+                    else if (varState == "02") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Biomass")
+                    }
+                    else if (varState == "03") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Coal");
+                    }
+                    else if (varState == "04") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Gas");
+                    }
+                    else if (varState == "05") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Geothermal");
+                    }
+                    else if (varState == "06") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Hydro");
+                    }
+                    else if (varState == "07") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Nuclear");
+                    }
+                    else if (varState == "08") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Oil");
+                    }
+                    else if (varState == "09") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Other");
+                    }
+                    else if (varState == "10") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Solar");
+                    }
+                    else if (varState == "11") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Storage");
+                    }
+                    else if (varState == "12") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Waste");
+                    }
+                    else if (varState == "13") {
+                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Wind");
+                    }
+                },
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng);
+                },
+                onEachFeature: onEachFeature,
+                style: style
+            });
+            group.addLayer(markers);
+        });
+    }
+
+    function arkansasPolygon () {
+        var polygon = L.geoJSON(states, {
+            filter: function (feature) {
+                return (feature.properties["adm1_code"] === "USA-3528");
+            },
+            style: myPolygonStyle
+        });
+        group.addLayer(polygon);
+    }
+
+    group.clearLayers();
+    arkansasPolygon();
+    arkansasMarkers();
+    map.setView([35.201, -91.831], 7);
+    group.addTo(map);
+
+    console.log("refilterLayersArkansas");
+    
+}
+
 
 // find radius of marker
 
@@ -742,6 +819,61 @@ $('#selector1').change(function(){
         }
     }
 
+    if($(this).val() == "Arkansas"){
+        
+        if ($("#selector2").val() == "All") {
+            refilterLayersArkansas(01);
+        }
+
+        else if ($("#selector2").val() == "Biomass") {
+            refilterLayersArkansas(02);
+        }
+
+        else if ($("#selector2").val() == "Coal") {
+            refilterLayersArkansas(03);
+        }
+
+        else if ($("#selector2").val() == "Gas") {
+            refilterLayersArkansas(04);
+        }
+
+        else if ($("#selector2").val() == "Geothermal") {
+            refilterLayersArkansas(05);
+        }
+
+        else if ($("#selector2").val() == "Hydro") {
+            refilterLayersArkansas(06);
+        }
+
+        else if ($("#selector2").val() == "Nuclear") {
+            refilterLayersArkansas(07);
+        }
+
+        else if ($("#selector2").val() == "Oil") {
+            refilterLayersArkansas(08);
+        }
+
+        else if ($("#selector2").val() == "Other") {
+            refilterLayersArkansas(09);
+        }
+
+        else if ($("#selector2").val() == "Solar") {
+            refilterLayersArkansas(10);
+        }
+
+        else if ($("#selector2").val() == "Storage") {
+            refilterLayersArkansas(11);
+        }
+
+        else if ($("#selector2").val() == "Waste") {
+            refilterLayersArkansas(12);
+        }
+
+        else if ($("#selector2").val() == "Wind") {
+            refilterLayersArkansas(13);
+        }
+    }
+
 });
 
 //type dropdown menu
@@ -765,6 +897,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(01);
         }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(01);
+        }
         
     }
 
@@ -784,6 +920,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(02);
         }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(02);
+        }
     }
 
     else if ($(this).val() == "Coal") {
@@ -801,6 +941,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(03);
+        }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(03);
         }
     }
 
@@ -820,6 +964,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(04);
         }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(04);
+        }
     }
 
     else if ($(this).val() == "Geothermal") {
@@ -837,6 +985,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(05);
+        }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(05);
         }
     }
 
@@ -856,6 +1008,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(06);
         }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(06);
+        }
     }
 
     else if ($(this).val() == "Nuclear") {
@@ -873,6 +1029,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(07);
+        }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(07);
         }
     }
 
@@ -892,6 +1052,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(08);
         }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(08);
+        }
     }
 
     else if ($(this).val() == "Other") {
@@ -909,6 +1073,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(09);
+        }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(09);
         }
     }
 
@@ -928,6 +1096,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(10);
         }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(10);
+        }
     }
 
     else if ($(this).val() == "Storage") {
@@ -945,6 +1117,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(11);
+        }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(1);
         }
     }
 
@@ -964,6 +1140,10 @@ $('#selector2').change(function() {
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(12);
         }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(12);
+        }
     }
 
     else if ($(this).val() == "Wind") {
@@ -981,6 +1161,10 @@ $('#selector2').change(function() {
 
         else if ($("#selector1").val() == "Arizona") {
             refilterLayersArizona(13);
+        }
+
+        else if ($("#selector1").val() == "Arkansas") {
+            refilterLayersArkansas(13);
         }
     }
 
