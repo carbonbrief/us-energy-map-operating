@@ -124,7 +124,7 @@ var group = L.layerGroup();
 
 // set up type state
 
-var varState = "01";
+var varState = "All";
 
 // set polygon style
 
@@ -166,43 +166,43 @@ function refilterLayersAll (varState) {
         promise.then(function(data) {
         var markers = L.geoJSON(data, {
             filter: function (feature, layer) {
-                if (varState == "01") {
+                if (varState == "All") {
                     return(feature.properties["Fuel type"] == "Biomass" || "Coal" || "Gas" || "Geothermal" || "Hydro" || "Nuclear" || "Oil" || "Other" || "Solar" || "Storage"  || "Waste" || "Wind" );
                 }
-                else if (varState == "02") {
+                else if (varState == "Biomass") {
                     return(feature.properties["Fuel type"] == "Biomass");
                 }
-                else if (varState == "03") {
+                else if (varState == "Coal") {
                     return(feature.properties["Fuel type"] == "Coal");
                 }
-                else if (varState == "04") {
+                else if (varState == "Gas") {
                     return(feature.properties["Fuel type"] == "Gas");
                 }
-                else if (varState == "05") {
+                else if (varState == "Geothermal") {
                     return(feature.properties["Fuel type"] == "Geothermal");
                 }
-                else if (varState == "06") {
+                else if (varState == "Hydro") {
                     return(feature.properties["Fuel type"] == "Hydro");
                 }
-                else if (varState == "07") {
+                else if (varState == "Nuclear") {
                     return(feature.properties["Fuel type"] == "Nuclear");
                 }
-                else if (varState == "08") {
+                else if (varState == "Oil") {
                     return(feature.properties["Fuel type"] == "Oil");
                 }
-                else if (varState == "09") {
+                else if (varState == "Other") {
                     return(feature.properties["Fuel type"] == "Other");
                 }
-                else if (varState == "10") {
+                else if (varState == "Solar") {
                     return(feature.properties["Fuel type"] == "Solar");
                 }
-                else if (varState == "11") {
+                else if (varState == "Storage") {
                     return(feature.properties["Fuel type"] == "Storage");
                 }
-                else if (varState == "12") {
+                else if (varState == "Waste") {
                     return(feature.properties["Fuel type"] == "Waste");
                 }
-                else if (varState == "13") {
+                else if (varState == "Wind") {
                     return(feature.properties["Fuel type"] == "Wind");
                 }
             },
@@ -233,43 +233,43 @@ function refilterLayersAlabama (varState) {
             promise.then(function(data){
                 var markers = L.geoJSON(data, {
                     filter: function (feature, layer) {
-                        if (varState == "01") {
+                        if (varState == "All") {
                             return (feature.properties.State === "AL");
                         }
-                        else if (varState == "02") {
+                        else if (varState == "Biomass") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Biomass")
                         }
-                        else if (varState == "03") {
+                        else if (varState == "Coal") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Coal");
                         }
-                        else if (varState == "04") {
+                        else if (varState == "Gas") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Gas");
                         }
-                        else if (varState == "05") {
+                        else if (varState == "Geothermal") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Geothermal");
                         }
-                        else if (varState == "06") {
+                        else if (varState == "Hydro") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Hydro");
                         }
-                        else if (varState == "07") {
+                        else if (varState == "Nuclear") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Nuclear");
                         }
-                        else if (varState == "08") {
+                        else if (varState == "Oil") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Oil");
                         }
-                        else if (varState == "09") {
+                        else if (varState == "Other") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Other");
                         }
-                        else if (varState == "10") {
+                        else if (varState == "Solar") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Solar");
                         }
-                        else if (varState == "11") {
+                        else if (varState == "Storage") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Storage");
                         }
-                        else if (varState == "12") {
+                        else if (varState == "Waste") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Waste");
                         }
-                        else if (varState == "13") {
+                        else if (varState == "Wind") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Wind");
                         }
                     },
@@ -310,43 +310,43 @@ function refilterLayersAlaska (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "AK");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -387,43 +387,43 @@ function refilterLayersArizona (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "AZ");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -464,43 +464,43 @@ function refilterLayersArkansas (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "AR");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -541,43 +541,43 @@ function refilterLayersCalifornia (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "CA");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -618,43 +618,43 @@ function refilterLayersColorado (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "CO");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -695,43 +695,43 @@ function refilterLayersConnecticut (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "CT");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -772,43 +772,43 @@ function refilterLayersDelaware (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "DE");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -849,43 +849,43 @@ function refilterLayersFlorida (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "FL");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Other");
                     }
                     else if (varState == "10") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -926,43 +926,43 @@ function refilterLayersGeorgia (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "GA");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -1003,43 +1003,43 @@ function refilterLayersHawaii (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "HI");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -1080,43 +1080,43 @@ function refilterLayersIdaho (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "ID");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -1157,43 +1157,43 @@ function refilterLayersIllinois (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "IL");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -1234,43 +1234,43 @@ function refilterLayersIndiana (varState) {
         promise.then(function(data){
             var markers = L.geoJSON(data, {
                 filter: function (feature, layer) {
-                    if (varState == "01") {
+                    if (varState == "All") {
                         return (feature.properties.State === "IN");
                     }
-                    else if (varState == "02") {
+                    else if (varState == "Biomass") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Biomass")
                     }
-                    else if (varState == "03") {
+                    else if (varState == "Coal") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Coal");
                     }
-                    else if (varState == "04") {
+                    else if (varState == "Gas") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Gas");
                     }
-                    else if (varState == "05") {
+                    else if (varState == "Geothermal") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Geothermal");
                     }
-                    else if (varState == "06") {
+                    else if (varState == "Hydro") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Hydro");
                     }
-                    else if (varState == "07") {
+                    else if (varState == "Nuclear") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Nuclear");
                     }
-                    else if (varState == "08") {
+                    else if (varState == "Oil") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Oil");
                     }
-                    else if (varState == "09") {
+                    else if (varState == "Other") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Other");
                     }
-                    else if (varState == "10") {
+                    else if (varState == "Solar") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Solar");
                     }
-                    else if (varState == "11") {
+                    else if (varState == "Storage") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Storage");
                     }
-                    else if (varState == "12") {
+                    else if (varState == "Waste") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Waste");
                     }
-                    else if (varState == "13") {
+                    else if (varState == "Wind") {
                         return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Wind");
                     }
                 },
@@ -1368,828 +1368,122 @@ zoomHome.addTo(map);
 $('#selector1').change(function(){ 
     if($(this).val() == "All"){
 
-        if ($("#selector2").val() == "All") {
-            refilterLayersAll(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersAll(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersAll(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersAll(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersAll(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersAll(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersAll(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersAll(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersAll(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersAll(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersAll(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersAll(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersAll(13);
-        }
+        varState = $("#selector2").val()
+        
+        refilterLayersAll(varState);
 
     }
 
     if($(this).val() == "Alabama"){
+
+        varState = $("#selector2").val()
+
+        refilterLayersAlabama(varState);
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersAlabama(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersAlabama(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersAlabama(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersAlabama(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersAlabama(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersAlabamal(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersAlabama(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersAlabama(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersAlabama(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersAlabama(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersAlabama(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersAlabama(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersAlabama(13);
-        }
     }
 
     if($(this).val() == "Alaska"){
 
-        if ($("#selector2").val() == "All") {
-            refilterLayersAlaska(01);
-        }
+        varState = $("#selector2").val()
+        
+        refilterLayersAlaska(varState);
 
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersAlaska(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersAlaska(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersAlaska(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersAlaska(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersAlaska(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersAlaska(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersAlaska(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersAlaska(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersAlaska(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersAlaska(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersAlaska(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersAlaska(13);
-        }
     }
 
     if($(this).val() == "Arizona"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersArizona(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersArizona(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersArizona(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersArizona(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersArizona(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersArizona(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersArizona(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersArizona(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersArizona(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersArizona(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersArizona(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersArizona(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersArizona(13);
-        }
+        refilterLayersArizona(varState);
+    
     }
 
     if($(this).val() == "Arkansas"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersArkansas(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersArkansas(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersArkansas(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersArkansas(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersArkansas(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersArkansas(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersArkansas(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersArkansas(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersArkansas(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersArkansas(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersArkansas(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersArkansas(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersArkansas(13);
-        }
+        refilterLayersArkansas(varState);
+        
     }
 
     if($(this).val() == "California"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersCalifornia(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersCalifornia(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersCalifornia(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersCalifornia(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersCalifornia(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersCalifornia(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersCalifornia(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersCalifornia(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersCalifornia(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersCalifornia(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersCalifornia(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersCalifornia(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersCalifornia(13);
-        }
+        refilterLayersCalifornia(varState);
+        
     }
 
     if($(this).val() == "Colorado"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersColorado(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersColorado(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersColorado(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersColorado(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersColorado(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersColorado(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersColorado(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersColorado(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersColorado(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersColorado(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersColorado(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersColorado(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersColorado(13);
-        }
+        refilterLayersCalifornia(varState);
+        
     }
 
     if($(this).val() == "Connecticut"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersConnecticut(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersConnecticut(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersConnecticut(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersConnecticut(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersConnecticut(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersConnecticut(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersConnecticut(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersConnecticut(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersConnecticut(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersConnecticut(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersConnecticut(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersConnecticut(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersConnecticut(13);
-        }
+        refilterLayersConnecticut(varState);
+        
     }
 
     if($(this).val() == "Delaware"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersDelaware(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersDelaware(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersDelaware(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersDelaware(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersDelaware(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersDelaware(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersDelaware(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersDelaware(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersDelaware(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersDelaware(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersDelaware(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersDelaware(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersDelaware(13);
-        }
+        refilterLayersDelaware(varState);
+        
     }
 
     if($(this).val() == "Florida"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersFlorida(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersFlorida(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersFlorida(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersFlorida(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersFlorida(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersFlorida(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersFlorida(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersFlorida(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersFlorida(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersFlorida(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersFlorida(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersFlorida(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersFlorida(13);
-        }
+        refilterLayersFlorida(varState);
+        
     }
 
     if($(this).val() == "Georgia"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersGeorgia(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersGeorgia(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersGeorgia(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersGeorgia(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersGeorgia(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersGeorgia(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersGeorgia(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersGeorgia(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersGeorgia(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersGeorgia(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersGeorgia(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersGeorgia(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersGeorgia(13);
-        }
+        refilterLayersGeorgia(varState);
+        
     }
 
     if($(this).val() == "Hawaii"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersHawaii(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersHawaii(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersHawaii(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersHawaii(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersHawaii(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersHawaii(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersHawaii(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersHawaii(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersHawaii(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersHawaii(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersHawaii(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersHawaii(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersHawaii(13);
-        }
+        refilterLayersHawaii(varState);
+        
     }
 
     if($(this).val() == "Idaho"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersIdaho(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersIdaho(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersIdaho(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersIdaho(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersIdaho(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersIdaho(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersIdaho(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersIdaho(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersIdaho(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersIdaho(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersIdaho(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersIdaho(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersIdaho(13);
-        }
+        refilterLayersIdaho(varState);
+        
     }
 
     if($(this).val() == "Illinois"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersIllinois(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersIllinois(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersIllinois(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersIllinois(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersIllinois(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersIllinois(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersIllinois(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersIllinois(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersIllinois(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersIllinois(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersIllinois(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersIllinois(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersIllinois(13);
-        }
+        refilterLayersIllinois(varState);
+        
     }
 
     if($(this).val() == "Indiana"){
+
+        varState = $("#selector2").val()
         
-        if ($("#selector2").val() == "All") {
-            refilterLayersIndiana(01);
-        }
-
-        else if ($("#selector2").val() == "Biomass") {
-            refilterLayersIndiana(02);
-        }
-
-        else if ($("#selector2").val() == "Coal") {
-            refilterLayersIndiana(03);
-        }
-
-        else if ($("#selector2").val() == "Gas") {
-            refilterLayersIndiana(04);
-        }
-
-        else if ($("#selector2").val() == "Geothermal") {
-            refilterLayersIndiana(05);
-        }
-
-        else if ($("#selector2").val() == "Hydro") {
-            refilterLayersIndiana(06);
-        }
-
-        else if ($("#selector2").val() == "Nuclear") {
-            refilterLayersIndiana(07);
-        }
-
-        else if ($("#selector2").val() == "Oil") {
-            refilterLayersIndiana(08);
-        }
-
-        else if ($("#selector2").val() == "Other") {
-            refilterLayersIndiana(09);
-        }
-
-        else if ($("#selector2").val() == "Solar") {
-            refilterLayersIndiana(10);
-        }
-
-        else if ($("#selector2").val() == "Storage") {
-            refilterLayersIndiana(11);
-        }
-
-        else if ($("#selector2").val() == "Waste") {
-            refilterLayersIndiana(12);
-        }
-
-        else if ($("#selector2").val() == "Wind") {
-            refilterLayersIndiana(13);
-        }
+        refilterLayersIndiana(varState);
+        
     }
 
 });
