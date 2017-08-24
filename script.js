@@ -1482,154 +1482,50 @@ var refilterLayers = {
     
         console.log("refilterLayersKentucky");
     },
-    Louisiana: function (varState) {},
-    Maine: function (varState) {},
-    Maryland: function (varState) {},
-    Massachusetts: function (varState) {},
-    Michigan: function (varState) {},
-    Minnesota: function (varState) {},
-    Mississippi: function (varState) {},
-    Missouri: function (varState) {},
-    Montana: function (varState) {},
-    Nebraska: function (varState) {},
-    Nevada: function (varState) {},
-    NewHampshire: function (varState) {},
-    NewJersey: function (varState) {},
-    NewMexico: function (varState) {},
-    NewYork: function (varState) {},
-    NorthCarolina: function (varState) {},
-    NorthDakota: function (varState) {},
-    Ohio: function (varState) {},
-    Oklahoma: function (varState) {},
-    Oregon: function (varState) {},
-    Pennsylvania: function (varState) {},
-    RhodeIsland: function (varState) {},
-    SouthCarolina: function (varState) {},
-    SouthDakota: function (varState) {},
-    Tennessee: function (varState) {},
-    Texas: function (varState) {},
-    Utah: function (varState) {},
-    Vermont: function (varState) {},
-    Virginia: function (varState) {},
-    Washington: function (varState) {},
-    WestVirginia: function (varState) {},
-    Wisconsin: function (varState) {},
-    Wyoming: function (varState) {}
-
-}
-
-function refilterLayersAll (varState) {
-
-    function allMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data) {
-        var markers = L.geoJSON(data, {
-            filter: function (feature, layer) {
-                if (varState == "All") {
-                    return(feature.properties["Fuel type"] == "Biomass" || "Coal" || "Gas" || "Geothermal" || "Hydro" || "Nuclear" || "Oil" || "Other" || "Solar" || "Storage"  || "Waste" || "Wind" );
-                }
-                else if (varState == "Biomass") {
-                    return(feature.properties["Fuel type"] == "Biomass");
-                }
-                else if (varState == "Coal") {
-                    return(feature.properties["Fuel type"] == "Coal");
-                }
-                else if (varState == "Gas") {
-                    return(feature.properties["Fuel type"] == "Gas");
-                }
-                else if (varState == "Geothermal") {
-                    return(feature.properties["Fuel type"] == "Geothermal");
-                }
-                else if (varState == "Hydro") {
-                    return(feature.properties["Fuel type"] == "Hydro");
-                }
-                else if (varState == "Nuclear") {
-                    return(feature.properties["Fuel type"] == "Nuclear");
-                }
-                else if (varState == "Oil") {
-                    return(feature.properties["Fuel type"] == "Oil");
-                }
-                else if (varState == "Other") {
-                    return(feature.properties["Fuel type"] == "Other");
-                }
-                else if (varState == "Solar") {
-                    return(feature.properties["Fuel type"] == "Solar");
-                }
-                else if (varState == "Storage") {
-                    return(feature.properties["Fuel type"] == "Storage");
-                }
-                else if (varState == "Waste") {
-                    return(feature.properties["Fuel type"] == "Waste");
-                }
-                else if (varState == "Wind") {
-                    return(feature.properties["Fuel type"] == "Wind");
-                }
-            },
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng);
-            },
-                onEachFeature: onEachFeature,
-                style: style
-        });
-        group.addLayer(markers);
-        });
-
-        console.log("refilterLayersAll");
-
-    }
-
-    group.clearLayers();
-    allMarkers();
-    map.setView([38, -100], 5);
-    group.addTo(map);
-
-}
-
-function refilterLayersAlabama (varState) {
-    
-        function alabamaMarkers (data) {
+    Louisiana: function (varState) {
+        function louisianaMarkers (data) {
             var promise = $.getJSON("us-energy.geojson");
             promise.then(function(data){
                 var markers = L.geoJSON(data, {
                     filter: function (feature, layer) {
                         if (varState == "All") {
-                            return (feature.properties.State === "AL");
+                            return (feature.properties.State === "LA");
                         }
                         else if (varState == "Biomass") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Biomass")
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
                         }
                         else if (varState == "Coal") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Coal");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
                         }
                         else if (varState == "Gas") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Gas");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
                         }
                         else if (varState == "Geothermal") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Geothermal");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
                         }
                         else if (varState == "Hydro") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Hydro");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
                         }
                         else if (varState == "Nuclear") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Nuclear");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
                         }
                         else if (varState == "Oil") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Oil");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
                         }
                         else if (varState == "Other") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Other");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
                         }
                         else if (varState == "Solar") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Solar");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
                         }
                         else if (varState == "Storage") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Storage");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
                         }
                         else if (varState == "Waste") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Waste");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
                         }
                         else if (varState == "Wind") {
-                            return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Wind");
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
                         }
                     },
                     pointToLayer: function (feature, latlng) {
@@ -1642,10 +1538,10 @@ function refilterLayersAlabama (varState) {
             });
         }
     
-        function alabamaPolygon () {
+        function louisianaPolygon () {
             var polygon = L.geoJSON(states, {
                 filter: function (feature) {
-                    return (feature.properties["adm1_code"] === "USA-3541");
+                    return (feature.properties["adm1_code"] === "USA-3535");
                 },
                 style: myPolygonStyle
             });
@@ -1653,1245 +1549,2382 @@ function refilterLayersAlabama (varState) {
         }
     
         group.clearLayers();
-        alabamaPolygon();
-        alabamaMarkers();
-        map.setView([32.31, -86.90], 7);
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
         group.addTo(map);
     
-        console.log("refilterLayersAlabama");
-    
-}
-
-function refilterLayersAlaska (varState) {
-
-    function alaskaMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "AK");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersLouisiana");
+    },
+    Maine: function (varState) {
+        function maineMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "ME");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function alaskaPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3563");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    alaskaPolygon();
-    alaskaMarkers();
-    map.setView([64.2, -149.4], 4);
-    group.addTo(map);
-
-    console.log("refilterLayersAlaska");
-
-}
-
-function refilterLayersArizona (varState) {
+        }
     
-    function arizonaMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "AZ");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function mainePolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3561");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function arizonaPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3520");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    arizonaPolygon();
-    arizonaMarkers();
-    map.setView([34.048, -111.09], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersArizona");
+            group.addLayer(polygon);
+        }
     
-}
-
-function refilterLayersArkansas (varState) {
+        group.clearLayers();
+        mainePolygon();
+        maineMarkers();
+        map.setView([45.253, -69.445], 6);
+        group.addTo(map);
     
-    function arkansasMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "AR");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersMaine");
+    },
+    Maryland: function (varState) {
+        function marylandMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "MD");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function arkansasPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3528");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    arkansasPolygon();
-    arkansasMarkers();
-    map.setView([35.201, -91.831], 7);
-    group.addTo(map);
-
-    console.log("refilterLayersArkansas");
+        }
     
-}
-
-function refilterLayersCalifornia (varState) {
-    
-    function californiaMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "CA");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function marylandPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3557");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function californiaPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3521");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    californiaPolygon();
-    californiaMarkers();
-    map.setView([36.778, -119.417], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersCalifornia");
+            group.addLayer(polygon);
+        }
     
-}
-
-function refilterLayersColorado (varState) {
+        group.clearLayers();
+        marylandPolygon();
+        marylandMarkers();
+        map.setView([39.045, -76.641], 6);
+        group.addTo(map);
     
-    function coloradoMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "CO");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersMaryland");
+    },
+    Massachusetts: function (varState) {
+        function massachusettsMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "MA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function coloradoPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3522");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    coloradoPolygon();
-    coloradoMarkers();
-    map.setView([39.55, -105.782], 7);
-    group.addTo(map);
-
-    console.log("refilterLayersColorado");
+        }
     
-}
-
-function refilterLayersConnecticut (varState) {
-    
-    function connecticutMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "CT");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function massachusettsPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3513");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function connecticutPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3537");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    connecticutPolygon();
-    connecticutMarkers();
-    map.setView([41.603, -73.087], 8);
-    group.addTo(map);
-
-    console.log("refilterLayersConnecticut");
+            group.addLayer(polygon);
+        }
     
-}
-
-function refilterLayersDelaware (varState) {
+        group.clearLayers();
+        massachusettsPolygon();
+        massachusettsMarkers();
+        map.setView([42.407, -71.382], 6);
+        group.addTo(map);
     
-    function delawareMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "DE");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersMassachusetts");
+    },
+    Michigan: function (varState) {
+        function michiganMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "MI");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function delawarePolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3555");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    delawarePolygon();
-    delawareMarkers();
-    map.setView([38.910, -75.527], 8);
-    group.addTo(map);
-
-    console.log("refilterLayersDelaware");
+        }
     
-}
-
-function refilterLayersFlorida (varState) {
-    
-    function floridaMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "FL");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "10") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function michiganPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3562");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function floridaPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3542");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    floridaPolygon();
-    floridaMarkers();
-    map.setView([27.664, -81.515], 7);
-    group.addTo(map);
-
-    console.log("refilterLayersFlorida");
+            group.addLayer(polygon);
+        }
     
-}
-
-function refilterLayersGeorgia (varState) {
+        group.clearLayers();
+        michiganPolygon();
+        michiganMarkers();
+        map.setView([44.314, -85.602], 6);
+        group.addTo(map);
     
-    function georgiaMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "GA");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersMichigan");
+    },
+    Minnesota: function (varState) {
+        function minnesotaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "MN");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function georgiaPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3543");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    georgiaPolygon();
-    georgiaMarkers();
-    map.setView([32.165, -82.900], 7);
-    group.addTo(map);
-
-    console.log("refilterLayersGeorgia");
+        }
     
-}
-
-function refilterLayersHawaii (varState) {
-    
-    function hawaiiMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "HI");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function minnesotaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3514");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function hawaiiPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3517");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    hawaiiPolygon();
-    hawaiiMarkers();
-    map.setView([19.896, -156.582], 7);
-    group.addTo(map);
-
-    console.log("refilterLayersHawaii");
+            group.addLayer(polygon);
+        }
     
-}
-
-function refilterLayersIdaho (varState) {
+        group.clearLayers();
+        minnesotaPolygon();
+        minnesotaMarkers();
+        map.setView([46.729, -94.685], 6);
+        group.addTo(map);
     
-    function idahoMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "ID");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersMinnesota");
+    },
+    Mississippi: function (varState) {
+        function mississippiMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "MS");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function idahoPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3518");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    idahoPolygon();
-    idahoMarkers();
-    map.setView([45.068, -114.742], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersIdaho");
+        }
     
-}
-
-function refilterLayersIllinois (varState) {
-    
-    function illinoisMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "IL");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function mississippiPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3544");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function illinoisPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3546");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    illinoisPolygon();
-    illinoisMarkers();
-    map.setView([40.633, -89.398], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersIllinois");
+            group.addLayer(polygon);
+        }
     
-}
-
-function refilterLayersIndiana (varState) {
+        group.clearLayers();
+        mississippiPolygon();
+        mississippiMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
     
-    function indianaMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "IN");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersMississippi");
+    },
+    Missouri: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function indianaPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3547");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    indianaPolygon();
-    indianaMarkers();
-    map.setView([40.267, -86.134], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersIndiana");
+        }
     
-}
-
-function refilterLayersIowa (varState) {
-    
-    function iowaMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "IA");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function iowaPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3529");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    iowaPolygon();
-    iowaMarkers();
-    map.setView([41.878, -93.097], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersIowa");
+            group.addLayer(polygon);
+        }
     
-}
-
-function refilterLayersKansas (varState) {
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
     
-    function kansasMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "KS");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Wind");
-                    }
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+        console.log("refilterLayersLouisiana");
+    },
+    Montana: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function kansasPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3530");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    kansasPolygon();
-    kansasMarkers();
-    map.setView([39.011, -98.484], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersKansas");
+        }
     
-}
-
-function refilterLayersKentucky (varState) {
-    
-    function kentuckyMarkers (data) {
-        var promise = $.getJSON("us-energy.geojson");
-        promise.then(function(data){
-            var markers = L.geoJSON(data, {
-                filter: function (feature, layer) {
-                    if (varState == "All") {
-                        return (feature.properties.State === "KY");
-                    }
-                    else if (varState == "Biomass") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Biomass")
-                    }
-                    else if (varState == "Coal") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Coal");
-                    }
-                    else if (varState == "Gas") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Gas");
-                    }
-                    else if (varState == "Geothermal") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Geothermal");
-                    }
-                    else if (varState == "Hydro") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Hydro");
-                    }
-                    else if (varState == "Nuclear") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Nuclear");
-                    }
-                    else if (varState == "Oil") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Oil");
-                    }
-                    else if (varState == "Other") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Other");
-                    }
-                    else if (varState == "Solar") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Solar");
-                    }
-                    else if (varState == "Storage") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Storage");
-                    }
-                    else if (varState == "Waste") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Waste");
-                    }
-                    else if (varState == "Wind") {
-                        return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Wind");
-                    }
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
                 },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng);
-                },
-                onEachFeature: onEachFeature,
-                style: style
+                style: myPolygonStyle
             });
-            group.addLayer(markers);
-        });
-    }
-
-    function kentuckyPolygon () {
-        var polygon = L.geoJSON(states, {
-            filter: function (feature) {
-                return (feature.properties["adm1_code"] === "USA-3548");
-            },
-            style: myPolygonStyle
-        });
-        group.addLayer(polygon);
-    }
-
-    group.clearLayers();
-    kentuckyPolygon();
-    kentuckyMarkers();
-    map.setView([37.839, -84.270], 6);
-    group.addTo(map);
-
-    console.log("refilterLayersKentucky");
+            group.addLayer(polygon);
+        }
     
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Nebraska: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Nevada: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    NewHampshire: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    NewJersey: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    NewMexico: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    NewYork: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    NorthCarolina: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    NorthDakota: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Ohio: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Oklahoma: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Oregon: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Pennsylvania: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    RhodeIsland: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    SouthCarolina: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    SouthDakota: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Tennessee: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Texas: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Utah: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Vermont: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Virginia: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Washington: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    WestVirginia: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Wisconsin: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    },
+    Wyoming: function (varState) {
+        function louisianaMarkers (data) {
+            var promise = $.getJSON("us-energy.geojson");
+            promise.then(function(data){
+                var markers = L.geoJSON(data, {
+                    filter: function (feature, layer) {
+                        if (varState == "All") {
+                            return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Biomass") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
+                        }
+                        else if (varState == "Coal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Coal");
+                        }
+                        else if (varState == "Gas") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Gas");
+                        }
+                        else if (varState == "Geothermal") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Geothermal");
+                        }
+                        else if (varState == "Hydro") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Hydro");
+                        }
+                        else if (varState == "Nuclear") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Nuclear");
+                        }
+                        else if (varState == "Oil") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Oil");
+                        }
+                        else if (varState == "Other") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Other");
+                        }
+                        else if (varState == "Solar") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Solar");
+                        }
+                        else if (varState == "Storage") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Storage");
+                        }
+                        else if (varState == "Waste") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Waste");
+                        }
+                        else if (varState == "Wind") {
+                            return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Wind");
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng);
+                    },
+                    onEachFeature: onEachFeature,
+                    style: style
+                });
+                group.addLayer(markers);
+            });
+        }
+    
+        function louisianaPolygon () {
+            var polygon = L.geoJSON(states, {
+                filter: function (feature) {
+                    return (feature.properties["adm1_code"] === "USA-3535");
+                },
+                style: myPolygonStyle
+            });
+            group.addLayer(polygon);
+        }
+    
+        group.clearLayers();
+        louisianaPolygon();
+        louisianaMarkers();
+        map.setView([30.984, -91.962], 6);
+        group.addTo(map);
+    
+        console.log("refilterLayersLouisiana");
+    }
+
 }
 
 // find radius of marker
