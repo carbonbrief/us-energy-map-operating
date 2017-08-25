@@ -3950,11 +3950,11 @@ var colors = {
     "Solar": "#EFC530",
     "Nuclear": "#A14A7B",
     "Oil": "#673b9b",
-    "Hydro": "#2f8fce",
+    "Hydro": "#2cb0c1",
     "Wind": "#136400",
     "Biomass": "#A7B734",
     "Waste": "#dd8a3e",
-    "Storage": "#ffada9",
+    "Storage": "#e58888",
     "Geothermal": "#C7432B",
     "Other": "#7c5641"
 }
