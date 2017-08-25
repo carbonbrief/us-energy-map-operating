@@ -3946,7 +3946,7 @@ function getRadius(d) {
 
 var colors = {
     "Coal": "#333333",
-    "Gas": "#0b4572",
+    "Gas": "#16557f",
     "Solar": "#EFC530",
     "Nuclear": "#A14A7B",
     "Oil": "#673b9b",
