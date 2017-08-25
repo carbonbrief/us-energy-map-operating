@@ -170,10 +170,10 @@ var refilterLayers = {
                         return(feature.properties["Fuel type"] == "Biomass" || "Coal" || "Gas" || "Geothermal" || "Hydro" || "Nuclear" || "Oil" || "Other" || "Solar" || "Storage"  || "Waste" || "Wind" );
                     }
                     else if (varState == "Renewable") {
-                        return(feature.properties["Renewable?"] == "Yes");
+                        return(feature.properties["Renewable"] == "Yes");
                     }
                     else if (varState == "NonRenewable") {
-                        return(feature.properties["Renewable?"] == "No");
+                        return(feature.properties["Renewable"] == "No");
                     }
                     else if (varState == "Biomass") {
                         return(feature.properties["Fuel type"] == "Biomass");
