@@ -83,12 +83,12 @@ select {
 
 #key {
     position: absolute;
-    top: 695px;
-    left: 340px;
+    top: 690px;
+    left: 10px;
     z-index: 9000;
     height: 68px;
-    width: 312px;
-    background-image:url(Key-1.png);
+    width: 350px;
+    background-image:url(key1.png);
     background-repeat: no-repeat;
     border-radius: 5px;
     -webkit-box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
