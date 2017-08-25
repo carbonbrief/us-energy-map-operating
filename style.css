@@ -106,3 +106,68 @@ select {
     background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
     background-repeat: no-repeat;
 }
+
+@media (max-width: 800px) {
+	#mapid { 
+	height: 700px;
+	}
+	.leaflet-popup-content-wrapper .leaflet-popup-content h1 {
+		font-size: 18px;
+		margin-top: 0px
+	}
+	.leaflet-popup-content-wrapper .leaflet-popup-content {
+		font-size: 12.5px;
+		margin: 12px;
+	}
+
+	.leaflet-popup-content-wrapper {
+		max-width: 280px;
+  }
+  
+  #key {
+    top: 620px;
+  }
+  
+  #logo {
+    top: 650px;
+  }
+
+}
+
+@media (max-width: 700px) {
+	#key {
+		font-size: 12.8px;
+	}
+	#mapid { 
+	height: 600px;
+  }
+
+  #key {
+    top: 520px;
+  }
+  
+  #logo {
+    top: 550px;
+  }
+
+}
+
+@media (max-width: 600px) {
+	#key {
+		visibility: hidden;
+	}
+	#mapid { 
+	height: 550px;
+	}
+	#logo {
+    top: 500px;
+  }
+  #selector_menu_1 {
+    visibility: hidden;
+  }
+  
+  #selector_menu_2 {
+    top: 10px;
+    right: 10px;
+  }
+}

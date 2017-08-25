@@ -4000,7 +4000,7 @@ $('#selector1').change(function(){
 
 });
 
-//type dropdown menu
+// fuel type dropdown menu
 
 $('#selector2').change(function() {
 
