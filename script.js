@@ -239,6 +239,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "AL");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "AL" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "AL" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -312,6 +318,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "AK");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "AK" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "AK" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Biomass")
@@ -387,6 +399,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "AZ");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "AZ" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "AZ" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -460,6 +478,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "AR");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "AR" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "AR" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Biomass")
@@ -535,6 +559,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "CA");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "CA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "CA" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -608,6 +638,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "CO");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "CO" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "CO" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Biomass")
@@ -683,6 +719,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "CT");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "CT" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "CT" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -756,6 +798,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "DE");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "DE" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "DE" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Biomass")
@@ -831,6 +879,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "FL");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "FL" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "FL" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -904,6 +958,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "GA");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "GA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "GA" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Biomass")
@@ -979,6 +1039,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "HI");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "HI" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "HI" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -1052,6 +1118,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "ID");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "ID" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "ID" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Biomass")
@@ -1127,6 +1199,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "IL");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "IL" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "IL" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -1200,6 +1278,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "IN");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "IN" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "IN" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Biomass")
@@ -1275,6 +1359,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "IA");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "IA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "IA" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -1348,6 +1438,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "KS");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "KS" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "KS" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Biomass")
@@ -1423,6 +1519,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "KY");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "KY" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "KY" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -1496,6 +1598,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "LA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "LA" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
@@ -1571,6 +1679,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "ME");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "ME" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "ME" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -1644,6 +1758,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MD");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "MD" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "MD" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Biomass")
@@ -1719,6 +1839,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "MA");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "MA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "MA" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -1792,6 +1918,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MI");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "MI" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "MI" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Biomass")
@@ -1867,6 +1999,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "MN");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "MN" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "MN" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -1940,6 +2078,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MS");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "MS" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "MS" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Biomass")
@@ -2015,6 +2159,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "MO");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "MO" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "MO" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MO" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -2088,6 +2238,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MT");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "MT" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "MT" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MT" && feature.properties["Fuel type"] == "Biomass")
@@ -2163,6 +2319,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "NE");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "NE" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "NE" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NE" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -2236,6 +2398,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NV");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "NV" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "NV" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NV" && feature.properties["Fuel type"] == "Biomass")
@@ -2311,6 +2479,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "NH");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "NH" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "NH" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NH" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -2384,6 +2558,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NJ");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "NJ" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "NJ" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NJ" && feature.properties["Fuel type"] == "Biomass")
@@ -2459,6 +2639,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "NM");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "NM" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "NM" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NM" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -2532,6 +2718,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NY");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "NY" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "NY" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NY" && feature.properties["Fuel type"] == "Biomass")
@@ -2607,6 +2799,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "NC");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "NC" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "NC" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NC" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -2680,6 +2878,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "ND");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "ND" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "ND" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "ND" && feature.properties["Fuel type"] == "Biomass")
@@ -2755,6 +2959,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "OH");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "OH" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "OH" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "OH" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -2828,6 +3038,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "OK");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "OK" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "OK" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "OK" && feature.properties["Fuel type"] == "Biomass")
@@ -2903,6 +3119,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "OR");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "OR" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "OR" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "OR" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -2976,6 +3198,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "PA");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "PA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "PA" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "PA" && feature.properties["Fuel type"] == "Biomass")
@@ -3051,6 +3279,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "RI");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "RI" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "RI" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "RI" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -3124,6 +3358,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "SC");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "SC" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "SC" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "SC" && feature.properties["Fuel type"] == "Biomass")
@@ -3199,6 +3439,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "SD");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "SD" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "SD" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "SD" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -3272,6 +3518,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "TN");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "TN" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "TN" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "TN" && feature.properties["Fuel type"] == "Biomass")
@@ -3347,6 +3599,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "TX");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "TX" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "TX" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "TX" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -3420,6 +3678,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "UT");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "UT" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "UT" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "UT" && feature.properties["Fuel type"] == "Biomass")
@@ -3495,6 +3759,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "VT");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "VT" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "VT" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "VT" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -3568,6 +3838,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "VA");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "VA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "VA" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "VA" && feature.properties["Fuel type"] == "Biomass")
@@ -3643,6 +3919,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "WA");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "WA" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "WA" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WA" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -3716,6 +3998,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "WV");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "WV" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "WV" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WV" && feature.properties["Fuel type"] == "Biomass")
@@ -3791,6 +4079,12 @@ var refilterLayers = {
                         if (varState == "All") {
                             return (feature.properties.State === "WI");
                         }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "WI" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "WI" && feature.properties["Renewable"] == "No");
+                        }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WI" && feature.properties["Fuel type"] == "Biomass")
                         }
@@ -3864,6 +4158,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "WY");
+                        }
+                        else if (varState == "Renewable") {
+                            return(feature.properties.State === "WY" && feature.properties["Renewable"] == "Yes");
+                        }
+                        else if (varState == "NonRenewable") {
+                            return(feature.properties.State === "WY" && feature.properties["Renewable"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WY" && feature.properties["Fuel type"] == "Biomass")
