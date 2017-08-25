@@ -3977,7 +3977,7 @@ function style(feature) {
 function onEachFeature(feature, layer) {
 	// does this feature have a property named popupContent?
 	if (feature.properties) {
-		layer.bindPopup('<h1 style= color:'+ colors[feature.properties["Fuel type"]] +';><b>'+feature.properties["Plant Name"]+'</h1>Capacity: </b>'+feature.properties["Capacity (MW)"]+'MW <br /><b>Type: </b>'+feature.properties["Fuel type"]+'<br /><b>Year opened: </b>'+feature.properties["Year opened"], {closeButton: false, offset: L.point(0, -20)});
+		layer.bindPopup('<h1 style= color:'+ colors[feature.properties["Fuel type"]] +';><b>'+feature.properties["Plant Name"]+'</h1>Capacity: </b>'+feature.properties["Capacity label"]+' MW<br /><b>Type: </b>'+feature.properties["Fuel type"]+'<br /><b>State: </b>'+feature.properties["State label"]+'<br /><b>Year opened: </b>'+feature.properties["Year opened"], {closeButton: false, offset: L.point(0, -20)});
         layer.on('mouseover', function() { layer.openPopup(); });
         layer.on('mouseout', function() { layer.closePopup(); });
 	};
