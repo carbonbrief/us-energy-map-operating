@@ -1,4 +1,25 @@
-#mapid { height: 770px; }
+#mapid { 
+  height: 770px; 
+}
+
+#container {
+  width: 100%;
+}
+
+#map-wrapper {
+  position: relative;
+	float: right;
+  width: 75%;
+}
+
+#side-bar {
+  display: inline-block;
+  position: absolute;
+	height: 770px;
+	width: 25%;
+	z-index: 314159;
+	background-color: #333333;
+}
 
 body {
 	margin: 0;
@@ -7,6 +28,19 @@ body {
 p {
 	font-family: PT Sans, Arial;
 	font-size: 14px;
+}
+
+#title-wrapper {
+  padding: 10px;
+}
+
+#title {
+  font-family: PT Sans Narrow, Arial;
+  padding: 10px;
+  color: #ffffff;
+  margin-top: 0px;
+  border-bottom: 1px solid;
+  border-bottom-color: #ffffff;
 }
 
 h1 {
@@ -56,12 +90,12 @@ select {
 
 #selector_menu_1 {
   top: 10px;
-  right: 10px;
+  left: 28.5%;
 }
 
 #selector_menu_2 {
   top: 10px;
-  right: 240px;
+  left: calc(28.5% + 230px);
 }
 
 
@@ -106,6 +140,47 @@ select {
     background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
     background-repeat: no-repeat;
 }
+
+/* CSS for d3 bar chart */
+
+.bar {
+  fill: white;
+  opacity: .5;
+}
+
+.bar:hover {
+  fill: #7f7f7f;
+  opacity: .4;
+}
+ 
+ .axis text {
+		font: 13px PT Sans;
+		color: #333333;
+	}
+
+ .axis path,
+ .axis line {
+   fill: none;
+   stroke: #000;
+   shape-rendering: crispEdges;
+ }
+
+ div.tooltip {
+  position: absolute;	
+  text-align: left;	
+  width: auto;
+  max-width: 240px;	
+  height: auto;		
+  padding: 10px;	
+  font: 12px PT Sans;	
+  background: white;	
+  border: 0px;					
+  border-radius: 8px;
+  pointer-events: none;
+	
+}
+
+/* make responsive */
 
 @media (max-width: 800px) {
 	#mapid { 

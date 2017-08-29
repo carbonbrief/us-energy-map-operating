@@ -19,87 +19,97 @@
             
     </head>
     <body>
-        <div id="mapid"></div>
-        <div id="key"></div>
-        <div id="logo"></div>
-        <div class='selector_menu'id="selector_menu_1">
-            <select id='selector1' style='width: 220px; height: 40px; font-family: "PT Sans", Arial; font-size: 15px; font-weight:bold; padding:6px; padding-left: 11px;'>
-                <option value='All' selected='selected'>All states</option>
-                <option value='Alabama' >Alabama</option>
-                <option value='Alaska' >Alaska</option>
-                <option value='Arizona' >Arizona</option>
-                <option value='Arkansas' >Arkansas</option>
-                <option value='California' >California</option>
-                <option value='Colorado' >Colorado</option>
-                <option value='Connecticut' >Connecticut</option>
-                <option value='Delaware' >Delaware</option>
-                <option value='Florida' >Florida</option>
-                <option value='Georgia' >Georgia</option>
-                <option value='Hawaii' >Hawaii</option>
-                <option value='Idaho' >Idaho</option>
-                <option value='Illinois' >Illinois</option>
-                <option value='Indiana' >Indiana</option>
-                <option value='Iowa' >Iowa</option>
-                <option value='Kansas' >Kansas</option>
-                <option value='Kentucky' >Kentucky</option>
-                <option value='Louisiana' >Louisiana</option>
-                <option value='Maine' >Maine</option>
-                <option value='Maryland' >Maryland</option>
-                <option value='Massachusetts' >Massachusetts</option>
-                <option value='Michigan' >Michigan</option>
-                <option value='Minnesota' >Minnesota</option>
-                <option value='Mississippi' >Mississippi</option>
-                <option value='Missouri' >Missouri</option>
-                <option value='Montana' >Montana</option>
-                <option value='Nebraska' >Nebraska</option>
-                <option value='Nevada' >Nevada</option>
-                <option value='NewHampshire' >New Hampshire</option>
-                <option value='NewJersey' >New Jersey</option>
-                <option value='NewMexico' >New Mexico</option>
-                <option value='NewYork' >New York</option>
-                <option value='NorthCarolina' >North Carolina</option>
-                <option value='NorthDakota' >North Dakota</option>
-                <option value='Ohio' >Ohio</option>
-                <option value='Oklahoma' >Oklahoma</option>
-                <option value='Oregon' >Oregon</option>
-                <option value='Pennsylvania' >Pennsylvania</option>
-                <option value='RhodeIsland' >Rhode Island</option>
-                <option value='SouthCarolina' >South Carolina</option>
-                <option value='SouthDakota' >South Dakota</option>
-                <option value='Tennessee' >Tennessee</option>
-                <option value='Texas' >Texas</option>
-                <option value='Utah' >Utah</option>
-                <option value='Vermont' >Vermont</option>
-                <option value='Virginia' >Virginia</option>
-                <option value='Washington' >Washington</option>
-                <option value='WestVirginia' >West Virginia</option>
-                <option value='Wisconsin' >Wisconsin</option>
-                <option value='Wyoming' >Wyoming</option>
-            </select>
-    
+        <div id="container">
+                <div id="side-bar">
+                        <div id="title-wrapper">
+                            <h1 id="title">US energy sources</h1>
+                        </div>
+                        <div id="chart-1">
+                        </div>
+                </div>
+                <div id="map-wrapper">
+                        <div id="mapid"></div>
+                </div>
+                <div id="key"></div>
+                <div id="logo"></div>
+                <div class='selector_menu'id="selector_menu_1">
+                    <select id='selector1' style='width: 220px; height: 40px; font-family: "PT Sans", Arial; font-size: 15px; font-weight:bold; padding:6px; padding-left: 11px;'>
+                        <option value='All' selected='selected'>All states</option>
+                        <option value='Alabama' >Alabama</option>
+                        <option value='Alaska' >Alaska</option>
+                        <option value='Arizona' >Arizona</option>
+                        <option value='Arkansas' >Arkansas</option>
+                        <option value='California' >California</option>
+                        <option value='Colorado' >Colorado</option>
+                        <option value='Connecticut' >Connecticut</option>
+                        <option value='Delaware' >Delaware</option>
+                        <option value='Florida' >Florida</option>
+                        <option value='Georgia' >Georgia</option>
+                        <option value='Hawaii' >Hawaii</option>
+                        <option value='Idaho' >Idaho</option>
+                        <option value='Illinois' >Illinois</option>
+                        <option value='Indiana' >Indiana</option>
+                        <option value='Iowa' >Iowa</option>
+                        <option value='Kansas' >Kansas</option>
+                        <option value='Kentucky' >Kentucky</option>
+                        <option value='Louisiana' >Louisiana</option>
+                        <option value='Maine' >Maine</option>
+                        <option value='Maryland' >Maryland</option>
+                        <option value='Massachusetts' >Massachusetts</option>
+                        <option value='Michigan' >Michigan</option>
+                        <option value='Minnesota' >Minnesota</option>
+                        <option value='Mississippi' >Mississippi</option>
+                        <option value='Missouri' >Missouri</option>
+                        <option value='Montana' >Montana</option>
+                        <option value='Nebraska' >Nebraska</option>
+                        <option value='Nevada' >Nevada</option>
+                        <option value='NewHampshire' >New Hampshire</option>
+                        <option value='NewJersey' >New Jersey</option>
+                        <option value='NewMexico' >New Mexico</option>
+                        <option value='NewYork' >New York</option>
+                        <option value='NorthCarolina' >North Carolina</option>
+                        <option value='NorthDakota' >North Dakota</option>
+                        <option value='Ohio' >Ohio</option>
+                        <option value='Oklahoma' >Oklahoma</option>
+                        <option value='Oregon' >Oregon</option>
+                        <option value='Pennsylvania' >Pennsylvania</option>
+                        <option value='RhodeIsland' >Rhode Island</option>
+                        <option value='SouthCarolina' >South Carolina</option>
+                        <option value='SouthDakota' >South Dakota</option>
+                        <option value='Tennessee' >Tennessee</option>
+                        <option value='Texas' >Texas</option>
+                        <option value='Utah' >Utah</option>
+                        <option value='Vermont' >Vermont</option>
+                        <option value='Virginia' >Virginia</option>
+                        <option value='Washington' >Washington</option>
+                        <option value='WestVirginia' >West Virginia</option>
+                        <option value='Wisconsin' >Wisconsin</option>
+                        <option value='Wyoming' >Wyoming</option>
+                    </select>
+            
+                </div>
+                <div class='selector_menu'id="selector_menu_2">
+                    <select id='selector2' style='width: 220px; height: 40px; font-family: "PT Sans", Arial; font-size: 15px; font-weight:bold; padding:6px; padding-left: 11px;'>
+                        <option value='All' selected='selected'>All types</option>
+                        <option value='Renewable' >Renewable</option>
+                        <option value='NonRenewable' >Non renewable</option>
+                        <option value='Biomass' >Biomass</option>
+                        <option value='Coal' >Coal</option>
+                        <option value='Gas' >Gas</option>
+                        <option value='Geothermal' >Geothermal</option>
+                        <option value='Hydro' >Hydro</option>
+                        <option value='Nuclear' >Nuclear</option>
+                        <option value='Oil' >Oil</option>
+                        <option value='Other' >Other</option>
+                        <option value='Solar' >Solar</option>
+                        <option value='Storage' >Storage</option>
+                        <option value='Waste' >Waste</option>
+                        <option value='Wind' >Wind</option>
+                    </select>
+            
+                </div>
         </div>
-        <div class='selector_menu'id="selector_menu_2">
-            <select id='selector2' style='width: 220px; height: 40px; font-family: "PT Sans", Arial; font-size: 15px; font-weight:bold; padding:6px; padding-left: 11px;'>
-                <option value='All' selected='selected'>All types</option>
-                <option value='Renewable' >Renewable</option>
-                <option value='NonRenewable' >Non renewable</option>
-                <option value='Biomass' >Biomass</option>
-                <option value='Coal' >Coal</option>
-                <option value='Gas' >Gas</option>
-                <option value='Geothermal' >Geothermal</option>
-                <option value='Hydro' >Hydro</option>
-                <option value='Nuclear' >Nuclear</option>
-                <option value='Oil' >Oil</option>
-                <option value='Other' >Other</option>
-                <option value='Solar' >Solar</option>
-                <option value='Storage' >Storage</option>
-                <option value='Waste' >Waste</option>
-                <option value='Wind' >Wind</option>
-            </select>
-    
-        </div>
-        <div id="#viz-wrapper"></div>
+        
         <script type="text/javascript" src="script.js"></script>
-        <script type="text/javascript" src="chart.js"></script>
     </body>
 </html>
