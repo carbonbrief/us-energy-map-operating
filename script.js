@@ -4328,12 +4328,12 @@ $(document).ready(function () {
 
 // chart 1 code
 
-var margin = {top: 80, right: 40, bottom: 140, left: 70},
-width = 450 - margin.left - margin.right,
-height = 470 - margin.top - margin.bottom;
+var margin = {top: 60, right: 40, bottom: 60, left: 40},
+width = 600 - margin.left - margin.right,
+height = 380 - margin.top - margin.bottom;
 
 
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+var x = d3.scale.ordinal().rangeRoundBands([0, width * 0.6], .3);
 
 var y = d3.scale.linear().range([height, 0]);
 
@@ -4344,7 +4344,13 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
 .scale(y)
 .orient("left")
-.ticks(5);
+.ticks(3);
+
+var colorScale = d3.scale.ordinal()
+.domain(["Biomass", "Coal", "Gas", "Geothermal", "Hydro", "Nuclear", "Oil", "Other", "Storage", "Waste", "Wind"])
+.range(["#A7B734", "#333333" , "#16557f", "#C7432B", "#2cb0c1", "#A14A7B", "#673b9b", "#7c5641", "#e58888", "#dd8a3e", "#136400"]);
+
+var commaFormat = d3.format(',');
 
 
 var svg = d3.select("#chart-1").append("svg")
@@ -4352,7 +4358,7 @@ var svg = d3.select("#chart-1").append("svg")
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
 .attr("transform", 
-      "translate(" + margin.left + "," + margin.top + ")");
+      "translate(" + -40 + "," + 40 + ") rotate(90 200 200)");
       
 var div = d3.select("#chart-1")
 .append("div")  // declare the tooltip div 
@@ -4366,23 +4372,31 @@ data.forEach(function(d) {
     d.Capacity = +d.Capacity;
 });
 
-x.domain(data.map(function(d) { return d.Totals; }));
+x.domain(data.sort(function(a,b){return b.Capacity-a.Capacity;}).map(function(d) { return d.Totals; }));
 y.domain([0, d3.max(data, function(d) { return d.Capacity * 1.1;})]);
 
 svg.append("g")
   .attr("class", "x axis")
   .attr("transform", "translate(0," + height + ")")
   .call(xAxis)
-.selectAll("text")
+    .selectAll("text")
   .style("text-anchor", "end")
   .attr("dx", "-.8em")
   .attr("dy", "-.55em")
-  .attr("transform", "rotate(-60)" );
+  .attr("transform", "rotate(-90)" );
 
 svg.append("g")
   .attr("class", "y axis")
   .call(yAxis)
-.append("text")
+    .selectAll("text")
+  .attr("transform", "rotate(-90)")
+  .attr("dx", "0.5em")
+  .attr("dy", "-1em")
+  .style("text-anchor", "middle");
+
+svg.append("g")
+    .attr("class", "y axis")
+    .append("text")
   .attr("transform", "rotate(-90)")
   .attr("y", 6)
   .attr("dy", ".71em")
@@ -4390,21 +4404,22 @@ svg.append("g")
   .text("Capacity (MW)");
 
 svg.selectAll("bar")
-  .data(data)
-.enter().append("rect")
+    .data(data)
+    .enter().append("rect")
     .attr("class","bar")
-  .attr("x", function(d) { return x(d.Totals); })
-  .attr("width", x.rangeBand())
+    .attr("x", function(d) { return x(d.Totals); })
+    .attr("width", x.rangeBand())
   .attr("y", function(d) { return y(d.Capacity); })
   .attr("height", function(d) { return height - y(d.Capacity); })
+  .style("fill",function(d) {return colorScale(d.Totals);})
   .on("mouseover", function(d) {		
         div.transition()
             .duration(500)	
             .style("opacity", 0);
         div.transition()
             .duration(200)	
-            .style("opacity", .95);	
-        div	.html("<b>Capacity (MW): </b>" + d.Capacity)	 
+            .style("opacity", 1);	
+        div	.html("<b>Capacity (MW): </b>" + commaFormat(d.Capacity))	 
             .style("left", (d3.event.pageX) + "px")			 
             .style("top", (d3.event.pageY - 28) + "px");
         })
