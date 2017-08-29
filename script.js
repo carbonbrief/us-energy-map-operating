@@ -4347,8 +4347,8 @@ var yAxis = d3.svg.axis()
 .ticks(3);
 
 var colorScale = d3.scale.ordinal()
-.domain(["Biomass", "Coal", "Gas", "Geothermal", "Hydro", "Nuclear", "Oil", "Other", "Storage", "Waste", "Wind"])
-.range(["#A7B734", "#333333" , "#16557f", "#C7432B", "#2cb0c1", "#A14A7B", "#673b9b", "#7c5641", "#e58888", "#dd8a3e", "#136400"]);
+.domain(["Biomass", "Coal", "Gas", "Geothermal", "Hydro", "Nuclear", "Oil", "Other", "Solar", "Storage", "Waste", "Wind"])
+.range(["#A7B734", "#333333" , "#16557f", "#C7432B", "#2cb0c1", "#A14A7B", "#673b9b", "#7c5641", "#EFC530", "#e58888", "#dd8a3e", "#136400"]);
 
 var commaFormat = d3.format(',');
 
@@ -4395,11 +4395,11 @@ svg.append("g")
   .style("text-anchor", "middle");
 
 svg.append("g")
-    .attr("class", "y axis")
+    .attr("class", "label")
     .append("text")
   .attr("transform", "rotate(-90)")
   .attr("y", 6)
-  .attr("dy", ".71em")
+  .attr("dy", "-3em")
   .style("text-anchor", "end")
   .text("Capacity (MW)");
 

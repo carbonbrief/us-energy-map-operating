@@ -149,24 +149,30 @@ select {
 }
 
 .bar {
-  fill: white;
-  opacity: .5;
+  opacity: 1;
+  stroke: #f3f3f3;
+  stroke-width: 0.4px;
 }
 
 .bar:hover {
-  fill: #7f7f7f;
-  opacity: .4;
+  opacity: .7;
 }
  
 .axis text {
   font: 13px PT Sans;
-  fill: #ffffff;
+  fill: #f3f3f3;
+}
+
+.label {
+  font: 11px PT Sans;
+  font-style: italic;
+  fill: #f3f3f3;
 }
 
  .axis path,
  .axis line {
    fill: none;
-   stroke: #ffffff;
+   stroke: #f3f3f3;
    shape-rendering: crispEdges;
  }
 
