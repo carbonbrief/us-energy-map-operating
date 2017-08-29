@@ -4328,7 +4328,7 @@ $(document).ready(function () {
 
 // chart 1 code
 
-var margin = {top: 80, right: 40, bottom: 140, left: 40},
+var margin = {top: 80, right: 40, bottom: 140, left: 70},
 width = 450 - margin.left - margin.right,
 height = 470 - margin.top - margin.bottom;
 
@@ -4344,7 +4344,7 @@ var xAxis = d3.svg.axis()
 var yAxis = d3.svg.axis()
 .scale(y)
 .orient("left")
-.ticks(10);
+.ticks(5);
 
 
 var svg = d3.select("#chart-1").append("svg")
@@ -4387,7 +4387,7 @@ svg.append("g")
   .attr("y", 6)
   .attr("dy", ".71em")
   .style("text-anchor", "end")
-  .text("Capacity");
+  .text("Capacity (MW)");
 
 svg.selectAll("bar")
   .data(data)
@@ -4404,7 +4404,7 @@ svg.selectAll("bar")
         div.transition()
             .duration(200)	
             .style("opacity", .95);	
-        div	.html("<b>Satellites: </b>" + d.Capacity)	 
+        div	.html("<b>Capacity (MW): </b>" + d.Capacity)	 
             .style("left", (d3.event.pageX) + "px")			 
             .style("top", (d3.event.pageY - 28) + "px");
         })

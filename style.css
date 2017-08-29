@@ -143,6 +143,11 @@ select {
 
 /* CSS for d3 bar chart */
 
+#chart-1 {
+  width: 100%;
+  height: 500px;
+}
+
 .bar {
   fill: white;
   opacity: .5;
