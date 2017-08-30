@@ -21,6 +21,12 @@
 	background-color: #333333;
 }
 
+#chart-wrapper {
+  display: inline-block;
+  position: absolute;
+  width: 25%;
+}
+
 body {
 	margin: 0;
 }
@@ -41,6 +47,16 @@ p {
   margin-top: 0px;
   border-bottom: 1px solid;
   border-bottom-color: #ffffff;
+  font-size: 34px;
+}
+
+#subtitle {
+  font-family: PT Sans Narrow, Arial;
+  font-style: bold;
+  color: #2cb0c1;
+  padding: 20px;
+  margin: 0;
+  font-size: 26px;
 }
 
 h1 {
