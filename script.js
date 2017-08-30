@@ -4304,6 +4304,10 @@ $('#selector1').change(function(){
 
     refilterLayers[functionName](varState);
 
+    var newSubtitle = $("#selector1 option:selected").text()
+
+    $("#subtitle").text(newSubtitle);
+
 });
 
 // fuel type dropdown menu
@@ -4407,6 +4411,7 @@ svg.selectAll("bar")
     .data(data)
     .enter().append("rect")
     .attr("class","bar")
+    .attr("rx", 4)
     .attr("x", function(d) { return x(d.Totals); })
     .attr("width", x.rangeBand())
   .attr("y", function(d) { return y(d.Capacity); })
