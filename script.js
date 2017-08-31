@@ -4496,23 +4496,23 @@ $(document).ready(function () {
 
 // chart 1 code first attempt
 
-var margin = {top: 60, right: 40, bottom: 60, left: 40},
-width = 600 - margin.left - margin.right,
-height = 380 - margin.top - margin.bottom;
+var margin = {top: 80, right: 60, bottom: 40, left: 80},
+width = 350 - margin.left - margin.right,
+height = 600 - margin.top - margin.bottom;
 
 
-var x = d3.scale.ordinal().rangeRoundBands([0, width * 0.6], .3);
+var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.6], .3);
 
-var y = d3.scale.linear().range([height, 0]);
+var x = d3.scale.linear().range([0, width]);
 
 var xAxis = d3.svg.axis()
 .scale(x)
-.orient("bottom");
+.orient("top")
+.ticks(3);
 
 var yAxis = d3.svg.axis()
 .scale(y)
-.orient("left")
-.ticks(3);
+.orient("left");
 
 var colorScale = d3.scale.ordinal()
 .domain(["Biomass", "Coal", "Gas", "Geothermal", "Hydro", "Nuclear", "Oil", "Other", "Solar", "Storage", "Waste", "Wind"])
@@ -4526,23 +4526,22 @@ var svg = d3.select("#chart-1").append("svg")
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
 .attr("transform", 
-      "translate(" + -40 + "," + 40 + ") rotate(90 200 200)");
+      "translate(" + margin.left + "," + margin.right + ")");
       
 var div = d3.select("#chart-1")
 .append("div")  // declare the tooltip div 
 .attr("class", "tooltip")              // apply the 'tooltip' class
 .style("opacity", 0);                  // set the opacity to nil
 
-//
+// add x axis label
 
 svg.append("g")
     .attr("class", "label")
     .append("text")
-.attr("transform", "rotate(-90)")
-.attr("y", 6)
-.attr("dy", "-3em")
-.style("text-anchor", "end")
-.text("Capacity (MW)");
+    .attr("x", width)
+    .attr("y", -40)
+    .style("text-anchor", "end")
+    .text("Capacity (MW)");
 
 var state = "All";
 
@@ -4559,25 +4558,18 @@ function initialDraw (state) {
                 d[state] = +d[state];
             });
         
-            x.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
-            y.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
-
-            // remove and call axes
-
-            svg.select(".y.axis").remove();
-            svg.select(".x.axis").remove();
+            y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+            x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
         
             svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
             .transition()
             .duration(1000)
             .call(xAxis)
             .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", "-.55em")
-            .attr("transform", "rotate(-90)" );
+            .style("text-anchor", "middle")
+            .attr("dx", "0em")
+            .attr("dy", "-.55em");
         
             svg.append("g")
             .attr("class", "y axis")
@@ -4585,10 +4577,9 @@ function initialDraw (state) {
             .duration(1000)
             .call(yAxis)
             .selectAll("text")
-            .attr("transform", "rotate(-90)")
-            .attr("dx", "0.5em")
-            .attr("dy", "-1em")
-            .style("text-anchor", "middle");
+            .attr("dx", "-0.1em")
+            .attr("dy", "0.2em")
+            .style("text-anchor", "end");
 
             // now deal with bars
 
@@ -4602,10 +4593,10 @@ function initialDraw (state) {
 
             var barRects = barEnter.append("rect")
                 .attr("rx", 4)
-                .attr("x", function(d) { return x(d.Type); })
-                .attr("width", x.rangeBand())
-                .attr("y", function(d) { return y(0); })
-                .attr("height", function(d) { return height - y(0); })
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("width", function(d) { return x(0); })
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand())
                 .style("fill",function(d) {return colorScale(d.Type);})
                 .on("mouseover", function(d) {		
                     div.transition()
@@ -4623,18 +4614,16 @@ function initialDraw (state) {
                         .duration(500)		
                         .style("opacity", 0);	
                 });
+                
 
-                var barRectUpdate = bar.select("rect")
-                    .transition()
-                    .duration(750)
-                    .attr("x", function(d) { return x(d.Type); })
-                    .attr("y", function(d) { return y(d[state]); })
-                    .attr("width", x.rangeBand())
-                    .attr("height", function(d) { return height - y(d[state]); })
-                    .style("fill",function(d) {return colorScale(d.Type);});
-        
-        
-                        
+            var barRectUpdate = bar.select("rect")
+                .transition()
+                .duration(750)
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand())
+                .attr("width", function (d) { return x(d[state])})
+                .style("fill",function(d) {return colorScale(d.Type);});                   
             
     })
 
@@ -4664,8 +4653,8 @@ function draw (state) {
                 d[state] = +d[state];
             });
         
-            x.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
-            y.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+            y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+            x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
 
             // remove and call axes
 
@@ -4674,26 +4663,23 @@ function draw (state) {
         
             svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
             .transition()
-			.duration(1000)
+            .duration(1000)
             .call(xAxis)
             .selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dx", "-.8em")
-            .attr("dy", "-.55em")
-            .attr("transform", "rotate(-90)" );
+            .style("text-anchor", "middle")
+            .attr("dx", "0em")
+            .attr("dy", "-.55em");
         
             svg.append("g")
             .attr("class", "y axis")
             .transition()
-			.duration(1000)
+            .duration(1000)
             .call(yAxis)
             .selectAll("text")
-            .attr("transform", "rotate(-90)")
-            .attr("dx", "0.5em")
-            .attr("dy", "-1em")
-            .style("text-anchor", "middle");
+            .attr("dx", "-0.1em")
+            .attr("dy", "0.2em")
+            .style("text-anchor", "end");
 
             // now deal with bars
 
@@ -4707,10 +4693,10 @@ function draw (state) {
 
             var barRects = barEnter.append("rect")
                 .attr("rx", 4)
-                .attr("x", function(d) { return x(d.Type); })
-                .attr("width", x.rangeBand())
-                .attr("y", function(d) { return y(0); })
-                .attr("height", function(d) { return height - y(d[state]); })
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("width", function (d) { return x(d[state])})
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand())
                 .style("fill",function(d) {return colorScale(d.Type);})
                 .on("mouseover", function(d) {		
                     div.transition()
@@ -4727,19 +4713,16 @@ function draw (state) {
                     div.transition()		
                         .duration(500)		
                         .style("opacity", 0);	
-                });
+            });
 
-                var barRectUpdate = bar.select("rect")
-                    .transition()
-                    .duration(750)
-                    .attr("x", function(d) { return x(d.Type); })
-                    .attr("y", function(d) { return y(d[state]); })
-                    .attr("width", x.rangeBand())
-                    .attr("height", function(d) { return height - y(d[state]); })
-                    .style("fill",function(d) {return colorScale(d.Type);});
-
-
-                
+            var barRectUpdate = bar.select("rect")
+                .transition()
+                .duration(750)
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand())
+                .attr("width", function (d) { return x(d[state])})
+                .style("fill",function(d) {return colorScale(d.Type);});               
     
     })
 
