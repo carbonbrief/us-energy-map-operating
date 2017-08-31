@@ -4544,9 +4544,104 @@ svg.append("g")
 .style("text-anchor", "end")
 .text("Capacity (MW)");
 
-var state = "AllStates";
+var state = "All";
 
-draw (state);
+initialDraw (state);
+
+// set up initial transition
+
+function initialDraw (state) {
+
+    d3.csv("us-energy-totals.csv", function(error, data) {
+        
+            data.forEach(function(d) {
+                d.Type = d.Type;
+                d[state] = +d[state];
+            });
+        
+            x.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+            y.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+
+            // remove and call axes
+
+            svg.select(".y.axis").remove();
+            svg.select(".x.axis").remove();
+        
+            svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .transition()
+            .duration(1000)
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", "-.55em")
+            .attr("transform", "rotate(-90)" );
+        
+            svg.append("g")
+            .attr("class", "y axis")
+            .transition()
+            .duration(1000)
+            .call(yAxis)
+            .selectAll("text")
+            .attr("transform", "rotate(-90)")
+            .attr("dx", "0.5em")
+            .attr("dy", "-1em")
+            .style("text-anchor", "middle");
+
+            // now deal with bars
+
+            var bar = svg.selectAll(".bar").data(data);
+
+            var barExit = bar.exit().remove();
+
+            var barEnter = bar.enter()
+                .append("g")
+                .attr("class", "bar");
+
+            var barRects = barEnter.append("rect")
+                .attr("rx", 4)
+                .attr("x", function(d) { return x(d.Type); })
+                .attr("width", x.rangeBand())
+                .attr("y", function(d) { return y(0); })
+                .attr("height", function(d) { return height - y(0); })
+                .style("fill",function(d) {return colorScale(d.Type);})
+                .on("mouseover", function(d) {		
+                    div.transition()
+                        .duration(500)	
+                        .style("opacity", 0);
+                    div.transition()
+                        .duration(200)	
+                        .style("opacity", 1);	
+                    div	.html("<b>Capacity (MW): </b>" + commaFormat(d[state]))	 
+                        .style("left", (d3.event.pageX) + "px")			 
+                        .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {		
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                });
+
+                var barRectUpdate = bar.select("rect")
+                    .transition()
+                    .duration(750)
+                    .attr("x", function(d) { return x(d.Type); })
+                    .attr("y", function(d) { return y(d[state]); })
+                    .attr("width", x.rangeBand())
+                    .attr("height", function(d) { return height - y(d[state]); })
+                    .style("fill",function(d) {return colorScale(d.Type);});
+        
+        
+                        
+            
+    })
+
+}
+
+
+// link chart to change with state dropdown
 
 d3.select("#selector1").on("change", selectState)
 
@@ -4640,34 +4735,8 @@ function draw (state) {
                     .attr("x", function(d) { return x(d.Type); })
                     .attr("y", function(d) { return y(d[state]); })
                     .attr("width", x.rangeBand())
-                    .attr("height", function(d) { return height - y(d[state]); });
-            
-            // svg.selectAll("bar")
-            //     .data(data)
-            //     .enter().append("rect")
-            //     .attr("class","bar")
-            //     .attr("rx", 4)
-            //     .attr("x", function(d) { return x(d.Type); })
-            //     .attr("width", x.rangeBand())
-            // .attr("y", function(d) { return y(d[state]); })
-            // .attr("height", function(d) { return height - y(d[state]); })
-            // .style("fill",function(d) {return colorScale(d.Type);})
-            // .on("mouseover", function(d) {		
-            //         div.transition()
-            //             .duration(500)	
-            //             .style("opacity", 0);
-            //         div.transition()
-            //             .duration(200)	
-            //             .style("opacity", 1);	
-            //         div	.html("<b>Capacity (MW): </b>" + commaFormat(d[state]))	 
-            //             .style("left", (d3.event.pageX) + "px")			 
-            //             .style("top", (d3.event.pageY - 28) + "px");
-            //         })
-            //         .on("mouseout", function(d) {		
-            //         div.transition()		
-            //             .duration(500)		
-            //             .style("opacity", 0);	
-            //     });
+                    .attr("height", function(d) { return height - y(d[state]); })
+                    .style("fill",function(d) {return colorScale(d.Type);});
 
 
                 
