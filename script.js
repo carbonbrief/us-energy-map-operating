@@ -4535,17 +4535,24 @@ var div = d3.select("#chart-1")
 
 //
 
+svg.append("g")
+    .attr("class", "label")
+    .append("text")
+.attr("transform", "rotate(-90)")
+.attr("y", 6)
+.attr("dy", "-3em")
+.style("text-anchor", "end")
+.text("Capacity (MW)");
+
 var state = "AllStates";
 
-draw ("AllStates");
+draw (state);
 
 d3.select("#selector1").on("change", selectState)
 
 function selectState() {
 
     var state = this.options[this.selectedIndex].value
-
-    //var state = this.value
 
     draw(state);
 
@@ -4564,12 +4571,19 @@ function draw (state) {
         
             x.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
             y.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+
+            // remove and call axes
+
+            svg.select(".y.axis").remove();
+            svg.select(".x.axis").remove();
         
             svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
+            .transition()
+			.duration(1000)
             .call(xAxis)
-                .selectAll("text")
+            .selectAll("text")
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
             .attr("dy", "-.55em")
@@ -4577,21 +4591,14 @@ function draw (state) {
         
             svg.append("g")
             .attr("class", "y axis")
+            .transition()
+			.duration(1000)
             .call(yAxis)
-                .selectAll("text")
+            .selectAll("text")
             .attr("transform", "rotate(-90)")
             .attr("dx", "0.5em")
             .attr("dy", "-1em")
             .style("text-anchor", "middle");
-        
-            svg.append("g")
-                .attr("class", "label")
-                .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", "-3em")
-            .style("text-anchor", "end")
-            .text("Capacity (MW)");
         
             svg.selectAll("bar")
                 .data(data)
