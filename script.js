@@ -4535,15 +4535,17 @@ var div = d3.select("#chart-1")
 
 //
 
-var state = "AllStates"
+var state = "AllStates";
 
-draw ("Alabama");
+draw ("AllStates");
 
-d3.selectAll("#selector1 option").on("change", selectState);
+d3.select("#selector1").on("change", selectState)
 
-function selectState(state) {
+function selectState() {
 
-    var state = this.value
+    var state = this.options[this.selectedIndex].value
+
+    //var state = this.value
 
     draw(state);
 
