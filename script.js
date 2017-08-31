@@ -4330,7 +4330,171 @@ $(document).ready(function () {
     });
 })
 
-// chart 1 code
+// second attempt at horizontal bar chart code
+
+// set all variables
+
+// var margin = {top: 60, right: 40, bottom: 60, left: 40},
+// width = 400 - margin.left - margin.right,
+// height = 600 - margin.top - margin.bottom;
+
+// var x = d3.scale.linear().range([width, 0]);
+
+// var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.6], .3);
+
+// var xAxis = d3.svg.axis()
+// .scale(x)
+// .orient("top")
+// .ticks(3);
+
+// var yAxis = d3.svg.axis()
+// .scale(y)
+// .orient("left");
+
+// var colorScale = d3.scale.ordinal()
+// .domain(["Biomass", "Coal", "Gas", "Geothermal", "Hydro", "Nuclear", "Oil", "Other", "Solar", "Storage", "Waste", "Wind"])
+// .range(["#A7B734", "#333333" , "#16557f", "#C7432B", "#2cb0c1", "#A14A7B", "#673b9b", "#7c5641", "#EFC530", "#e58888", "#dd8a3e", "#136400"]);
+
+// var commaFormat = d3.format(',');
+
+// var svg = d3.select("#chart-1").append("svg")
+// .attr("width", width + margin.left + margin.right)
+// .attr("height", height + margin.top + margin.bottom)
+// .append("g")
+// .attr("transform", 
+//       "translate(" + margin.left + "," + margin.top + ")");
+
+// svg.append("g")
+// .attr("class", "x axis")
+// //.attr("transform", "translate(0," + margin.top + ")")
+// .call(xAxis)
+// .selectAll("text")
+// .style("text-anchor", "middle")
+// .attr("dx", "-.8em")
+// .attr("dy", "-.55em")
+// .attr("transform", "rotate(0)" );
+
+// svg.append("g")
+// .attr("class", "y axis")
+// .call(yAxis)
+// .selectAll("text")
+// .attr("transform", "rotate(-90)")
+// .attr("dx", "0.5em")
+// .attr("dy", "-1em")
+// .style("text-anchor", "middle");
+
+// svg.append("g")
+// .attr("class", "label")
+// .append("text")
+// .attr("transform", "rotate(-90)")
+// .attr("y", 6)
+// .attr("dy", "-3em")
+// .style("text-anchor", "end")
+// .text("Capacity (MW)");
+
+// var div = d3.select("#chart-1")
+// .append("div")  // declare the tooltip div 
+// .attr("class", "tooltip")              // apply the 'tooltip' class
+// .style("opacity", 0);                  // set the opacity to nil
+
+// var state = "AllStates";
+
+// draw(state);
+
+// // on option change call draw function with updated variable
+
+// d3.selectAll("option").on("change", selectState);
+
+// function selectState(state) {
+
+//     var state = this.value
+
+//     draw(state);
+    
+// }
+
+// // draw function
+
+// function draw (state) {
+//     d3.csv("us-energy-totals.csv", function(error, data) {
+        
+//         data.forEach(function(d) {
+//             d.Totals = d.Totals;
+//             d[state] = +d[state];
+//         });
+
+//         y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Totals; }));
+//         x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+
+//         console.log(x.domain());
+
+//         svg.select(".y.axis").remove();
+//         svg.select(".x.axis").remove();
+
+//         svg.append("g")
+//         .attr("class", "x axis")
+//         .attr("transform", "translate(0," + margin.top + ")")
+//         .call(xAxis)
+//         .selectAll("text")
+//         .style("text-anchor", "end")
+//         .attr("dx", "-.8em")
+//         .attr("dy", "-.55em")
+//         .attr("transform", "rotate(-90)" );
+        
+//         svg.append("g")
+//         .attr("class", "y axis")
+//         .call(yAxis)
+//         .selectAll("text")
+//         .attr("transform", "rotate(-90)")
+//         .attr("dx", "0.5em")
+//         .attr("dy", "-1em")
+//         .style("text-anchor", "middle");
+
+//         //not sure abotu this bit
+
+//         var bar = svg.selectAll(".bar")
+//         .data(state, function(d) {
+//             return d.Totals;
+//         });
+
+//         var barExit = bar.exit().remove();
+        
+//         var barEnter = bar.enter()
+//                 .append("g")
+//                 .attr("class", "bar");
+
+//         var barRects = barEnter.append("rect")
+//         .attr("x", function(d) {
+//         return x(0);
+//         })
+//         .attr("y", function(d) {
+//         return y(d.Totals);
+//         })
+//         .attr("width", function(d) {
+//         return x(d[state]);
+//         })
+//         .attr("height", y.rangeBand());
+
+//         var barRectUpdate = bar.select("rect")
+//         .transition()
+//         .duration(750)
+//         .attr("x", function(d) {
+//         return x(0);
+//         })
+//         .attr("y", function(d) {
+//         return y(d.Totals);
+//         })
+//         .attr("width", function(d) {
+//             console.log(d[state]);
+//         return x(d[state]);
+//         })
+//         .attr("height", y.rangeBand());
+        
+//     });
+// }
+
+
+// chart 1 code first attempt
 
 var margin = {top: 60, right: 40, bottom: 60, left: 40},
 width = 600 - margin.left - margin.right,
@@ -4369,69 +4533,92 @@ var div = d3.select("#chart-1")
 .attr("class", "tooltip")              // apply the 'tooltip' class
 .style("opacity", 0);                  // set the opacity to nil
 
-d3.csv("AllStates.csv", function(error, data) {
+//
 
-data.forEach(function(d) {
-    d.Totals = d.Totals;
-    d.Capacity = +d.Capacity;
-});
+var state = "AllStates"
 
-x.domain(data.sort(function(a,b){return b.Capacity-a.Capacity;}).map(function(d) { return d.Totals; }));
-y.domain([0, d3.max(data, function(d) { return d.Capacity * 1.1;})]);
+draw ("Alabama");
 
-svg.append("g")
-  .attr("class", "x axis")
-  .attr("transform", "translate(0," + height + ")")
-  .call(xAxis)
-    .selectAll("text")
-  .style("text-anchor", "end")
-  .attr("dx", "-.8em")
-  .attr("dy", "-.55em")
-  .attr("transform", "rotate(-90)" );
+d3.selectAll("#selector1 option").on("change", selectState);
 
-svg.append("g")
-  .attr("class", "y axis")
-  .call(yAxis)
-    .selectAll("text")
-  .attr("transform", "rotate(-90)")
-  .attr("dx", "0.5em")
-  .attr("dy", "-1em")
-  .style("text-anchor", "middle");
+function selectState(state) {
 
-svg.append("g")
-    .attr("class", "label")
-    .append("text")
-  .attr("transform", "rotate(-90)")
-  .attr("y", 6)
-  .attr("dy", "-3em")
-  .style("text-anchor", "end")
-  .text("Capacity (MW)");
+    var state = this.value
 
-svg.selectAll("bar")
-    .data(data)
-    .enter().append("rect")
-    .attr("class","bar")
-    .attr("rx", 4)
-    .attr("x", function(d) { return x(d.Totals); })
-    .attr("width", x.rangeBand())
-  .attr("y", function(d) { return y(d.Capacity); })
-  .attr("height", function(d) { return height - y(d.Capacity); })
-  .style("fill",function(d) {return colorScale(d.Totals);})
-  .on("mouseover", function(d) {		
-        div.transition()
-            .duration(500)	
-            .style("opacity", 0);
-        div.transition()
-            .duration(200)	
-            .style("opacity", 1);	
-        div	.html("<b>Capacity (MW): </b>" + commaFormat(d.Capacity))	 
-            .style("left", (d3.event.pageX) + "px")			 
-            .style("top", (d3.event.pageY - 28) + "px");
-        })
-        .on("mouseout", function(d) {		
-        div.transition()		
-            .duration(500)		
-            .style("opacity", 0);	
-    });
+    draw(state);
 
-});
+    console.log("select state")
+    
+}
+
+function draw (state) {
+
+    d3.csv("us-energy-totals.csv", function(error, data) {
+
+            data.forEach(function(d) {
+                d.Type = d.Type;
+                d[state] = +d[state];
+            });
+        
+            x.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+            y.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+        
+            svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+                .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", "-.55em")
+            .attr("transform", "rotate(-90)" );
+        
+            svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+                .selectAll("text")
+            .attr("transform", "rotate(-90)")
+            .attr("dx", "0.5em")
+            .attr("dy", "-1em")
+            .style("text-anchor", "middle");
+        
+            svg.append("g")
+                .attr("class", "label")
+                .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "-3em")
+            .style("text-anchor", "end")
+            .text("Capacity (MW)");
+        
+            svg.selectAll("bar")
+                .data(data)
+                .enter().append("rect")
+                .attr("class","bar")
+                .attr("rx", 4)
+                .attr("x", function(d) { return x(d.Type); })
+                .attr("width", x.rangeBand())
+            .attr("y", function(d) { return y(d[state]); })
+            .attr("height", function(d) { return height - y(d[state]); })
+            .style("fill",function(d) {return colorScale(d.Type);})
+            .on("mouseover", function(d) {		
+                    div.transition()
+                        .duration(500)	
+                        .style("opacity", 0);
+                    div.transition()
+                        .duration(200)	
+                        .style("opacity", 1);	
+                    div	.html("<b>Capacity (MW): </b>" + commaFormat(d[state]))	 
+                        .style("left", (d3.event.pageX) + "px")			 
+                        .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {		
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                });
+                
+    
+    })
+
+}
