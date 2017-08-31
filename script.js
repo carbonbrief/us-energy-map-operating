@@ -4556,7 +4556,7 @@ function selectState() {
 
     draw(state);
 
-    console.log("select state")
+    console.log("update bar chart")
     
 }
 
@@ -4599,18 +4599,25 @@ function draw (state) {
             .attr("dx", "0.5em")
             .attr("dy", "-1em")
             .style("text-anchor", "middle");
-        
-            svg.selectAll("bar")
-                .data(data)
-                .enter().append("rect")
-                .attr("class","bar")
+
+            // now deal with bars
+
+            var bar = svg.selectAll(".bar").data(data);
+
+            var barExit = bar.exit().remove();
+
+            var barEnter = bar.enter()
+                .append("g")
+                .attr("class", "bar");
+
+            var barRects = barEnter.append("rect")
                 .attr("rx", 4)
                 .attr("x", function(d) { return x(d.Type); })
                 .attr("width", x.rangeBand())
-            .attr("y", function(d) { return y(d[state]); })
-            .attr("height", function(d) { return height - y(d[state]); })
-            .style("fill",function(d) {return colorScale(d.Type);})
-            .on("mouseover", function(d) {		
+                .attr("y", function(d) { return y(0); })
+                .attr("height", function(d) { return height - y(d[state]); })
+                .style("fill",function(d) {return colorScale(d.Type);})
+                .on("mouseover", function(d) {		
                     div.transition()
                         .duration(500)	
                         .style("opacity", 0);
@@ -4626,6 +4633,43 @@ function draw (state) {
                         .duration(500)		
                         .style("opacity", 0);	
                 });
+
+                var barRectUpdate = bar.select("rect")
+                    .transition()
+                    .duration(750)
+                    .attr("x", function(d) { return x(d.Type); })
+                    .attr("y", function(d) { return y(d[state]); })
+                    .attr("width", x.rangeBand())
+                    .attr("height", function(d) { return height - y(d[state]); });
+            
+            // svg.selectAll("bar")
+            //     .data(data)
+            //     .enter().append("rect")
+            //     .attr("class","bar")
+            //     .attr("rx", 4)
+            //     .attr("x", function(d) { return x(d.Type); })
+            //     .attr("width", x.rangeBand())
+            // .attr("y", function(d) { return y(d[state]); })
+            // .attr("height", function(d) { return height - y(d[state]); })
+            // .style("fill",function(d) {return colorScale(d.Type);})
+            // .on("mouseover", function(d) {		
+            //         div.transition()
+            //             .duration(500)	
+            //             .style("opacity", 0);
+            //         div.transition()
+            //             .duration(200)	
+            //             .style("opacity", 1);	
+            //         div	.html("<b>Capacity (MW): </b>" + commaFormat(d[state]))	 
+            //             .style("left", (d3.event.pageX) + "px")			 
+            //             .style("top", (d3.event.pageY - 28) + "px");
+            //         })
+            //         .on("mouseout", function(d) {		
+            //         div.transition()		
+            //             .duration(500)		
+            //             .style("opacity", 0);	
+            //     });
+
+
                 
     
     })
