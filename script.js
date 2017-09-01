@@ -4380,9 +4380,9 @@ svg.append("g")
     .style("text-anchor", "end")
     .text("Capacity (MW)");
 
-var state = "All";
+var state = "";
 
-initialDraw (state);
+initialDraw ("All");
 
 // set up initial transition
 
@@ -4534,7 +4534,18 @@ function draw (state) {
                 .attr("width", function (d) { return x(d[state])})
                 .attr("x", function(d) { return x(0); })
                 .attr("height", y.rangeBand())
-                .style("fill",function(d) {return colorScale(d.Type);})
+                .style("fill",function(d) {return colorScale(d.Type);});
+
+            var barRectUpdate = bar.select("rect")
+                .transition()
+                .duration(750)
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand())
+                .attr("width", function (d) { return x(d[state])})
+                .style("fill",function(d) {return colorScale(d.Type);});
+                
+            var tooltipUpdate = bar.select("rect")
                 .on("mouseover", function(d) {		
                     div.transition()
                         .duration(500)	
@@ -4546,20 +4557,11 @@ function draw (state) {
                         .style("left", (d3.event.pageX) + "px")			 
                         .style("top", (d3.event.pageY - 28) + "px");
                     })
-                    .on("mouseout", function(d) {		
+                .on("mouseout", function(d) {		
                     div.transition()		
                         .duration(500)		
                         .style("opacity", 0);	
-            });
-
-            var barRectUpdate = bar.select("rect")
-                .transition()
-                .duration(750)
-                .attr("y", function(d) { return y(d.Type); })
-                .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand())
-                .attr("width", function (d) { return x(d[state])})
-                .style("fill",function(d) {return colorScale(d.Type);});               
+                });
     
     })
 
