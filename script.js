@@ -4331,14 +4331,14 @@ $(document).ready(function () {
 })
 
 
-// chart 1 code first attempt
+// horizontal bar chart
 
-var margin = {top: 80, right: 60, bottom: 40, left: 80},
-width = 350 - margin.left - margin.right,
-height = 600 - margin.top - margin.bottom;
+var margin = {top: 80, right: 60, bottom: 20, left: 80},
+    width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 
-var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.6], .3);
+var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
 
 var x = d3.scale.linear().range([0, width]);
 
@@ -4361,6 +4361,7 @@ var commaFormat = d3.format(',');
 var svg = d3.select("#chart-1").append("svg")
 .attr("width", width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
+.attr("id", "svg-1")
 .append("g")
 .attr("transform", 
       "translate(" + margin.left + "," + margin.right + ")");
@@ -4433,7 +4434,7 @@ function initialDraw (state) {
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("width", function(d) { return x(0); })
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand())
+                .attr("height", y.rangeBand() * 0.85)
                 .style("fill",function(d) {return colorScale(d.Type);})
                 .on("mouseover", function(d) {		
                     div.transition()
@@ -4458,7 +4459,7 @@ function initialDraw (state) {
                 .duration(750)
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand())
+                .attr("height", y.rangeBand() * 0.85)
                 .attr("width", function (d) { return x(d[state])})
                 .style("fill",function(d) {return colorScale(d.Type);});                   
             
@@ -4484,6 +4485,7 @@ function selectState() {
 function draw (state) {
 
     d3.csv("us-energy-totals.csv", function(error, data) {
+      
 
             data.forEach(function(d) {
                 d.Type = d.Type;
@@ -4533,7 +4535,7 @@ function draw (state) {
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("width", function (d) { return x(d[state])})
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand())
+                .attr("height", y.rangeBand() * 0.85)
                 .style("fill",function(d) {return colorScale(d.Type);});
 
             var barRectUpdate = bar.select("rect")
@@ -4541,7 +4543,7 @@ function draw (state) {
                 .duration(750)
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand())
+                .attr("height", y.rangeBand() * 0.85)
                 .attr("width", function (d) { return x(d[state])})
                 .style("fill",function(d) {return colorScale(d.Type);});
 
@@ -4568,3 +4570,142 @@ function draw (state) {
     })
 
 }
+
+// redraw d3 graph on window resize
+
+$(window).on("resize", function () {
+
+    // var state = d3.select("#selector1").property("value")
+
+    //redraw(state);
+
+    // console.log(state);
+
+    var width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right;
+
+    d3.select("#chart-1").select("#svg-1").attr("width", width + margin.left + margin.right);
+
+});
+
+// function redraw (state) {
+
+//     d3.csv("us-energy-totals.csv", function(error, data) {
+
+//         data.forEach(function(d) {
+//             d.Type = d.Type;
+//             d[state] = +d[state];
+//         });
+
+//         // remove old svg
+
+//         d3.select("#chart-1").select('svg').remove();
+
+//         // set new width
+
+//         var width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right;
+        
+//         console.log(width);
+
+//         var x = d3.scale.linear().range([0, width]);
+        
+//         var xAxis = d3.svg.axis()
+//         .scale(x)
+//         .orient("top")
+//         .ticks(3);
+
+//         // new domain
+
+//         y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+//         x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+
+//         // re-add svg
+
+//         var svg = d3.select("#chart-1").append("svg")
+//         .attr("width", width + margin.left + margin.right)
+//         .attr("height", height + margin.top + margin.bottom)
+//         .append("g")
+//         .attr("transform", 
+//             "translate(" + margin.left + "," + margin.right + ")")
+    
+
+//         // add x axis label
+
+//         svg.append("g")
+//         .attr("class", "label")
+//         .append("text")
+//         .attr("x", width)
+//         .attr("y", -40)
+//         .style("text-anchor", "end")
+//         .text("Capacity (MW)");
+
+//         // call axes
+
+//         svg.append("g")
+//         .attr("class", "x axis")
+//         .transition()
+//         .duration(1000)
+//         .call(xAxis)
+//         .selectAll("text")
+//         .style("text-anchor", "middle")
+//         .attr("dx", "0em")
+//         .attr("dy", "-.55em");
+
+//         svg.append("g")
+//         .attr("class", "y axis")
+//         .transition()
+//         .duration(1000)
+//         .call(yAxis)
+//         .selectAll("text")
+//         .attr("dx", "-0.1em")
+//         .attr("dy", "0.2em")
+//         .style("text-anchor", "end");
+
+//         var bar = svg.selectAll(".bar").data(data);
+        
+//         var barExit = bar.exit().remove();
+        
+//         var barEnter = bar.enter()
+//             .append("g")
+//             .attr("class", "bar");
+
+//         var barRects = barEnter.append("rect")
+//             .attr("rx", 4)
+//             .attr("y", function(d) { return y(d.Type); })
+//             .attr("width", function (d) { return x(d[state])})
+//             .attr("x", function(d) { return x(0); })
+//             .attr("height", y.rangeBand() * 0.85)
+//             .style("fill",function(d) {return colorScale(d.Type);});
+
+//         var barRectUpdate = bar.select("rect")
+//             .transition()
+//             .duration(750)
+//             .attr("y", function(d) { return y(d.Type); })
+//             .attr("x", function(d) { return x(0); })
+//             .attr("height", y.rangeBand() * 0.85)
+//             .attr("width", function (d) { return x(d[state])})
+//             .style("fill",function(d) {return colorScale(d.Type);});
+
+//         // ensure that tooltip changes with data
+            
+//         var tooltipUpdate = bar.select("rect")
+//             .on("mouseover", function(d) {		
+//                 div.transition()
+//                     .duration(500)	
+//                     .style("opacity", 0);
+//                 div.transition()
+//                     .duration(200)	
+//                     .style("opacity", 1);	
+//                 div	.html("<span id='#capacity'><b>Capacity: </b></span>" + commaFormat(d[state]) + " MW")	 
+//                     .style("left", (d3.event.pageX) + "px")			 
+//                     .style("top", (d3.event.pageY - 28) + "px");
+//                 })
+//             .on("mouseout", function(d) {		
+//                 div.transition()		
+//                     .duration(500)		
+//                     .style("opacity", 0);	
+//             });
+
+//     })
+
+//     console.log("redraw");
+// }
