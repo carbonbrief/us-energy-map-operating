@@ -9,7 +9,7 @@
 #map-wrapper {
   position: relative;
 	float: right;
-  width: 75%;
+  width: 100%;
 }
 
 #side-bar {
@@ -18,7 +18,8 @@
 	height: 770px;
 	width: 25%;
 	z-index: 314159;
-	background-color: #333333;
+  background-color: rgba(51,51,51, 0.89);
+  opacity: 50%;
 }
 
 #chart-wrapper {
@@ -62,13 +63,13 @@ p {
 #rainbow-wrapper {
   overflow: hidden;
   width: 100%;
-  padding: 0px;
+  padding-left: 20px;
 }
 
 .rainbow {
   border-bottom: 2px solid;
-  width: 8%;
-  float: right;
+  width: 7.4%;
+  display: inline-block;
 }
 
 
@@ -167,12 +168,12 @@ select {
 
 #selector_menu_1 {
   top: 10px;
-  left: 28.5%;
+  left: 25.75%;
 }
 
 #selector_menu_2 {
   top: 10px;
-  left: calc(28.5% + 230px);
+  left: calc(25.75% + 230px);
 }
 
 
@@ -195,7 +196,7 @@ select {
 #key {
     position: absolute;
     top: 690px;
-    left: 10px;
+    left: 25.75%;
     z-index: 9000;
     height: 70px;
     width: 350px;

@@ -1,4 +1,4 @@
-var map = L.map('mapid', {zoomControl: false}).setView([38, -97], 5)
+var map = L.map('mapid', {zoomControl: false}).setView([38.2, -104], 5)
 
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -227,7 +227,7 @@ var refilterLayers = {
     
         group.clearLayers();
         allMarkers();
-        map.setView([38, -97], 5);
+        map.setView([38.2, -104], 5);
         group.addTo(map);
     },
     Alabama: function (varState) {
@@ -4291,7 +4291,7 @@ function onEachFeature(feature, layer) {
 
 // add zoomHome plugin
 
-var zoomHome = L.Control.zoomHome();
+var zoomHome = L.Control.zoomHome({position: 'topright'});
 zoomHome.addTo(map);
 
 // states dropdown menu
