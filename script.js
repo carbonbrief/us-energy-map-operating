@@ -4252,14 +4252,14 @@ function getRadius(d) {
 
 var colors = {
     "Coal": "#333333",
-    "Gas": "#16557f",
+    "Gas": "#216184",
     "Solar": "#EFC530",
     "Nuclear": "#A14A7B",
     "Oil": "#673b9b",
     "Hydro": "#2cb0c1",
     "Wind": "#136400",
     "Biomass": "#A7B734",
-    "Waste": "#dd8a3e",
+    "Waste": "#d67b36",
     "Storage": "#e58888",
     "Geothermal": "#C7432B",
     "Other": "#7c5641"
@@ -4271,7 +4271,7 @@ function style(feature) {
     return {
         fillColor: colors[feature.properties["Fuel type"]],
         weight: 0.3,
-        opacity: 0.3,
+        opacity: 0.35,
         color: 'white',
         fillOpacity: 0.65,
 		radius: getRadius(feature.properties["Capacity (MW)"])
@@ -4353,7 +4353,7 @@ var yAxis = d3.svg.axis()
 
 var colorScale = d3.scale.ordinal()
 .domain(["Biomass", "Coal", "Gas", "Geothermal", "Hydro", "Nuclear", "Oil", "Other", "Solar", "Storage", "Waste", "Wind"])
-.range(["#A7B734", "#333333" , "#16557f", "#C7432B", "#2cb0c1", "#A14A7B", "#673b9b", "#7c5641", "#EFC530", "#e58888", "#dd8a3e", "#136400"]);
+.range(["#A7B734", "#333333" , "#216184", "#C7432B", "#2cb0c1", "#A14A7B", "#673b9b", "#7c5641", "#EFC530", "#e58888", "#d67b36", "#136400"]);
 
 var commaFormat = d3.format(',');
 
