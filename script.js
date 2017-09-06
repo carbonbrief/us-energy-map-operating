@@ -4363,7 +4363,7 @@ $(document).ready(function () {
 
 // horizontal bar chart
 
-var margin = {top: 80, right: 60, bottom: 20, left: 80},
+var margin = {top: 100, right: (parseInt(d3.select("#chart-1").style("width"))/10 + 10), bottom: 20, left: (parseInt(d3.select("#chart-1").style("width"))/4 + 15)},
     width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -4407,7 +4407,7 @@ svg.append("g")
     .attr("class", "label")
     .append("text")
     .attr("x", width)
-    .attr("y", -40)
+    .attr("y", -30)
     .style("text-anchor", "end")
     .text("Capacity (MW)");
 
@@ -4437,7 +4437,7 @@ function initialDraw (state) {
             .selectAll("text")
             .style("text-anchor", "middle")
             .attr("dx", "0em")
-            .attr("dy", "-.55em");
+            .attr("dy", "-.25em");
         
             svg.append("g")
             .attr("class", "y axis")
@@ -4445,7 +4445,7 @@ function initialDraw (state) {
             .duration(1000)
             .call(yAxis)
             .selectAll("text")
-            .attr("dx", "-0.1em")
+            .attr("dx", "0em")
             .attr("dy", "0.2em")
             .style("text-anchor", "end");
 
@@ -4538,7 +4538,7 @@ function draw (state) {
             .selectAll("text")
             .style("text-anchor", "middle")
             .attr("dx", "0em")
-            .attr("dy", "-.55em");
+            .attr("dy", "-.25em");
         
             svg.append("g")
             .attr("class", "y axis")
@@ -4546,7 +4546,7 @@ function draw (state) {
             .duration(1000)
             .call(yAxis)
             .selectAll("text")
-            .attr("dx", "-0.1em")
+            .attr("dx", "0em")
             .attr("dy", "0.2em")
             .style("text-anchor", "end");
 
