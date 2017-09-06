@@ -1,4 +1,4 @@
-var map = L.map('mapid', {zoomControl: false}).setView([38.2, -104], 5)
+var map = L.map('mapid', {zoomControl: false}).setView([38.2, -104], 4)
 
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -161,7 +161,7 @@ var varState = "All";
 var myPolygonStyle = {
     "color": "#999999",
     "weight": 3,
-    "opacity": 0.7,
+    "opacity": 0.8,
     "fillOpacity": 0.25
 };
 
@@ -257,7 +257,7 @@ var refilterLayers = {
     
         group.clearLayers();
         allMarkers();
-        map.setView([38.2, -104], 5);
+        map.setView([38.2, -104], 4);
         group.addTo(map);
     },
     Alabama: function (varState) {

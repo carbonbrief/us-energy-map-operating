@@ -22,6 +22,38 @@
   opacity: 50%;
 }
 
+#key-desktop {
+  padding: 20px;
+}
+
+#key-wrapper div {
+  float: left;
+}
+
+.key-label {
+  display: inline-block;
+  padding-top: 2px;
+  padding-bottom: 5px;
+  color: #ffffff;
+}
+
+.key-image {
+  width: 142px;
+}
+
+h3 {
+  font-family: PT Sans, Arial;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid;
+  border-bottom-color: #ffffff;
+}
+
 #chart-wrapper {
   display: inline-block;
   position: absolute;
@@ -38,12 +70,14 @@ p {
 }
 
 #title-wrapper {
-  padding: 10px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 #title {
   font-family: PT Sans Narrow, Arial;
-  padding: 10px;
+  padding: 0px;
   color: #ffffff;
   margin-top: 0px;
   /* border-bottom: 1px solid;
@@ -55,20 +89,23 @@ p {
   font-family: PT Sans Narrow, Arial;
   font-style: bold;
   color: #D0CFD4;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
   margin: 0;
   font-size: 26px;
 }
 
 #rainbow-wrapper {
   overflow: hidden;
-  width: 100%;
+  width: calc (100% - 40px);
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .rainbow {
   border-bottom: 2px solid;
-  width: 7.4%;
+  width: 8.2%;
   display: inline-block;
 }
 
@@ -149,10 +186,10 @@ select {
     background-size: 20px 13px;
     border:0px;
     outline:0px;
-    width: 200px;
+    width: 190px;
     height: 40px;
     font-family: "PT Sans", Arial; 
-    font-size: 15px; 
+    font-size: 14.5px; 
     font-weight:bold;
     padding:6px; 
     padding-left: 11px; 
@@ -177,11 +214,11 @@ select {
 }
 
 #selector_menu_2 {
-  left: calc(25.75% + 210px);
+  left: calc(25.75% + 200px);
 }
 
 #selector_menu_3 {
-  left: calc(25.75% + 420px);
+  left: calc(25.75% + 400px);
 }
 
 
