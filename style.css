@@ -167,13 +167,15 @@ select {
 }
 
 #selector_menu_1 {
-  top: 10px;
   left: 25.75%;
 }
 
 #selector_menu_2 {
-  top: 10px;
   left: calc(25.75% + 230px);
+}
+
+#selector_menu_3 {
+  left: calc(25.75% + 460px);
 }
 
 
