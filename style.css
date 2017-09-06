@@ -149,6 +149,13 @@ select {
     background-size: 20px 13px;
     border:0px;
     outline:0px;
+    width: 200px;
+    height: 40px;
+    font-family: "PT Sans", Arial; 
+    font-size: 15px; 
+    font-weight:bold;
+    padding:6px; 
+    padding-left: 11px; 
     -webkit-box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
     -moz-box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
     box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
@@ -157,7 +164,6 @@ select {
 .selector_menu {
     position: absolute;
     top: 10px;
-    right: 10px;
     z-index: 9000;
   box-shadow: none;
   border:0px;
@@ -171,11 +177,11 @@ select {
 }
 
 #selector_menu_2 {
-  left: calc(25.75% + 230px);
+  left: calc(25.75% + 210px);
 }
 
 #selector_menu_3 {
-  left: calc(25.75% + 460px);
+  left: calc(25.75% + 420px);
 }
 
 
