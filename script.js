@@ -159,10 +159,10 @@ var varState = "All";
 // set polygon style
 
 var myPolygonStyle = {
-    "color": "#333333",
+    "color": "#999999",
     "weight": 3,
-    "opacity": 0.3,
-    "fillOpacity": 0.02
+    "opacity": 0.7,
+    "fillOpacity": 0.25
 };
 
 //markers
