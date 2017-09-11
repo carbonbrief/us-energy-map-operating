@@ -161,8 +161,8 @@ var varState = "All";
 var myPolygonStyle = {
     "color": "#999999",
     "weight": 3,
-    "opacity": 0.8,
-    "fillOpacity": 0.25
+    "opacity": 0.9,
+    "fillOpacity": 0.27
 };
 
 //markers
@@ -335,7 +335,7 @@ var refilterLayers = {
         group.clearLayers();
         alabamaPolygon();
         alabamaMarkers();
-        map.setView([32.31, -86.90], 7);
+        map.setView([32.31, -89], 6);
         group.addTo(map);
     
         console.log("refilterLayersAlabama");
@@ -415,7 +415,7 @@ var refilterLayers = {
         group.clearLayers();
         alaskaPolygon();
         alaskaMarkers();
-        map.setView([64.2, -149.4], 4);
+        map.setView([64.2, -159], 4);
         group.addTo(map);
     
         console.log("refilterLayersAlaska");
@@ -495,7 +495,7 @@ var refilterLayers = {
         group.clearLayers();
         arizonaPolygon();
         arizonaMarkers();
-        map.setView([34.048, -111.09], 6);
+        map.setView([34.048, -114.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersArizona");
@@ -575,7 +575,7 @@ var refilterLayers = {
         group.clearLayers();
         arkansasPolygon();
         arkansasMarkers();
-        map.setView([35.201, -91.831], 7);
+        map.setView([34.5, -94], 6);
         group.addTo(map);
     
         console.log("refilterLayersArkansas");
@@ -655,7 +655,7 @@ var refilterLayers = {
         group.clearLayers();
         californiaPolygon();
         californiaMarkers();
-        map.setView([36.778, -119.417], 6);
+        map.setView([36.778, -123], 5);
         group.addTo(map);
     
         console.log("refilterLayersCalifornia");
@@ -735,7 +735,7 @@ var refilterLayers = {
         group.clearLayers();
         coloradoPolygon();
         coloradoMarkers();
-        map.setView([39.55, -105.782], 7);
+        map.setView([39.55, -108], 6);
         group.addTo(map);
     
         console.log("refilterLayersColorado");
@@ -815,7 +815,7 @@ var refilterLayers = {
         group.clearLayers();
         connecticutPolygon();
         connecticutMarkers();
-        map.setView([41.603, -73.087], 8);
+        map.setView([41.5, -73.8], 7);
         group.addTo(map);
     
         console.log("refilterLayersConnecticut");
@@ -895,7 +895,7 @@ var refilterLayers = {
         group.clearLayers();
         delawarePolygon();
         delawareMarkers();
-        map.setView([38.910, -75.527], 8);
+        map.setView([38.910, -77], 7);
         group.addTo(map);
     
         console.log("refilterLayersDelaware");
@@ -975,7 +975,7 @@ var refilterLayers = {
         group.clearLayers();
         floridaPolygon();
         floridaMarkers();
-        map.setView([27.664, -81.515], 6);
+        map.setView([27.664, -86], 6);
         group.addTo(map);
     
         console.log("refilterLayersFlorida");
@@ -1055,7 +1055,7 @@ var refilterLayers = {
         group.clearLayers();
         georgiaPolygon();
         georgiaMarkers();
-        map.setView([32.165, -82.900], 7);
+        map.setView([32.165, -86], 6);
         group.addTo(map);
     
         console.log("refilterLayersGeorgia");
@@ -1135,7 +1135,7 @@ var refilterLayers = {
         group.clearLayers();
         hawaiiPolygon();
         hawaiiMarkers();
-        map.setView([19.896, -156.582], 7);
+        map.setView([20, -158.5], 7);
         group.addTo(map);
     
         console.log("refilterLayersHawaii");
@@ -1215,7 +1215,7 @@ var refilterLayers = {
         group.clearLayers();
         idahoPolygon();
         idahoMarkers();
-        map.setView([45.068, -114.742], 6);
+        map.setView([45.068, -120], 5);
         group.addTo(map);
     
         console.log("refilterLayersIdaho");
@@ -1295,7 +1295,7 @@ var refilterLayers = {
         group.clearLayers();
         illinoisPolygon();
         illinoisMarkers();
-        map.setView([40.633, -89.398], 6);
+        map.setView([40, -91], 6);
         group.addTo(map);
     
         console.log("refilterLayersIllinois");
@@ -1375,7 +1375,7 @@ var refilterLayers = {
         group.clearLayers();
         indianaPolygon();
         indianaMarkers();
-        map.setView([40.267, -86.134], 6);
+        map.setView([40, -88.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersIndiana");
@@ -1455,7 +1455,7 @@ var refilterLayers = {
         group.clearLayers();
         iowaPolygon();
         iowaMarkers();
-        map.setView([41.878, -93.097], 6);
+        map.setView([41.878, -95], 6);
         group.addTo(map);
     
         console.log("refilterLayersIowa");
@@ -1535,7 +1535,7 @@ var refilterLayers = {
         group.clearLayers();
         kansasPolygon();
         kansasMarkers();
-        map.setView([39.011, -98.484], 6);
+        map.setView([38.9, -100.8], 6);
         group.addTo(map);
     
         console.log("refilterLayersKansas");
@@ -1615,7 +1615,7 @@ var refilterLayers = {
         group.clearLayers();
         kentuckyPolygon();
         kentuckyMarkers();
-        map.setView([37.839, -84.270], 6);
+        map.setView([37.839, -88.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersKentucky");
@@ -1695,7 +1695,7 @@ var refilterLayers = {
         group.clearLayers();
         louisianaPolygon();
         louisianaMarkers();
-        map.setView([30.984, -91.962], 6);
+        map.setView([30.984, -94], 6);
         group.addTo(map);
     
         console.log("refilterLayersLouisiana");
@@ -1775,7 +1775,7 @@ var refilterLayers = {
         group.clearLayers();
         mainePolygon();
         maineMarkers();
-        map.setView([45.253, -69.445], 6);
+        map.setView([45.253, -72], 6);
         group.addTo(map);
     
         console.log("refilterLayersMaine");
@@ -1855,7 +1855,7 @@ var refilterLayers = {
         group.clearLayers();
         marylandPolygon();
         marylandMarkers();
-        map.setView([39.045, -76.641], 7);
+        map.setView([39.045, -78], 7);
         group.addTo(map);
     
         console.log("refilterLayersMaryland");
@@ -1935,7 +1935,7 @@ var refilterLayers = {
         group.clearLayers();
         massachusettsPolygon();
         massachusettsMarkers();
-        map.setView([42.407, -71.382], 7);
+        map.setView([42.2, -72.4], 7);
         group.addTo(map);
     
         console.log("refilterLayersMassachusetts");
@@ -2015,7 +2015,7 @@ var refilterLayers = {
         group.clearLayers();
         michiganPolygon();
         michiganMarkers();
-        map.setView([44.314, -85.602], 6);
+        map.setView([44.314, -89], 5);
         group.addTo(map);
     
         console.log("refilterLayersMichigan");
@@ -2095,7 +2095,7 @@ var refilterLayers = {
         group.clearLayers();
         minnesotaPolygon();
         minnesotaMarkers();
-        map.setView([46.729, -94.685], 6);
+        map.setView([46.729, -96], 5);
         group.addTo(map);
     
         console.log("refilterLayersMinnesota");
@@ -2175,7 +2175,7 @@ var refilterLayers = {
         group.clearLayers();
         mississippiPolygon();
         mississippiMarkers();
-        map.setView([32.6, -90.2], 7);
+        map.setView([32.6, -92], 6);
         group.addTo(map);
     
         console.log("refilterLayersMississippi");
@@ -2255,7 +2255,7 @@ var refilterLayers = {
         group.clearLayers();
         missouriPolygon();
         missouriMarkers();
-        map.setView([37.964, -92.4], 6);
+        map.setView([37.964, -95], 6);
         group.addTo(map);
     
         console.log("refilterLayersMissouri");
@@ -2335,7 +2335,7 @@ var refilterLayers = {
         group.clearLayers();
         montanaPolygon();
         montanaMarkers();
-        map.setView([46.879, -110.362], 6);
+        map.setView([46.879, -113], 5);
         group.addTo(map);
     
         console.log("refilterLayersMontana");
@@ -2415,7 +2415,7 @@ var refilterLayers = {
         group.clearLayers();
         nebraskaPolygon();
         nebraskaMarkers();
-        map.setView([41.4925, -99.9018], 6);
+        map.setView([41.4925, -102.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersNebraska");
@@ -2495,7 +2495,7 @@ var refilterLayers = {
         group.clearLayers();
         nevadaPolygon();
         nevadaMarkers();
-        map.setView([38.8026, -116.4193], 6);
+        map.setView([38.8026, -122], 5);
         group.addTo(map);
     
         console.log("refilterLayersNevada");
@@ -2575,7 +2575,7 @@ var refilterLayers = {
         group.clearLayers();
         newHampshirePolygon();
         newHampshireMarkers();
-        map.setView([43.5, -71.572395], 7);
+        map.setView([43.8, -73], 7);
         group.addTo(map);
     
         console.log("refilterLayersNewHampshire");
@@ -2655,7 +2655,7 @@ var refilterLayers = {
         group.clearLayers();
         newJerseyPolygon();
         newJerseyMarkers();
-        map.setView([40.0583, -74.4056], 8);
+        map.setView([40.0583, -76], 7);
         group.addTo(map);
     
         console.log("refilterLayersNewJersey");
@@ -2735,7 +2735,7 @@ var refilterLayers = {
         group.clearLayers();
         newMexicoPolygon();
         newMexicoMarkers();
-        map.setView([34.5199, -105.870], 6);
+        map.setView([34.5199, -110], 5);
         group.addTo(map);
     
         console.log("refilterLayersNewMexico");
@@ -2815,7 +2815,7 @@ var refilterLayers = {
         group.clearLayers();
         newYorkPolygon();
         newYorkMarkers();
-        map.setView([43, -75], 7);
+        map.setView([43, -77], 6);
         group.addTo(map);
     
         console.log("refilterLayersNewYork");
@@ -2895,7 +2895,7 @@ var refilterLayers = {
         group.clearLayers();
         northCarolinaPolygon();
         northCarolinaMarkers();
-        map.setView([35.7595, -79.0193], 7);
+        map.setView([35.7595, -82], 6);
         group.addTo(map);
     
         console.log("refilterLayersNorthCarolina");
@@ -2975,7 +2975,7 @@ var refilterLayers = {
         group.clearLayers();
         northDakotaPolygon();
         northDakotaMarkers();
-        map.setView([47.5514, -101.0020], 6);
+        map.setView([47.5514, -105.5], 5);
         group.addTo(map);
     
         console.log("refilterLayersNorthDakota");
@@ -3055,7 +3055,7 @@ var refilterLayers = {
         group.clearLayers();
         ohioPolygon();
         ohioMarkers();
-        map.setView([40.4172, -82.907], 7);
+        map.setView([40.4172, -84], 6);
         group.addTo(map);
     
         console.log("refilterLayersOhio");
@@ -3135,7 +3135,7 @@ var refilterLayers = {
         group.clearLayers();
         oklahomaPolygon();
         oklahomaMarkers();
-        map.setView([35.0077, -97.0928], 6);
+        map.setView([35.0077, -100], 6);
         group.addTo(map);
     
         console.log("refilterLayersOklahoma");
@@ -3215,7 +3215,7 @@ var refilterLayers = {
         group.clearLayers();
         oregonPolygon();
         oregonMarkers();
-        map.setView([43.8041, -120.554], 6);
+        map.setView([43.8041, -125], 5);
         group.addTo(map);
     
         console.log("refilterLayersOregon");
@@ -3295,7 +3295,7 @@ var refilterLayers = {
         group.clearLayers();
         pennsylvaniaPolygon();
         pennsylvaniaMarkers();
-        map.setView([41.2033, -77.1945], 7);
+        map.setView([41.2033, -80], 6);
         group.addTo(map);
     
         console.log("refilterLayersPennsylvania");
@@ -3375,7 +3375,7 @@ var refilterLayers = {
         group.clearLayers();
         rhodeIslandPolygon();
         rhodeIslandMarkers();
-        map.setView([41.5800, -71.47742], 8);
+        map.setView([41.5800, -72.5], 7);
         group.addTo(map);
     
         console.log("refilterLayersRhodeIsland");
@@ -3455,7 +3455,7 @@ var refilterLayers = {
         group.clearLayers();
         southCarolinaPolygon();
         southCarolinaMarkers();
-        map.setView([33.8360, -81.1637], 7);
+        map.setView([33.8360, -83.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersSouthCarolina");
@@ -3535,7 +3535,7 @@ var refilterLayers = {
         group.clearLayers();
         southDakotaPolygon();
         southDakotaMarkers();
-        map.setView([43.9695, -99.9018], 6);
+        map.setView([43.9695, -103], 5);
         group.addTo(map);
     
         console.log("refilterLayersSouthDakota");
@@ -3615,7 +3615,7 @@ var refilterLayers = {
         group.clearLayers();
         tennesseePolygon();
         tennesseeMarkers();
-        map.setView([35.5174, -86.5804], 6);
+        map.setView([35.5174, -88], 6);
         group.addTo(map);
     
         console.log("refilterLayersTennessee");
@@ -3695,7 +3695,7 @@ var refilterLayers = {
         group.clearLayers();
         texasPolygon();
         texasMarkers();
-        map.setView([31.968, -99.9018], 6);
+        map.setView([31.968, -103], 5);
         group.addTo(map);
     
         console.log("refilterLayersTexas");
@@ -3775,7 +3775,7 @@ var refilterLayers = {
         group.clearLayers();
         utahPolygon();
         utahMarkers();
-        map.setView([39.3209, -111.3], 6);
+        map.setView([39.3209, -114.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersUtah");
@@ -3855,7 +3855,7 @@ var refilterLayers = {
         group.clearLayers();
         vermontPolygon();
         vermontMarkers();
-        map.setView([43.7, -72.5778], 7);
+        map.setView([43.7, -74], 7);
         group.addTo(map);
     
         console.log("refilterLayersVermont");
@@ -3935,7 +3935,7 @@ var refilterLayers = {
         group.clearLayers();
         virginiaPolygon();
         virginiaMarkers();
-        map.setView([37.4315, -78.6568], 7);
+        map.setView([37.4315, -81.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersVirginia");
@@ -4015,7 +4015,7 @@ var refilterLayers = {
         group.clearLayers();
         washingtonPolygon();
         washingtonMarkers();
-        map.setView([47.7510, -120.7401], 7);
+        map.setView([47.7510, -123], 6);
         group.addTo(map);
     
         console.log("refilterLayersWashington");
@@ -4095,7 +4095,7 @@ var refilterLayers = {
         group.clearLayers();
         westVirginiaPolygon();
         westVirginiaMarkers();
-        map.setView([38.5976, -80.4549], 7);
+        map.setView([38.5976, -83], 6);
         group.addTo(map);
     
         console.log("refilterLayersWestVirginia");
@@ -4175,7 +4175,7 @@ var refilterLayers = {
         group.clearLayers();
         wisconsinPolygon();
         wisconsinMarkers();
-        map.setView([44.7844, -89], 7);
+        map.setView([44.7844, -92], 6);
         group.addTo(map);
     
         console.log("refilterLayersWisconsin");
@@ -4255,7 +4255,7 @@ var refilterLayers = {
         group.clearLayers();
         wyomingPolygon();
         wyomingMarkers();
-        map.setView([43.0759, -107.290], 6);
+        map.setView([43.0759, -111], 5);
         group.addTo(map);
     
         console.log("refilterLayersWyoming");

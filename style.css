@@ -18,7 +18,7 @@
 	height: 770px;
 	width: 25%;
 	z-index: 314159;
-  background-color: rgba(51,51,51, 0.85);
+  background-color: rgba(51,51,51, 0.83);
   opacity: 50%;
 }
 
@@ -534,16 +534,16 @@ select {
     width: 130px;
   }
 
-  #selector_menu_1 {
+  #selector_menu_2 {
     top: 110px;
     left: 20px;
   }
 
-  #selector_menu_3 {
+  #selector_menu_1 {
     visibility: hidden;
   }
   
-  #selector_menu_2 {
+  #selector_menu_3 {
     top: 110px;
     left: 160px;
   }
