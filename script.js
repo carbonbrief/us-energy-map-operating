@@ -162,7 +162,7 @@ var myPolygonStyle = {
     "color": "#999999",
     "weight": 3,
     "opacity": 0.9,
-    "fillOpacity": 0.25
+    "fillOpacity": 0.24
 };
 
 //markers
