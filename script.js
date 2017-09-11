@@ -162,7 +162,7 @@ var myPolygonStyle = {
     "color": "#999999",
     "weight": 3,
     "opacity": 0.9,
-    "fillOpacity": 0.27
+    "fillOpacity": 0.25
 };
 
 //markers
@@ -4267,15 +4267,15 @@ var refilterLayers = {
 
 
 function getRadius(d) {
-    return d > 6400  ? 29 :
-            d > 3200  ? 26 :
-            d > 1600  ? 23 :
-            d > 800  ? 20 :
-            d > 400  ? 17 :
-            d > 200 ? 14 :
-            d > 100  ? 11 :
+    return d > 6400  ? 36 :
+            d > 3200  ? 32 :
+            d > 1600  ? 28 :
+            d > 800  ? 24 :
+            d > 400  ? 20 :
+            d > 200 ? 16 :
+            d > 100  ? 12 :
             d > 50  ? 8 :
-                    5;
+                    4;
 }
 
 // colors to be used
@@ -4300,10 +4300,10 @@ var colors = {
 function style(feature) {
     return {
         fillColor: colors[feature.properties["Fuel type"]],
-        weight: 0.3,
-        opacity: 0.35,
+        weight: 0.35,
+        opacity: 0.5,
         color: 'white',
-        fillOpacity: 0.65,
+        fillOpacity: 0.64,
 		radius: getRadius(feature.properties["Capacity (MW)"])
     };
 }
