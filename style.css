@@ -502,11 +502,11 @@ select {
 @media (max-width: 640px) {
 
 	#mapid { 
-	height: 550px;
+	height: 470px;
   }
   
 	#logo {
-    top: 670px;
+    top: 590px;
   }
 
   #side-bar {
