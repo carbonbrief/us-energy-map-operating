@@ -18,7 +18,7 @@
 	height: 770px;
 	width: 25%;
 	z-index: 314159;
-  background-color: rgba(51,51,51, 0.87);
+  background-color: rgba(51,51,51, 0.85);
   opacity: 50%;
 }
 
@@ -371,6 +371,7 @@ select {
   }
   #chart-1 {
     visibility: hidden;
+    height: 80px;
   }
 
   .key-image {
@@ -417,6 +418,10 @@ select {
     opacity: .65;
   }
 
+  #title {
+    font-size: 28px;
+  }
+
 
 }
 
@@ -424,7 +429,13 @@ select {
 
 	#mapid { 
 	height: 700px;
-	}
+  }
+  
+  #side-bar {
+    height: 700px;
+    width: 26%;
+  }
+
 	.leaflet-popup-content-wrapper .leaflet-popup-content h1 {
 		font-size: 18px;
 		margin-top: 0px
@@ -436,27 +447,50 @@ select {
 	.leaflet-popup-content-wrapper {
 		max-width: 280px;
   }
-  
-  #key {
-    top: 620px;
+
+  .key-label p {
+    font-size: 10px;
   }
+
+  .key-image {
+    width: 70px;
+    padding-top: 4px;
+  }
+  
   
   #logo {
     top: 650px;
   }
 
+  select {
+    width: 135px;
+    font-size: 12px;
+    padding-left: 5px; 
+    padding-right: 25px;
+  }
+
 }
 
 @media (max-width: 700px) {
-	#key {
-		font-size: 12.8px;
-	}
-	#mapid { 
-	height: 600px;
+
+  
+  .key-image {
+    width: 60px;
+    padding-top: 5px;
   }
 
-  #key {
-    top: 520px;
+  .key-label p {
+    font-size: 9.5px;
+  }
+
+  #side-bar {
+    height: 600px;
+    width: 27%;
+  }
+
+
+	#mapid { 
+	height: 600px;
   }
   
   #logo {
@@ -465,22 +499,56 @@ select {
 
 }
 
-@media (max-width: 600px) {
-	#key {
-		visibility: hidden;
-	}
+@media (max-width: 640px) {
+
 	#mapid { 
 	height: 550px;
-	}
-	#logo {
-    top: 500px;
   }
+  
+	#logo {
+    top: 670px;
+  }
+
+  #side-bar {
+    width: 100%;
+    height: 170px;
+    position: relative;
+    background-color: rgba(51,51,51, 0.85);
+  }
+
+  #key-desktop {
+    visibility: hidden;
+    height: 0px;
+    padding: 0px;
+  }
+
+  #chart-1 {
+    height: 0;
+  }
+
+  #map-wrapper {
+    display: inline-block;
+  }
+
+  select {
+    width: 130px;
+  }
+
   #selector_menu_1 {
+    top: 110px;
+    left: 20px;
+  }
+
+  #selector_menu_3 {
     visibility: hidden;
   }
   
   #selector_menu_2 {
-    top: 10px;
-    right: 10px;
+    top: 110px;
+    left: 160px;
+  }
+
+  #subtitle-wrapper {
+    height: 0px;
   }
 }
