@@ -4336,7 +4336,9 @@ $('#selector1').change(function(){
 
     var newSubtitle = $("#selector1 option:selected").text()
 
-    $("#subtitle").text(newSubtitle);
+    $("#subtitle").fadeOut(300, function() {
+        $(this).text(newSubtitle).fadeIn(300);
+    });
 
     updateTotal(functionName);
 
@@ -4424,8 +4426,9 @@ function updateTotal (functionName) {
 
     console.log(myTotal);
 
-    $("#total").text(myTotal);
-
+    $("#total").fadeOut(300, function() {
+        $(this).text(myTotal).fadeIn(300);
+    });
 }
 
 
