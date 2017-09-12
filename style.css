@@ -34,7 +34,7 @@
   display: inline-block;
   padding-top: 2px;
   padding-bottom: 5px;
-  color: #ffffff;
+  color: #D6D6D6;
 }
 
 .key-label p {
@@ -302,7 +302,7 @@ select {
 
 .bar {
   opacity: 1;
-  stroke: #f3f3f3;
+  stroke: #ADADAD;
   stroke-width: 0.4px;
 }
 
@@ -312,19 +312,19 @@ select {
  
 .axis text {
   font: 13px PT Sans;
-  fill: #f3f3f3;
+  fill: #D6D6D6;
 }
 
 .label {
   font: 11px PT Sans;
   font-style: italic;
-  fill: #f3f3f3;
+  fill: #ADADAD;
 }
 
  .axis path,
  .axis line {
    fill: none;
-   stroke: #f3f3f3;
+   stroke: #ADADAD;
    shape-rendering: crispEdges;
  }
 
