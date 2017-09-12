@@ -89,13 +89,14 @@ p {
   font-size: 34px;
 }
 
+#subtitle-wrapper {
+  padding: 20px;
+}
+
 #subtitle {
   font-family: PT Sans Narrow, Arial;
   font-style: bold;
   color: #D0CFD4;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
   margin: 0;
   font-size: 26px;
 }
@@ -105,6 +106,7 @@ p {
   width: calc (100% - 40px);
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 10px;
 }
 
 .rainbow {
