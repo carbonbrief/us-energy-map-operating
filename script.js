@@ -4435,9 +4435,9 @@ function updateTotal (functionName) {
 
 // horizontal bar chart
 
-var margin = {top: 50, right: (parseInt(d3.select("#chart-1").style("width"))/11 + 10), bottom: 20, left: (parseInt(d3.select("#chart-1").style("width"))/4 + 20)},
+var margin = {top: 50, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
     width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    height = 380 - margin.top - margin.bottom;
 
 
 var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
@@ -4558,17 +4558,16 @@ function initialDraw (state) {
 
             var barRectUpdate = bar.select("rect")
                 .transition()
-                .duration(750)
+                .duration(1800)
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand() * 0.85)
+                .attr("height", y.rangeBand() * 0.78)
                 .attr("width", function (d) { return x(d[state])})
                 .style("fill",function(d) {return colorScale(d.Type);});                   
             
     })
 
 }
-
 
 // link chart to change with state dropdown
 
@@ -4637,15 +4636,15 @@ function draw (state) {
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("width", function (d) { return x(d[state])})
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand() * 0.85)
+                .attr("height", y.rangeBand() * 0.78)
                 .style("fill",function(d) {return colorScale(d.Type);});
 
             var barRectUpdate = bar.select("rect")
                 .transition()
-                .duration(750)
+                .duration(900)
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand() * 0.85)
+                .attr("height", y.rangeBand() * 0.78)
                 .attr("width", function (d) { return x(d[state])})
                 .style("fill",function(d) {return colorScale(d.Type);});
 
@@ -4682,3 +4681,137 @@ $(window).on("resize", function () {
     d3.select("#chart-1").select("#svg-1").attr("width", width + margin.left + margin.right);
 
 });
+
+// second chart, a single normalised horizontal bar chart
+
+var margin2 = {top: 50, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-1").style("width"))/13 + 10)},
+    width2 = parseInt(d3.select("#chart-1").style("width")) - margin2.left - margin2.right,
+    height2 = 380 - margin2.top - margin2.bottom;
+
+var svg2 = d3.select("#chart-2").append("svg")
+.attr("width", width2 + margin2.left + margin2.right)
+.attr("height", height2 + margin2.top + margin2.bottom)
+.attr("id", "svg-1")
+.append("g")
+.attr("transform", 
+      "translate(" + margin2.left + "," + margin2.top + ")");
+
+
+var x2 = d3.scaleBand()
+.rangeRound([0, width])
+.padding(0.1)
+.align(0.1);
+
+var y2 = d3.scaleLinear()
+.rangeRound([height, 0]);
+
+var z = d3.scaleOrdinal()
+    .range(["#f3f3f3", "#333333"]);
+
+
+
+function draw2 (state) {
+
+    d3.csv("low-carbon-totals.csv", function(error, data) {
+        
+  
+              data.forEach(function(d) {
+
+                  d.Type = d.Type;
+                  d[state] = +d[state];
+
+                  var element = [{
+                    x: d.Type,
+                    y: d[state],
+                    y0: y0
+                  }];
+
+                  y0 = y0 + d[state]; //set y0 for the next element.
+                  return element;
+            
+
+              });
+
+              var sum = d3.sum(dataset, function(d) { return d[0].y; });
+
+              var stack = d3.layout.stack();
+              stack(dataset);
+          
+              y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+              x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+  
+              // remove and call axes
+  
+              svg.select(".y.axis").remove();
+              svg.select(".x.axis").remove();
+          
+              svg.append("g")
+              .attr("class", "x axis")
+              .transition()
+              .duration(1000)
+              .call(xAxis)
+              .selectAll("text")
+              .style("text-anchor", "middle")
+              .attr("dx", "0em")
+              .attr("dy", "-.25em");
+          
+              svg.append("g")
+              .attr("class", "y axis")
+              .transition()
+              .duration(1000)
+              .call(yAxis)
+              .selectAll("text")
+              .attr("dx", "0em")
+              .attr("dy", "0.2em")
+              .style("text-anchor", "end");
+  
+              // now deal with bars
+  
+              var bar = svg.selectAll(".bar").data(data);
+  
+              var barExit = bar.exit().remove();
+  
+              var barEnter = bar.enter()
+                  .append("g")
+                  .attr("class", "bar");
+  
+              var barRects = barEnter.append("rect")
+                  .attr("rx", 4)
+                  .attr("y", function(d) { return y(d.Type); })
+                  .attr("width", function (d) { return x(d[state])})
+                  .attr("x", function(d) { return x(0); })
+                  .attr("height", y.rangeBand() * 0.78)
+                  .style("fill",function(d) {return colorScale(d.Type);});
+  
+              var barRectUpdate = bar.select("rect")
+                  .transition()
+                  .duration(750)
+                  .attr("y", function(d) { return y(d.Type); })
+                  .attr("x", function(d) { return x(0); })
+                  .attr("height", y.rangeBand() * 0.78)
+                  .attr("width", function (d) { return x(d[state])})
+                  .style("fill",function(d) {return colorScale(d.Type);});
+  
+              // ensure that tooltip changes with data
+                  
+              var tooltipUpdate = bar.select("rect")
+                  .on("mouseover", function(d) {		
+                      div.transition()
+                          .duration(500)	
+                          .style("opacity", 0);
+                      div.transition()
+                          .duration(200)	
+                          .style("opacity", 1);	
+                      div	.html("<span id='#capacity'><b>Capacity: </b></span>" + commaFormat(d[state]) + " MW")	 
+                          .style("left", (d3.event.pageX) + "px")			 
+                          .style("top", (d3.event.pageY - 28) + "px");
+                      })
+                  .on("mouseout", function(d) {		
+                      div.transition()		
+                          .duration(500)		
+                          .style("opacity", 0);	
+                  });
+
+        })
+}
+
