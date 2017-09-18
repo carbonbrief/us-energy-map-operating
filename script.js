@@ -4580,6 +4580,10 @@ function selectState() {
     draw(state);
 
     console.log("update bar chart")
+
+    drawChart2(state);
+
+    console.log("update bar chart 2")
     
 }
 
@@ -4684,7 +4688,11 @@ $(window).on("resize", function () {
 
 // second chart, a single normalised horizontal bar chart
 
-function drawChart2 () {
+function drawChart2 (state) {
+
+    // remove any previous svg
+
+    d3.selectAll('#chart-2 svg').remove();
 
     //Width and height
     var w = parseInt(d3.select("#chart-2").style("width"));
@@ -4706,8 +4714,6 @@ function drawChart2 () {
     d3.csv("LowCarbonPercentage.csv", function(data) {
 
         // filter data depending on state
-
-        state = "All"
 
         filteredData = data.filter(function(row) {
             return row['State'] == state
@@ -4731,20 +4737,19 @@ function drawChart2 () {
             for (var j = 0; j < filteredData.length; j++) {
                 if (dataset[i].type == "LowCarbon") {
                     dataset[i].details.push({
-                        State: data[j].State,
-                        Amount: data[j].LowCarbon
+                        State: filteredData[j].State,
+                        Amount: filteredData[j].LowCarbon
                     });
                 }	
                 else if (dataset[i].type == "HighCarbon") {
                     dataset[i].details.push({
-                        State: data[j].State,
-                        Amount: data[j].HighCarbon
+                        State: filteredData[j].State,
+                        Amount: filteredData[j].HighCarbon
                     });
                 }
             }
         };
-        
-        //console.log(dataset);
+
         
         // Create array with each color group for a color legend
         series = dataset.map(function (d) {
@@ -4878,7 +4883,7 @@ function drawChart2 () {
 
 }
 
-drawChart2 ();
+drawChart2 ("All");
 
 
 // function drawChart2 () {
