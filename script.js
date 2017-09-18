@@ -4687,7 +4687,7 @@ $(window).on("resize", function () {
 function drawChart2 () {
 
     //Width and height
-    var w = 450;
+    var w = parseInt(d3.select("#chart-2").style("width"));
     var h = 280;
     var margins = [30, 110, 40, 50];
     //Set up stack method
@@ -4705,7 +4705,15 @@ function drawChart2 () {
 
     d3.csv("LowCarbonPercentage.csv", function(data) {
 
-    //console.log(data);		
+        // filter data depending on state
+
+        state = "All"
+
+        filteredData = data.filter(function(row) {
+            return row['State'] == state
+        })
+
+        console.log(filteredData);
         
         //Create a new array to hold restructured dataset
         var dataset = [
@@ -4720,7 +4728,7 @@ function drawChart2 () {
         //Loop once for each row in data
         for (var i = 0; i < dataset.length; i++) {
             
-            for (var j = 0; j < data.length; j++) {
+            for (var j = 0; j < filteredData.length; j++) {
                 if (dataset[i].type == "LowCarbon") {
                     dataset[i].details.push({
                         State: data[j].State,
@@ -4846,11 +4854,10 @@ function drawChart2 () {
         .attr('y', 100);
 
     svg.append("text")
-        .attr('fill', 'black')
+        .attr("class", "label")
         .attr('x', w/2)
         .attr('y', h + 40 )
-    .style("font-size", "12px")
-        .text("Number of effects");
+        .text("%");
         
     series.forEach(function (s, i) {
         svg.append('text')
