@@ -4684,134 +4684,92 @@ $(window).on("resize", function () {
 
 // second chart, a single normalised horizontal bar chart
 
-var margin2 = {top: 50, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-1").style("width"))/13 + 10)},
-    width2 = parseInt(d3.select("#chart-1").style("width")) - margin2.left - margin2.right,
-    height2 = 380 - margin2.top - margin2.bottom;
 
-var svg2 = d3.select("#chart-2").append("svg")
-.attr("width", width2 + margin2.left + margin2.right)
-.attr("height", height2 + margin2.top + margin2.bottom)
-.attr("id", "svg-1")
-.append("g")
-.attr("transform", 
-      "translate(" + margin2.left + "," + margin2.top + ")");
+function drawChart2 () {
+
+    var margin = {top: 50, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-2").style("width"))/13 + 10)},
+    width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
+    height = 380 - margin.top - margin.bottom;
+
+    var svg = d3.select("#chart-2").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", 
+        "translate(" + margin.left + "," + margin.top + ")");
+
+    var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
+    
+    var x = d3.scale.linear().range([0, width]);
+
+    var z = d3.scale.ordinal()
+    .domain(["#f3f3f3", "#333333" ]);
+
+    var types = ["Low carbon", "High carbon"];
+
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
 
 
-var x2 = d3.scaleBand()
-.rangeRound([0, width])
-.padding(0.1)
-.align(0.1);
+    d3.csv("LowCarbonTotals.csv", function(error, LowCarbonTotals) {
 
-var y2 = d3.scaleLinear()
-.rangeRound([height, 0]);
+        if (error) throw error;
 
-var z = d3.scaleOrdinal()
-    .range(["#f3f3f3", "#333333"]);
+        // data.filter(function(row, state) {
 
+        //     for (var i = 0; i <51; i++) {
+        //         return row["State"] == [state];
+        //     }
 
+        //     console.log("filter");
 
-function draw2 (state) {
+        // });
 
-    d3.csv("low-carbon-totals.csv", function(error, data) {
-        
+        var layers = d3.layout.stack()(types.map(function(c) {
+            return LowCarbonTotals.map(function(d) {
+              return {y: d.State, x: d[c]};
+            });
+          }));
+
+        y.domain(layers[0].map(function(d) { return d.y; }));
+        x.domain([0, d3.max(layers[layers.length - 1], function(d) { return d.x0 + d.x; })]).nice();
+
+        var layer = svg.selectAll(".layer")
+        .data(layers)
+        .enter().append("g")
+        .attr("class", "layer")
+        .style("fill", function(d, i) { return z(i); });
   
-              data.forEach(function(d) {
+        layer.selectAll("rect")
+            .data(function(d) { return d; })
+            .enter().append("rect")
+            .attr("y", function(d) { return y(d.y); })
+            .attr("x", function(d) { return x(d.x + d.x0); })
+            .attr("width", function(d) { return x(d.x0) - x(d.x + d.x0); })
+            .attr("height", y.rangeBand() - 1);
+    })
 
-                  d.Type = d.Type;
-                  d[state] = +d[state];
+    svg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
 
-                  var element = [{
-                    x: d.Type,
-                    y: d[state],
-                    y0: y0
-                  }];
+    svg.append("g")
+    .attr("class", "axis axis--y")
+    .attr("transform", "translate(" + margin.left + ",0)")
+    .call(yAxis);
 
-                  y0 = y0 + d[state]; //set y0 for the next element.
-                  return element;
-            
-
-              });
-
-              var sum = d3.sum(dataset, function(d) { return d[0].y; });
-
-              var stack = d3.layout.stack();
-              stack(dataset);
-          
-              y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
-              x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
-  
-              // remove and call axes
-  
-              svg.select(".y.axis").remove();
-              svg.select(".x.axis").remove();
-          
-              svg.append("g")
-              .attr("class", "x axis")
-              .transition()
-              .duration(1000)
-              .call(xAxis)
-              .selectAll("text")
-              .style("text-anchor", "middle")
-              .attr("dx", "0em")
-              .attr("dy", "-.25em");
-          
-              svg.append("g")
-              .attr("class", "y axis")
-              .transition()
-              .duration(1000)
-              .call(yAxis)
-              .selectAll("text")
-              .attr("dx", "0em")
-              .attr("dy", "0.2em")
-              .style("text-anchor", "end");
-  
-              // now deal with bars
-  
-              var bar = svg.selectAll(".bar").data(data);
-  
-              var barExit = bar.exit().remove();
-  
-              var barEnter = bar.enter()
-                  .append("g")
-                  .attr("class", "bar");
-  
-              var barRects = barEnter.append("rect")
-                  .attr("rx", 4)
-                  .attr("y", function(d) { return y(d.Type); })
-                  .attr("width", function (d) { return x(d[state])})
-                  .attr("x", function(d) { return x(0); })
-                  .attr("height", y.rangeBand() * 0.78)
-                  .style("fill",function(d) {return colorScale(d.Type);});
-  
-              var barRectUpdate = bar.select("rect")
-                  .transition()
-                  .duration(750)
-                  .attr("y", function(d) { return y(d.Type); })
-                  .attr("x", function(d) { return x(0); })
-                  .attr("height", y.rangeBand() * 0.78)
-                  .attr("width", function (d) { return x(d[state])})
-                  .style("fill",function(d) {return colorScale(d.Type);});
-  
-              // ensure that tooltip changes with data
-                  
-              var tooltipUpdate = bar.select("rect")
-                  .on("mouseover", function(d) {		
-                      div.transition()
-                          .duration(500)	
-                          .style("opacity", 0);
-                      div.transition()
-                          .duration(200)	
-                          .style("opacity", 1);	
-                      div	.html("<span id='#capacity'><b>Capacity: </b></span>" + commaFormat(d[state]) + " MW")	 
-                          .style("left", (d3.event.pageX) + "px")			 
-                          .style("top", (d3.event.pageY - 28) + "px");
-                      })
-                  .on("mouseout", function(d) {		
-                      div.transition()		
-                          .duration(500)		
-                          .style("opacity", 0);	
-                  });
-
-        })
+    function type(d) {
+        d.State = +d.State;
+        types.forEach(function(c) { d[c] = +d[c]; });
+        return d;
+    }
 }
+
+drawChart2 ();
 
