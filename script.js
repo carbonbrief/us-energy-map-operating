@@ -4697,7 +4697,7 @@ function drawChart2 (state) {
     //d3.selectAll('#chart-2 svg').remove();
 
     //Width and height
-    var margin = {top: 50, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
+    var margin = {top: 40, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/6 + 10)},
         width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
         height = 130 - margin.top - margin.bottom;
 
@@ -4810,6 +4810,11 @@ function drawChart2 (state) {
                 .append("svg")
                 .attr("width", width + margin.left + margin.right )
                 .attr("height", height + margin.bottom + margin.top);
+
+    var div = d3.select("#chart-2")
+        .append("div")  // declare the tooltip div 
+        .attr("class", "tooltip")              // apply the 'tooltip' class
+        .style("opacity", 0);                  // set the opacity to nil
                 
     var xAxis = d3.svg.axis()
             .scale(xScale)
@@ -4843,7 +4848,25 @@ function drawChart2 (state) {
             return xScale(d.x);
         })
         .attr("y", function(d) { return (y(d.State) + margin.top); })
-        .attr("height", y.rangeBand() * 0.78);
+        .attr("height", y.rangeBand() * 0.78)
+        .on("mouseover", function() { tooltip.style("display", null); })
+        .on("mouseout", function() { tooltip.style("display", "none"); })
+        .on("mouseover", function(d) {		
+            div.transition()
+                .duration(500)	
+                .style("opacity", 0);
+            div.transition()
+                .duration(200)	
+                .style("opacity", 1);	
+            div	.html(d.x + " %")	 
+                .style("left", (d3.event.pageX) + "px")			 
+                .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {		
+            div.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        });
         
     svg.append('g')
             .attr('class', 'axis')
@@ -4858,7 +4881,7 @@ function drawChart2 (state) {
     svg.append("text")
         .attr("class", "label")
         .attr('x', width/2)
-        .attr('y', height + 40)
+        .attr('y', height + margin.top + 40)
         .text("%");
     
     svg.append("text")
