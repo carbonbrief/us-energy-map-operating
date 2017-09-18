@@ -4697,9 +4697,9 @@ function drawChart2 (state) {
     //d3.selectAll('#chart-2 svg').remove();
 
     //Width and height
-    var margin = {top: 40, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
-        width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
-        height = 40;
+    var margin = {top: 50, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
+        width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
+        height = 130 - margin.top - margin.bottom;
 
     //Set up stack method
     var stack = d3.layout.stack(); 
@@ -4814,7 +4814,7 @@ function drawChart2 (state) {
     var xAxis = d3.svg.axis()
             .scale(xScale)
             .orient('bottom')
-            .ticks(5);
+            .ticks(2);
                 
     var yAxis = d3.svg.axis()
             .scale(yScale)
@@ -4842,16 +4842,17 @@ function drawChart2 (state) {
         .attr("width", function(d) {
             return xScale(d.x);
         })
-        .attr("y", function(d) { return y(d.State); })
+        .attr("y", function(d) { return (y(d.State) + margin.top); })
         .attr("height", y.rangeBand() * 0.78);
         
     svg.append('g')
             .attr('class', 'axis')
-            .attr('transform', 'translate(' + margin.left + ',' + height + ')')
+            .attr('transform', 'translate(' + margin.left + ',' + (margin.top + height) + ')')
             .call(xAxis);
+
     svg.append('g')
         .attr('class', 'axis')
-        .attr('transform', 'translate(' + margin.left + ')')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         .call(yAxis);
 
     svg.append("text")
@@ -4859,100 +4860,23 @@ function drawChart2 (state) {
         .attr('x', width/2)
         .attr('y', height + 40)
         .text("%");
-        
+    
+    svg.append("text")
+        .attr("class", "label")
+        .attr('x', margin.left)
+        .attr('y', 20)
+        .text("Low carbon");
+
+    svg.append("text")
+        .attr("class", "label")
+        .attr('x', width + margin.left)
+        .attr('y', 20)
+        .style("text-anchor", "end")
+        .text("High carbon");
     
 });
 
 }
 
 drawChart2 ("All");
-
-
-// function drawChart2 () {
-
-//     var margin = {top: 50, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-2").style("width"))/13 + 10)},
-//     width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
-//     height = 380 - margin.top - margin.bottom;
-
-//     var svg = d3.select("#chart-2").append("svg")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-//     .append("g")
-//     .attr("transform", 
-//         "translate(" + margin.left + "," + margin.top + ")");
-
-//     var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
-    
-//     var x = d3.scale.linear().range([0, width]);
-
-//     var z = d3.scale.ordinal()
-//     .domain(["#f3f3f3", "#333333" ]);
-
-//     var types = ["Low carbon", "High carbon"];
-
-//     var xAxis = d3.svg.axis()
-//     .scale(x)
-//     .orient("bottom");
-
-//     var yAxis = d3.svg.axis()
-//     .scale(y)
-//     .orient("left");
-
-
-//     d3.csv("LowCarbonTotals.csv", function(error, LowCarbonTotals) {
-
-//         if (error) throw error;
-
-//         // data.filter(function(row, state) {
-
-//         //     for (var i = 0; i <51; i++) {
-//         //         return row["State"] == [state];
-//         //     }
-
-//         //     console.log("filter");
-
-//         // });
-
-//         var layers = d3.layout.stack()(types.map(function(c) {
-//             return LowCarbonTotals.map(function(d) {
-//               return {y: d.State, x: d[c]};
-//             });
-//           }));
-
-//         y.domain(layers[0].map(function(d) { return d.y; }));
-//         x.domain([0, d3.max(layers[layers.length - 1], function(d) { return d.x0 + d.x; })]).nice();
-
-//         var layer = svg.selectAll(".layer")
-//         .data(layers)
-//         .enter().append("g")
-//         .attr("class", "layer")
-//         .style("fill", function(d, i) { return z(i); });
-  
-//         layer.selectAll("rect")
-//             .data(function(d) { return d; })
-//             .enter().append("rect")
-//             .attr("y", function(d) { return y(d.y); })
-//             .attr("x", function(d) { return x(d.x + d.x0); })
-//             .attr("width", function(d) { return x(d.x0) - x(d.x + d.x0); })
-//             .attr("height", y.rangeBand() - 1);
-//     })
-
-//     svg.append("g")
-//     .attr("class", "axis axis--x")
-//     .attr("transform", "translate(0," + height + ")")
-//     .call(xAxis);
-
-//     svg.append("g")
-//     .attr("class", "axis axis--y")
-//     .attr("transform", "translate(" + margin.left + ",0)")
-//     .call(yAxis);
-
-//     function type(d) {
-//         d.State = +d.State;
-//         types.forEach(function(c) { d[c] = +d[c]; });
-//         return d;
-//     }
-// }
-
-// drawChart2 ();
 
