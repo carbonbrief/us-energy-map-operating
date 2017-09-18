@@ -4692,12 +4692,15 @@ function drawChart2 (state) {
 
     // remove any previous svg
 
-    d3.selectAll('#chart-2 svg').remove();
+    $("#chart-2 svg").fadeOut(300, function() { $(this).remove(); });
+
+    //d3.selectAll('#chart-2 svg').remove();
 
     //Width and height
-    var w = parseInt(d3.select("#chart-2").style("width"));
-    var h = 280;
-    var margins = [30, 110, 40, 50];
+    var margin = {top: 40, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
+        width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
+        height = 40;
+
     //Set up stack method
     var stack = d3.layout.stack(); 
 
@@ -4783,8 +4786,6 @@ function drawChart2 (state) {
         });
     });
 
-    //console.log(dataset);
-
     //Set up scales
 
     // Array of drug names for domain
@@ -4793,7 +4794,7 @@ function drawChart2 (state) {
         });
 
     yScale.domain(lowCarbonByState)
-        .rangeRoundBands([0, h], 0.1);
+        .rangeRoundBands([0, height], 0.1);
 
     xScale.domain([0,				
         d3.max(dataset, function(group) {
@@ -4802,22 +4803,25 @@ function drawChart2 (state) {
             });
         })
     ])
-    .range([0, w - margins[3]]);
+    .range([0, width - margin.right]);
 
     //Create SVG element
     var svg = d3.select("#chart-2")
                 .append("svg")
-                .attr("width", w + margins[1] + margins [3] )
-                .attr("height", h + margins[2]);
+                .attr("width", width + margin.left + margin.right )
+                .attr("height", height + margin.bottom + margin.top);
                 
     var xAxis = d3.svg.axis()
             .scale(xScale)
-            .orient('bottom');
+            .orient('bottom')
+            .ticks(5);
                 
     var yAxis = d3.svg.axis()
             .scale(yScale)
             .orient('left');
+
     // Add a group for each row of data
+
     var groups = svg.selectAll("g")
         .data(dataset)
         .enter()
@@ -4825,59 +4829,37 @@ function drawChart2 (state) {
         .style("fill", function(d, i) {
             return colors(i);
         });
+
     // Add a rect for each data value
+
     var rects = groups.selectAll("rect")
         .data(function(d) { return d; })
         .enter()
         .append("rect")
         .attr("x", function(d) {
-            return xScale(d.x0) + margins[1];
+            return xScale(d.x0) + margin.left;
         })
         .attr("width", function(d) {
             return xScale(d.x);
         })
-        .attr("y", function(d, i) {
-            return yScale(d.y);
-        })
-        .attr("height", function(d) {
-            return yScale.rangeBand() 
-        });
+        .attr("y", function(d) { return y(d.State); })
+        .attr("height", y.rangeBand() * 0.78);
         
     svg.append('g')
             .attr('class', 'axis')
-            .attr('transform', 'translate(' + margins[1] + ',' + h + ')')
+            .attr('transform', 'translate(' + margin.left + ',' + height + ')')
             .call(xAxis);
     svg.append('g')
         .attr('class', 'axis')
-        .attr('transform', 'translate(' + margins[1] + ')')
+        .attr('transform', 'translate(' + margin.left + ')')
         .call(yAxis);
-    svg.append('rect')
-        .attr('fill', 'lightgrey')
-        .attr('width', 130)
-        .attr('height', 30 * dataset.length)
-        .attr('x', w - margins[3] + 10)
-        .attr('y', 100);
 
     svg.append("text")
         .attr("class", "label")
-        .attr('x', w/2)
-        .attr('y', h + 40 )
+        .attr('x', width/2)
+        .attr('y', height + 40)
         .text("%");
         
-    series.forEach(function (s, i) {
-        svg.append('text')
-            .attr('fill', 'black')
-            .attr('x', w - margins[2] + 40)
-            .attr('y', i * 24 + 122)
-            .text(s);
-            
-        svg.append('rect')
-            .attr('fill', colors(i))
-            .attr('width', 20)
-            .attr('height', 20)
-            .attr('x', w - margins[3] + 20 )
-            .attr('y', i * 24 + 110);
-    });
     
 });
 
