@@ -4536,7 +4536,7 @@ function initialDraw (state) {
                 .attr("y", function(d) { return y(d.Type); })
                 .attr("width", function(d) { return x(0); })
                 .attr("x", function(d) { return x(0); })
-                .attr("height", y.rangeBand() * 0.85)
+                .attr("height", y.rangeBand() * 0.78)
                 .style("fill",function(d) {return colorScale(d.Type);})
                 .on("mouseover", function(d) {		
                     div.transition()
@@ -4699,7 +4699,7 @@ function drawChart2 (state) {
     //Width and height
     var margin = {top: 40, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/6 + 10)},
         width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
-        height = 130 - margin.top - margin.bottom;
+        height = 120 - margin.top - margin.bottom;
 
     //Set up stack method
     var stack = d3.layout.stack(); 
@@ -4711,7 +4711,7 @@ function drawChart2 (state) {
 
     var colors = d3.scale.linear()
         .domain([0, 1 ])
-        .range(["#f3f3f3", "#333333"]);
+        .range(["#2cb0c1", "#333333"]);
 
 
     d3.csv("LowCarbonPercentage.csv", function(data) {
@@ -4841,6 +4841,8 @@ function drawChart2 (state) {
         .data(function(d) { return d; })
         .enter()
         .append("rect")
+        .attr("rx", 4)
+        .attr("class", "bar")
         .attr("x", function(d) {
             return xScale(d.x0) + margin.left;
         })
@@ -4848,7 +4850,7 @@ function drawChart2 (state) {
             return xScale(d.x);
         })
         .attr("y", function(d) { return (y(d.State) + margin.top); })
-        .attr("height", y.rangeBand() * 0.78)
+        .attr("height", y.rangeBand() * 0.85)
         .on("mouseover", function() { tooltip.style("display", null); })
         .on("mouseout", function() { tooltip.style("display", "none"); })
         .on("mouseover", function(d) {		
@@ -4888,6 +4890,7 @@ function drawChart2 (state) {
         .attr("class", "label")
         .attr('x', margin.left)
         .attr('y', 20)
+        .style("fill", "#2cb0c1")
         .text("Low carbon");
 
     svg.append("text")
