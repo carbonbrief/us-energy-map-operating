@@ -4692,12 +4692,10 @@ function drawChart2 (state) {
 
     // remove any previous svg
 
-    $("#chart-2 svg").fadeOut(300, function() { $(this).remove(); });
-
-    //d3.selectAll('#chart-2 svg').remove();
+    d3.selectAll('#chart-2 svg').remove();
 
     //Width and height
-    var margin = {top: 40, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/6 + 10)},
+    var margin = {top: 40, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
         width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
         height = 120 - margin.top - margin.bottom;
 
@@ -4705,7 +4703,7 @@ function drawChart2 (state) {
     var stack = d3.layout.stack(); 
 
     var yScale = d3.scale.ordinal();
-    var xScale = d3.scale.linear();
+    var xScale = d3.scale.linear().range([0, width]);
                 
     //Colors correspond to index of stacked data
 
@@ -4794,7 +4792,7 @@ function drawChart2 (state) {
         });
 
     yScale.domain(lowCarbonByState)
-        .rangeRoundBands([0, height], 0.1);
+        .rangeRoundBands([0, height], 0);
 
     xScale.domain([0,				
         d3.max(dataset, function(group) {
@@ -4803,7 +4801,7 @@ function drawChart2 (state) {
             });
         })
     ])
-    .range([0, width - margin.right]);
+    .range([0, width]);
 
     //Create SVG element
     var svg = d3.select("#chart-2")
@@ -4882,22 +4880,24 @@ function drawChart2 (state) {
 
     svg.append("text")
         .attr("class", "label")
-        .attr('x', width/2)
+        .attr('x', width/2 + margin.left)
         .attr('y', height + margin.top + 40)
+        .style("text-anchor", "middle")
         .text("%");
     
     svg.append("text")
         .attr("class", "label")
-        .attr('x', margin.left)
-        .attr('y', 20)
+        .attr('x', margin.left + 5)
+        .attr('y', 30)
         .style("fill", "#2cb0c1")
         .text("Low carbon");
 
     svg.append("text")
         .attr("class", "label")
-        .attr('x', width + margin.left)
-        .attr('y', 20)
+        .attr('x', width + margin.left - 5)
+        .attr('y', 30)
         .style("text-anchor", "end")
+        .style("fill", "#212121")
         .text("High carbon");
     
 });
