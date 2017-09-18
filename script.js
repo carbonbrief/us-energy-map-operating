@@ -4684,92 +4684,281 @@ $(window).on("resize", function () {
 
 // second chart, a single normalised horizontal bar chart
 
-
 function drawChart2 () {
 
-    var margin = {top: 50, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-2").style("width"))/13 + 10)},
-    width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
-    height = 380 - margin.top - margin.bottom;
+    //Width and height
+    var w = 450;
+    var h = 280;
+    var margins = [30, 110, 40, 50];
+    //Set up stack method
+    var stack = d3.layout.stack(); 
 
-    var svg = d3.select("#chart-2").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", 
-        "translate(" + margin.left + "," + margin.top + ")");
+    var yScale = d3.scale.ordinal();
+    var xScale = d3.scale.linear();
+                
+    //Colors correspond to index of stacked data
 
-    var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
-    
-    var x = d3.scale.linear().range([0, width]);
-
-    var z = d3.scale.ordinal()
-    .domain(["#f3f3f3", "#333333" ]);
-
-    var types = ["Low carbon", "High carbon"];
-
-    var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-    var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
+    var colors = d3.scale.linear()
+        .domain([0, 1 ])
+        .range(["#f3f3f3", "#333333"]);
 
 
-    d3.csv("LowCarbonTotals.csv", function(error, LowCarbonTotals) {
+    d3.csv("LowCarbonPercentage.csv", function(data) {
 
-        if (error) throw error;
-
-        // data.filter(function(row, state) {
-
-        //     for (var i = 0; i <51; i++) {
-        //         return row["State"] == [state];
-        //     }
-
-        //     console.log("filter");
-
-        // });
-
-        var layers = d3.layout.stack()(types.map(function(c) {
-            return LowCarbonTotals.map(function(d) {
-              return {y: d.State, x: d[c]};
+    //console.log(data);		
+        
+        //Create a new array to hold restructured dataset
+        var dataset = [
+            
+            { type: "LowCarbon",
+            details: []	
+            },
+            { type: "HighCarbon",
+            details: []
+            }				
+        ];		
+        //Loop once for each row in data
+        for (var i = 0; i < dataset.length; i++) {
+            
+            for (var j = 0; j < data.length; j++) {
+                if (dataset[i].type == "LowCarbon") {
+                    dataset[i].details.push({
+                        State: data[j].State,
+                        Amount: data[j].LowCarbon
+                    });
+                }	
+                else if (dataset[i].type == "HighCarbon") {
+                    dataset[i].details.push({
+                        State: data[j].State,
+                        Amount: data[j].HighCarbon
+                    });
+                }
+            }
+        };
+        
+        //console.log(dataset);
+        
+        // Create array with each color group for a color legend
+        series = dataset.map(function (d) {
+                return d.type;	
             });
-          }));
+                
+        dataset = dataset.map(function (d) {
+                return d.details.map(function (o, i) {
+                    // Structure it so that your numeric
+                    // axis (the stacked amount) is y
+                    return {
+                        y: +o.Amount,
+                        x: o.State
+                    };
+                });
+            }),	
+        
+    console.log(dataset);
+            
+    //Data, stacked		
+    stack(dataset);
 
-        y.domain(layers[0].map(function(d) { return d.y; }));
-        x.domain([0, d3.max(layers[layers.length - 1], function(d) { return d.x0 + d.x; })]).nice();
+    var dataset = dataset.map(function (group) {
+        return group.map(function (d) {
+            // Invert the x and y values, and y0 becomes x0
+            return {
+                x: +d.y,
+                y: d.x,
+                x0: +d.y0
+            };
+        });
+    });
 
-        var layer = svg.selectAll(".layer")
-        .data(layers)
-        .enter().append("g")
-        .attr("class", "layer")
-        .style("fill", function(d, i) { return z(i); });
-  
-        layer.selectAll("rect")
-            .data(function(d) { return d; })
-            .enter().append("rect")
-            .attr("y", function(d) { return y(d.y); })
-            .attr("x", function(d) { return x(d.x + d.x0); })
-            .attr("width", function(d) { return x(d.x0) - x(d.x + d.x0); })
-            .attr("height", y.rangeBand() - 1);
-    })
+    //console.log(dataset);
 
-    svg.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+    //Set up scales
 
-    svg.append("g")
-    .attr("class", "axis axis--y")
-    .attr("transform", "translate(" + margin.left + ",0)")
-    .call(yAxis);
+    // Array of drug names for domain
+    var lowCarbonByState = dataset[0].map(function (d) {
+            return d.y;
+        });
 
-    function type(d) {
-        d.State = +d.State;
-        types.forEach(function(c) { d[c] = +d[c]; });
-        return d;
-    }
+    yScale.domain(lowCarbonByState)
+        .rangeRoundBands([0, h], 0.1);
+
+    xScale.domain([0,				
+        d3.max(dataset, function(group) {
+            return d3.max(group, function(d) {
+                return d.x + d.x0 ;
+            });
+        })
+    ])
+    .range([0, w - margins[3]]);
+
+    //Create SVG element
+    var svg = d3.select("#chart-2")
+                .append("svg")
+                .attr("width", w + margins[1] + margins [3] )
+                .attr("height", h + margins[2]);
+                
+    var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient('bottom');
+                
+    var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient('left');
+    // Add a group for each row of data
+    var groups = svg.selectAll("g")
+        .data(dataset)
+        .enter()
+        .append("g")
+        .style("fill", function(d, i) {
+            return colors(i);
+        });
+    // Add a rect for each data value
+    var rects = groups.selectAll("rect")
+        .data(function(d) { return d; })
+        .enter()
+        .append("rect")
+        .attr("x", function(d) {
+            return xScale(d.x0) + margins[1];
+        })
+        .attr("width", function(d) {
+            return xScale(d.x);
+        })
+        .attr("y", function(d, i) {
+            return yScale(d.y);
+        })
+        .attr("height", function(d) {
+            return yScale.rangeBand() 
+        });
+        
+    svg.append('g')
+            .attr('class', 'axis')
+            .attr('transform', 'translate(' + margins[1] + ',' + h + ')')
+            .call(xAxis);
+    svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(' + margins[1] + ')')
+        .call(yAxis);
+    svg.append('rect')
+        .attr('fill', 'lightgrey')
+        .attr('width', 130)
+        .attr('height', 30 * dataset.length)
+        .attr('x', w - margins[3] + 10)
+        .attr('y', 100);
+
+    svg.append("text")
+        .attr('fill', 'black')
+        .attr('x', w/2)
+        .attr('y', h + 40 )
+    .style("font-size", "12px")
+        .text("Number of effects");
+        
+    series.forEach(function (s, i) {
+        svg.append('text')
+            .attr('fill', 'black')
+            .attr('x', w - margins[2] + 40)
+            .attr('y', i * 24 + 122)
+            .text(s);
+            
+        svg.append('rect')
+            .attr('fill', colors(i))
+            .attr('width', 20)
+            .attr('height', 20)
+            .attr('x', w - margins[3] + 20 )
+            .attr('y', i * 24 + 110);
+    });
+    
+});
+
 }
 
 drawChart2 ();
+
+
+// function drawChart2 () {
+
+//     var margin = {top: 50, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-2").style("width"))/13 + 10)},
+//     width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
+//     height = 380 - margin.top - margin.bottom;
+
+//     var svg = d3.select("#chart-2").append("svg")
+//     .attr("width", width + margin.left + margin.right)
+//     .attr("height", height + margin.top + margin.bottom)
+//     .append("g")
+//     .attr("transform", 
+//         "translate(" + margin.left + "," + margin.top + ")");
+
+//     var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
+    
+//     var x = d3.scale.linear().range([0, width]);
+
+//     var z = d3.scale.ordinal()
+//     .domain(["#f3f3f3", "#333333" ]);
+
+//     var types = ["Low carbon", "High carbon"];
+
+//     var xAxis = d3.svg.axis()
+//     .scale(x)
+//     .orient("bottom");
+
+//     var yAxis = d3.svg.axis()
+//     .scale(y)
+//     .orient("left");
+
+
+//     d3.csv("LowCarbonTotals.csv", function(error, LowCarbonTotals) {
+
+//         if (error) throw error;
+
+//         // data.filter(function(row, state) {
+
+//         //     for (var i = 0; i <51; i++) {
+//         //         return row["State"] == [state];
+//         //     }
+
+//         //     console.log("filter");
+
+//         // });
+
+//         var layers = d3.layout.stack()(types.map(function(c) {
+//             return LowCarbonTotals.map(function(d) {
+//               return {y: d.State, x: d[c]};
+//             });
+//           }));
+
+//         y.domain(layers[0].map(function(d) { return d.y; }));
+//         x.domain([0, d3.max(layers[layers.length - 1], function(d) { return d.x0 + d.x; })]).nice();
+
+//         var layer = svg.selectAll(".layer")
+//         .data(layers)
+//         .enter().append("g")
+//         .attr("class", "layer")
+//         .style("fill", function(d, i) { return z(i); });
+  
+//         layer.selectAll("rect")
+//             .data(function(d) { return d; })
+//             .enter().append("rect")
+//             .attr("y", function(d) { return y(d.y); })
+//             .attr("x", function(d) { return x(d.x + d.x0); })
+//             .attr("width", function(d) { return x(d.x0) - x(d.x + d.x0); })
+//             .attr("height", y.rangeBand() - 1);
+//     })
+
+//     svg.append("g")
+//     .attr("class", "axis axis--x")
+//     .attr("transform", "translate(0," + height + ")")
+//     .call(xAxis);
+
+//     svg.append("g")
+//     .attr("class", "axis axis--y")
+//     .attr("transform", "translate(" + margin.left + ",0)")
+//     .call(yAxis);
+
+//     function type(d) {
+//         d.State = +d.State;
+//         types.forEach(function(c) { d[c] = +d[c]; });
+//         return d;
+//     }
+// }
+
+// drawChart2 ();
 
