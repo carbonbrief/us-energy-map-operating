@@ -4899,7 +4899,7 @@ function drawChart2 (state) {
         .attr('x', width + margin.left - 5)
         .attr('y', 20)
         .style("text-anchor", "end")
-        .style("fill", "#ADADAD")
+        .style("fill", "#898989")
         .text("High carbon");
     
 });

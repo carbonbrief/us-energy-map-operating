@@ -50,7 +50,7 @@ h3 {
   padding: 10px;
   font-weight: bold;
   font-size: 16px;
-  color: #f3f3f3;
+  color: #D0CFD4;
   padding-bottom: 0px;
   padding-left: 0px;
   margin-bottom: 0px;
@@ -112,8 +112,8 @@ p {
 #subtitle-wrapper p {
   color: #f3f3f3;
   font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .total {
@@ -295,6 +295,18 @@ select {
     width: 30px;
     background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
     background-repeat: no-repeat;
+    visibility: hidden;
+}
+
+#logo-desktop {
+  position: absolute;
+  top: 708px;
+  right: 7px;
+  z-index: 9000;
+  height: 50px;
+  width: 140px;
+  background-image: url(https://www.carbonbrief.org/wp-content/uploads/2017/09/logo-light-clear-background2.png);
+  background-repeat: no-repeat;
 }
 
 /* CSS for d3 bar chart */
@@ -327,7 +339,7 @@ select {
 .label {
   font: 12px PT Sans;
   font-style: italic;
-  fill: #ADADAD;
+  fill: #898989;
 }
 
 .label-2 {
@@ -409,6 +421,12 @@ select {
   }
   .key-image img {
     width: 100%;
+  }
+  #logo-desktop {
+    visibility: hidden;
+  }
+  #logo {
+    visibility: visible;
   }
 }
 
