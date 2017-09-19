@@ -325,9 +325,14 @@ select {
 }
 
 .label {
-  font: 11px PT Sans;
+  font: 12px PT Sans;
   font-style: italic;
   fill: #ADADAD;
+}
+
+.label-2 {
+  font: 14px PT Sans;
+  font-style: italic;
 }
 
  .axis path,
@@ -383,6 +388,12 @@ select {
   }
   .key-image img {
     width: 100%;
+  }
+  .label-2 {
+    font-size: 12.5px;
+  }
+  .label {
+    font-size: 11px;
   }
 }
 

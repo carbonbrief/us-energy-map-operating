@@ -4888,14 +4888,14 @@ function drawChart2 (state) {
         .call(yAxis);
     
     svg.append("text")
-        .attr("class", "label")
+        .attr("class", "label-2")
         .attr('x', margin.left + 5)
         .attr('y', 20)
         .style("fill", "#2cb0c1")
         .text("Low carbon");
 
     svg.append("text")
-        .attr("class", "label")
+        .attr("class", "label-2")
         .attr('x', width + margin.left - 5)
         .attr('y', 20)
         .style("text-anchor", "end")
