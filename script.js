@@ -4435,7 +4435,7 @@ function updateTotal (functionName) {
 
 // horizontal bar chart
 
-var margin = {top: 50, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 20, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
+var margin = {top: 40, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 10, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
     width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
     height = 380 - margin.top - margin.bottom;
 
@@ -4786,7 +4786,7 @@ function drawChart2 (state) {
 
     //Set up scales
 
-    // Array of drug names for domain
+    // Array of state names for domain
     var lowCarbonByState = dataset[0].map(function (d) {
             return d.y;
         });
@@ -4812,12 +4812,17 @@ function drawChart2 (state) {
     var div = d3.select("#chart-2")
         .append("div")  // declare the tooltip div 
         .attr("class", "tooltip")              // apply the 'tooltip' class
-        .style("opacity", 0);                  // set the opacity to nil
+        .style("opacity", 0);// set the opacity to nil
+
+    var formatAsPercentage = d3.format("%");
+
+    var formatAsPercentage2 = d3.format(".1%");
                 
     var xAxis = d3.svg.axis()
             .scale(xScale)
             .orient('bottom')
-            .ticks(2);
+            .ticks(2)
+            .tickFormat(formatAsPercentage);
                 
     var yAxis = d3.svg.axis()
             .scale(yScale)
@@ -4858,7 +4863,7 @@ function drawChart2 (state) {
             div.transition()
                 .duration(200)	
                 .style("opacity", 1);	
-            div	.html(d.x + " %")	 
+            div	.html(formatAsPercentage2(d.x))	 
                 .style("left", (d3.event.pageX) + "px")			 
                 .style("top", (d3.event.pageY - 28) + "px");
             })
@@ -4877,13 +4882,6 @@ function drawChart2 (state) {
         .attr('class', 'axis')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         .call(yAxis);
-
-    svg.append("text")
-        .attr("class", "label")
-        .attr('x', width/2 + margin.left)
-        .attr('y', height + margin.top + 40)
-        .style("text-anchor", "middle")
-        .text("%");
     
     svg.append("text")
         .attr("class", "label")

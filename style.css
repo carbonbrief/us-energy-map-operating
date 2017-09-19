@@ -58,8 +58,9 @@ h3 {
 
 #key-title {
   border-top: 1px solid;
-  border-top-color: #f3f3f3;
-  padding-top: 15px;
+  border-top-color: #D6D6D6;
+  padding-top: 10px;
+  margin-top: 0px;
 }
 
 #chart-wrapper {
@@ -297,12 +298,12 @@ select {
 
 #chart-1 {
   width: 100%;
-  height: 400px;
+  height: 370px;
 }
 
 #chart-2 {
   width: 100%;
-  height: 180px;
+  height: 130px;
 }
 
 .bar {
