@@ -59,7 +59,7 @@ h3 {
 #key-title {
   border-top: 1px solid;
   border-top-color: #D6D6D6;
-  padding-top: 10px;
+  padding-top: 15px;
   margin-top: 0px;
 }
 
@@ -95,7 +95,10 @@ p {
 }
 
 #subtitle-wrapper {
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #subtitle {
@@ -298,12 +301,12 @@ select {
 
 #chart-1 {
   width: 100%;
-  height: 370px;
+  height: 350px;
 }
 
 #chart-2 {
   width: 100%;
-  height: 130px;
+  height: 90px;
 }
 
 .bar {
@@ -408,6 +411,11 @@ select {
   #chart-1 {
     visibility: hidden;
     height: 80px;
+  }
+
+  #chart-2 {
+    visibility: hidden;
+    height: 0px;
   }
 
   .key-image {

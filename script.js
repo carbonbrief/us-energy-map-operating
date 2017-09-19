@@ -4435,9 +4435,9 @@ function updateTotal (functionName) {
 
 // horizontal bar chart
 
-var margin = {top: 40, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 10, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
+var margin = {top: 50, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 10, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
     width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
-    height = 380 - margin.top - margin.bottom;
+    height = 360 - margin.top - margin.bottom;
 
 
 var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
@@ -4479,7 +4479,7 @@ svg.append("g")
     .attr("class", "label")
     .append("text")
     .attr("x", width)
-    .attr("y", -30)
+    .attr("y", -35)
     .style("text-anchor", "end")
     .text("Capacity (MW)");
 
@@ -4676,13 +4676,15 @@ function draw (state) {
 
 }
 
-// redraw d3 graph on window resize - currently not working particularly well but at least with this version the width of the svg itself updates
+// redraw d3 graphs on window resize - currently not working particularly well but at least with this version the width of the svg itself updates
 
 $(window).on("resize", function () {
 
     var width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right;
 
     d3.select("#chart-1").select("#svg-1").attr("width", width + margin.left + margin.right);
+
+    d3.select("#chart-2").select("#svg-2").attr("width", width + margin.left + margin.right);
 
 });
 
@@ -4695,9 +4697,9 @@ function drawChart2 (state) {
     d3.selectAll('#chart-2 svg').remove();
 
     //Width and height
-    var margin = {top: 40, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 40, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
+    var margin = {top: 30, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 20, left: 30},
         width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
-        height = 120 - margin.top - margin.bottom;
+        height = 80 - margin.top - margin.bottom;
 
     //Set up stack method
     var stack = d3.layout.stack(); 
@@ -4806,6 +4808,7 @@ function drawChart2 (state) {
     //Create SVG element
     var svg = d3.select("#chart-2")
                 .append("svg")
+                .attr("id", "svg-2")
                 .attr("width", width + margin.left + margin.right )
                 .attr("height", height + margin.bottom + margin.top);
 
@@ -4826,7 +4829,8 @@ function drawChart2 (state) {
                 
     var yAxis = d3.svg.axis()
             .scale(yScale)
-            .orient('left');
+            .orient('left')
+            .tickValues([]);
 
     // Add a group for each row of data
 
@@ -4886,14 +4890,14 @@ function drawChart2 (state) {
     svg.append("text")
         .attr("class", "label")
         .attr('x', margin.left + 5)
-        .attr('y', 30)
+        .attr('y', 20)
         .style("fill", "#2cb0c1")
         .text("Low carbon");
 
     svg.append("text")
         .attr("class", "label")
         .attr('x', width + margin.left - 5)
-        .attr('y', 30)
+        .attr('y', 20)
         .style("text-anchor", "end")
         .style("fill", "#212121")
         .text("High carbon");
