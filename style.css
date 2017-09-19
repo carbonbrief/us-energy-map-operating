@@ -286,21 +286,57 @@ select {
     box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
 }
 
-#logo {
+#logo-mobile {
     position: absolute;
-    top: 722px;
+    top: 515px;
     right: 7px;
     z-index: 9000;
-    height: 30px;
-    width: 30px;
-    background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
+    height: 25px;
+    width: 25px;
+    background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/09/cb-logo-mobile-light-grey.png);
     background-repeat: no-repeat;
     visibility: hidden;
 }
 
+#logo-phablet {
+  position: absolute;
+  top: 590px;
+  right: 7px;
+  z-index: 9000;
+  height: 30px;
+  width: 30px;
+  background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
+  background-repeat: no-repeat;
+  visibility: hidden;
+}
+
+#logo-tablet {
+  position: absolute;
+  top: 600px;
+  right: 7px;
+  z-index: 9000;
+  height: 30px;
+  width: 30px;
+  background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
+  background-repeat: no-repeat;
+  visibility: hidden;
+}
+
+#logo-laptop {
+  position: absolute;
+  top: 710px;
+  right: 7px;
+  z-index: 9000;
+  height: 45px;
+  width: 110px;
+  background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/09/cb-logo-light-laptop.png);
+  background-repeat: no-repeat;
+  visibility: hidden;
+}
+
 #logo-desktop {
   position: absolute;
-  top: 708px;
+  top: 705px;
   right: 7px;
   z-index: 9000;
   height: 50px;
@@ -409,6 +445,17 @@ select {
   }
 }
 
+/* switch logos as height of tile attribution changes */
+
+@media (max-width: 1050px) {
+  #logo-desktop {
+    visibility: hidden;
+  }
+  #logo-laptop {
+    visibility: visible;
+  }
+}
+
 @media (max-width: 1000px) {
   .axis text {
     font-size: 11px;
@@ -421,12 +468,6 @@ select {
   }
   .key-image img {
     width: 100%;
-  }
-  #logo-desktop {
-    visibility: hidden;
-  }
-  #logo {
-    visibility: visible;
   }
 }
 
@@ -501,11 +542,11 @@ select {
 @media (max-width: 800px) {
 
 	#mapid { 
-	height: 700px;
+	height: 650px;
   }
   
   #side-bar {
-    height: 700px;
+    height: 650px;
     width: 26%;
   }
 
@@ -529,17 +570,21 @@ select {
     width: 70px;
     padding-top: 4px;
   }
-  
-  
-  #logo {
-    top: 650px;
-  }
 
   select {
     width: 135px;
     font-size: 12px;
     padding-left: 5px; 
     padding-right: 25px;
+  }
+
+  /* switch logos as height of tile attribution and height of map changes */
+
+  #logo-laptop {
+    visibility: hidden;
+  }
+  #logo-tablet {
+    visibility: visible;
   }
 
 }
@@ -557,17 +602,7 @@ select {
   }
 
   #side-bar {
-    height: 600px;
     width: 27%;
-  }
-
-
-	#mapid { 
-	height: 600px;
-  }
-  
-  #logo {
-    top: 550px;
   }
 
 }
@@ -577,9 +612,14 @@ select {
 	#mapid { 
 	height: 470px;
   }
-  
-	#logo {
-    top: 590px;
+
+  /* switch logos as height of map changes */
+
+  #logo-tablet {
+    visibility: hidden;
+  }
+  #logo-phablet {
+    visibility: visible;
   }
 
   #side-bar {
@@ -623,5 +663,31 @@ select {
 
   #subtitle-wrapper {
     height: 0px;
+  }
+}
+
+@media (max-width: 450px) {
+  #mapid { 
+    height: 410px;
+  }
+  #side-bar {
+    height: 150px;
+  }
+  select {
+    width: 120px;
+  }
+  #selector_menu_2 {
+    top: 100px;
+  }
+  
+  #selector_menu_3 {
+    top: 100px;
+    left: 150px;
+  }
+  #logo-phablet {
+    visibility: hidden;
+  }
+  #logo-mobile {
+    visibility: visible;
   }
 }

@@ -24,6 +24,13 @@ $("#basemaps").change(function () {
         map.removeLayer(Esri_WorldImagery)
         .removeLayer(NASAGIBS_ViirsEarthAtNight2012)
         .addLayer(Esri_WorldGrayCanvas);
+
+        //change position of logo as attribution changes
+
+        $("#logo-laptop").css({top: 710});
+        $("#logo-tablet").css({top: 600});
+        $("#logo-phablet").css({top: 590});
+        $("#logo-mobile").css({top: 515});
     }
     else if (this.value == "Esri_WorldImagery") {
         map.removeLayer(Esri_WorldGrayCanvas)
@@ -31,11 +38,22 @@ $("#basemaps").change(function () {
         .addLayer(Esri_WorldImagery);
 
         console.log("satellite day change");
+
+        $("#logo-laptop").css({top: 710});
+        $("#logo-tablet").css({top: 600});
+        $("#logo-phablet").css({top: 575});
+        $("#logo-mobile").css({top: 480});
+
     }
     else if (this.value == "NASAGIBS_ViirsEarthAtNight2012") {
         map.removeLayer(Esri_WorldGrayCanvas)
         .removeLayer(Esri_WorldImagery)
         .addLayer(NASAGIBS_ViirsEarthAtNight2012);
+
+        $("#logo-laptop").css({top: 695});
+        $("#logo-tablet").css({top: 583});
+        $("#logo-phablet").css({top: 575});
+        $("#logo-mobile").css({top: 465});
     }
 });
 
