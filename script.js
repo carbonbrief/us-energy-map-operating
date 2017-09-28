@@ -1,4 +1,4 @@
-var map = L.map('mapid', {zoomControl: false}).setView([38.2, -104], 4)
+var map = L.map('mapid', {zoomControl: false}).setView([38.2, -104], 5)
 
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -4283,45 +4283,32 @@ var refilterLayers = {
 
 // find radius of marker
 
-
 function getRadius(d) {
     return d > 6400  ? 35.5 :
-            d > 3200  ? 31.5 :
-            d > 1600  ? 27.5 :
-            d > 800  ? 23.5 :
-            d > 400  ? 19.5 :
-            d > 200 ? 15.5 :
-            d > 100  ? 11.5 :
-            d > 50  ? 7.5 :
+            d > 3200  ? 28.5 :
+            d > 1600  ? 22.5 :
+            d > 800  ? 17.5 :
+            d > 400  ? 13.5 :
+            d > 200 ? 9.5 :
+            d > 100  ? 6.5 :
+            d > 50  ? 4.5 :
                     3.5;
 }
 
-//change radius on zoom
+//old scale - new one makes variance in data easier to see
 
-function getNewRadius(d) {
-    return d > 6400  ? 37 :
-    d > 3200  ? 33 :
-    d > 1600  ? 29 :
-    d > 800  ? 25 :
-    d > 400  ? 21 :
-    d > 200 ? 17 :
-    d > 100  ? 13 :
-    d > 50  ? 9 :
-            5;
-}
 
-map.on('zoomend', function(feature) {
-
-    var currentZoom = map.getZoom();
-
-    if (currentZoom > 6) {
-
-       group.setStyle({radius: getNewRadius(feature.properties["Capacity (MW)"])});
-
-    } else {
-        //do nothing
-    }
-});
+// function getRadius(d) {
+//     return d > 6400  ? 35.5 :
+//             d > 3200  ? 31.5 :
+//             d > 1600  ? 27.5 :
+//             d > 800  ? 23.5 :
+//             d > 400  ? 19.5 :
+//             d > 200 ? 15.5 :
+//             d > 100  ? 11.5 :
+//             d > 50  ? 7.5 :
+//                     3.5;
+// }
 
 // colors to be used
 
@@ -4345,10 +4332,10 @@ var colors = {
 function style(feature) {
     return {
         fillColor: colors[feature.properties["Fuel type"]],
-        weight: 0.36,
-        opacity: 0.5,
+        weight: 0.40,
+        opacity: 0.51,
         color: 'white',
-        fillOpacity: 0.65,
+        fillOpacity: 0.68,
 		radius: getRadius(feature.properties["Capacity (MW)"])
     };
 }
