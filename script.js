@@ -1,4 +1,12 @@
-var map = L.map('mapid', {zoomControl: false}).setView([38.2, -104], 5)
+// set bounds
+
+var southWest = new L.LatLng(28.8350, -131.5),
+northEast = new L.LatLng(45.514, -76),
+bounds = new L.LatLngBounds(southWest, northEast);
+
+// create map
+
+var map = L.map('mapid', {zoomControl: false}).fitBounds(bounds, {padding: [20, 20]})
 
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -180,7 +188,7 @@ var myPolygonStyle = {
     "color": "#999999",
     "weight": 3,
     "opacity": 0.9,
-    "fillOpacity": 0.23
+    "fillOpacity": 0.22
 };
 
 //markers
@@ -275,7 +283,7 @@ var refilterLayers = {
     
         group.clearLayers();
         allMarkers();
-        map.setView([38.2, -104], 4);
+        map.fitBounds(bounds, {padding: [20, 20]});
         group.addTo(map);
     },
     Alabama: function (varState) {
@@ -4332,10 +4340,10 @@ var colors = {
 function style(feature) {
     return {
         fillColor: colors[feature.properties["Fuel type"]],
-        weight: 0.38,
+        weight: 0.37,
         opacity: 0.35,
         color: '#f3f3f3',
-        fillOpacity: 0.68,
+        fillOpacity: 0.69,
 		radius: getRadius(feature.properties["Capacity (MW)"])
     };
 }
