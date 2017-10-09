@@ -41,6 +41,14 @@
   font-size: 13px;
 }
 
+#credit {
+  display: inline-block;
+  color: #828282;
+  margin-left: 20px;
+  margin-top: 0px;
+  font-size: 10.5px;
+}
+
 .key-image {
   width: 142px;
 }
@@ -454,6 +462,9 @@ select {
   }
   #logo-laptop {
     visibility: visible;
+  }
+  #credit {
+    visibility: hidden;
   }
 }
 

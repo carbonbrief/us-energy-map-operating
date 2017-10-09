@@ -4946,5 +4946,7 @@ function drawChart2 (state) {
 
 }
 
-drawChart2 ("All");
+// timeout seems to fix issue of it sometimes rendering improperly initially
+
+setTimeout(drawChart2("All"), 400);
 
