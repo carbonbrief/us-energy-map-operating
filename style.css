@@ -1,4 +1,81 @@
-#mapid { height: 770px; }
+#mapid { 
+  height: 770px; 
+}
+
+#container {
+  width: 100%;
+}
+
+#map-wrapper {
+  position: relative;
+	float: right;
+  width: 100%;
+}
+
+#side-bar {
+  display: inline-block;
+  position: absolute;
+	height: 770px;
+	width: 25%;
+	z-index: 314159;
+  background-color: rgba(51,51,51, 0.86);
+  opacity: 50%;
+}
+
+#key-desktop {
+  padding: 20px;
+}
+
+#key-wrapper div {
+  float: left;
+}
+
+.key-label {
+  display: inline-block;
+  padding-top: 2px;
+  padding-bottom: 5px;
+  color: #D6D6D6;
+}
+
+.key-label p {
+  font-size: 13px;
+}
+
+#credit {
+  display: inline-block;
+  color: #828282;
+  margin-left: 20px;
+  margin-top: 0px;
+  font-size: 10.5px;
+}
+
+.key-image {
+  width: 142px;
+}
+
+h3 {
+  font-family: PT Sans, Arial;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #D0CFD4;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+#key-title {
+  border-top: 1px solid;
+  border-top-color: #D6D6D6;
+  padding-top: 15px;
+  margin-top: 0px;
+}
+
+#chart-wrapper {
+  display: inline-block;
+  position: absolute;
+  width: 25%;
+}
 
 body {
 	margin: 0;
@@ -6,7 +83,121 @@ body {
 
 p {
 	font-family: PT Sans, Arial;
-	font-size: 14px;
+  font-size: 14px;
+}
+
+#title-wrapper {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#title {
+  font-family: PT Sans Narrow, Arial;
+  padding: 0px;
+  color: #ffffff;
+  margin-top: 0px;
+  /* border-bottom: 1px solid;
+  border-bottom-color: #ffffff; */
+  font-size: 38px;
+}
+
+#subtitle-wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#subtitle {
+  font-family: PT Sans Narrow, Arial;
+  font-style: bold;
+  color: #D0CFD4;
+  margin: 0;
+  font-size: 26px;
+}
+
+#subtitle-wrapper p {
+  color: #f3f3f3;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.total {
+  color: #2cb0c1;
+}
+
+#total {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#total-label {
+  font-size: 10px;
+}
+
+#rainbow-wrapper {
+  overflow: hidden;
+  width: calc (100% - 40px);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+}
+
+.rainbow {
+  border-bottom: 2px solid;
+  width: 8.2%;
+  display: inline-block;
+}
+
+
+#r1 {
+  border-bottom-color: #333333;
+}
+
+#r2 {
+  border-bottom-color: #7c5641;
+}
+
+#r3 {
+  border-bottom-color: #EFC530;
+}
+
+#r4 {
+  border-bottom-color: #d67b36;
+}
+
+#r6 {
+  border-bottom-color: #C7432B;
+}
+
+#r5 {
+  border-bottom-color: #e58888;
+}
+
+#r7 {
+  border-bottom-color: #A14A7B;
+}
+
+#r8 {
+  border-bottom-color: #673b9b;
+}
+
+#r9 {
+  border-bottom-color: #216184;
+}
+
+#r10 {
+  border-bottom-color: #2cb0c1;
+}
+
+#r11 {
+  border-bottom-color: #136400;
+}
+
+#r12 {
+  border-bottom-color: #A7B734;
 }
 
 h1 {
@@ -37,6 +228,13 @@ select {
     background-size: 20px 13px;
     border:0px;
     outline:0px;
+    width: 190px;
+    height: 40px;
+    font-family: "PT Sans", Arial; 
+    font-size: 14.5px; 
+    font-weight:bold;
+    padding:6px; 
+    padding-left: 11px; 
     -webkit-box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
     -moz-box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
     box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
@@ -45,23 +243,24 @@ select {
 .selector_menu {
     position: absolute;
     top: 10px;
-    right: 10px;
     z-index: 9000;
   box-shadow: none;
   border:0px;
   outline:0px;
   border-radius: 5px;
-  opacity:.75;
+  opacity:.85;
 }
 
 #selector_menu_1 {
-  top: 10px;
-  right: 10px;
+  left: 25.75%;
 }
 
 #selector_menu_2 {
-  top: 10px;
-  right: 240px;
+  left: calc(25.75% + 200px);
+}
+
+#selector_menu_3 {
+  left: calc(25.75% + 400px);
 }
 
 
@@ -84,9 +283,9 @@ select {
 #key {
     position: absolute;
     top: 690px;
-    left: 10px;
+    left: 25.75%;
     z-index: 9000;
-    height: 68px;
+    height: 70px;
     width: 350px;
     background-image:url(key1.png);
     background-repeat: no-repeat;
@@ -96,13 +295,411 @@ select {
     box-shadow: 6px 10px 23px 5px rgba(102,102,102,0.2);
 }
 
-#logo {
+#logo-mobile {
     position: absolute;
-    top: 722px;
+    top: 515px;
     right: 7px;
     z-index: 9000;
-    height: 30px;
-    width: 30px;
-    background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
+    height: 25px;
+    width: 25px;
+    background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/09/cb-logo-mobile-light-grey.png);
     background-repeat: no-repeat;
+    visibility: hidden;
+}
+
+#logo-phablet {
+  position: absolute;
+  top: 590px;
+  right: 7px;
+  z-index: 9000;
+  height: 30px;
+  width: 30px;
+  background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
+  background-repeat: no-repeat;
+  visibility: hidden;
+}
+
+#logo-tablet {
+  position: absolute;
+  top: 600px;
+  right: 7px;
+  z-index: 9000;
+  height: 30px;
+  width: 30px;
+  background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/08/CB-logo-map-light-grey.png);
+  background-repeat: no-repeat;
+  visibility: hidden;
+}
+
+#logo-laptop {
+  position: absolute;
+  top: 710px;
+  right: 7px;
+  z-index: 9000;
+  height: 45px;
+  width: 110px;
+  background-image:url(https://www.carbonbrief.org/wp-content/uploads/2017/09/cb-logo-light-laptop.png);
+  background-repeat: no-repeat;
+  visibility: hidden;
+}
+
+#logo-desktop {
+  position: absolute;
+  top: 705px;
+  right: 7px;
+  z-index: 9000;
+  height: 50px;
+  width: 140px;
+  background-image: url(https://www.carbonbrief.org/wp-content/uploads/2017/09/logo-light-clear-background2.png);
+  background-repeat: no-repeat;
+}
+
+/* CSS for d3 bar chart */
+
+#chart-1 {
+  width: 100%;
+  height: 350px;
+}
+
+#chart-2 {
+  width: 100%;
+  height: 90px;
+}
+
+.bar {
+  opacity: 1;
+  stroke: #ADADAD;
+  stroke-width: 0.4px;
+}
+
+.bar:hover {
+  opacity: .7;
+}
+ 
+.axis text {
+  font: 13px PT Sans;
+  fill: #D6D6D6;
+}
+
+.label {
+  font: 12px PT Sans;
+  font-style: italic;
+  fill: #898989;
+}
+
+.label-2 {
+  font: 14px PT Sans;
+  font-style: italic;
+}
+
+ .axis path,
+ .axis line {
+   fill: none;
+   stroke: #ADADAD;
+   shape-rendering: crispEdges;
+ }
+
+ div.tooltip {
+  position: absolute;	
+  text-align: left;	
+  width: auto;
+  max-width: 240px;	
+  height: auto;		
+  padding: 10px;	
+  font: 12px PT Sans;	
+  background: white;	
+  border: 0px;					
+  border-radius: 8px;
+  pointer-events: none;
+	
+}
+
+/* make responsive */
+
+@media (max-width: 1300px) {
+  .axis text {
+    font-size: 12.5px;
+  }
+
+  #title {
+    font-size: 34px;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .axis text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .axis text {
+    font-size: 11.5px;
+  }
+  .key-label p {
+    font-size: 12px;
+  }
+  .key-image {
+    width: 125px;
+  }
+  .key-image img {
+    width: 100%;
+  }
+  .label-2 {
+    font-size: 12.5px;
+  }
+  .label {
+    font-size: 11px;
+  }
+}
+
+/* switch logos as height of tile attribution changes */
+
+@media (max-width: 1050px) {
+  #logo-desktop {
+    visibility: hidden;
+  }
+  #logo-laptop {
+    visibility: visible;
+  }
+  #credit {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 1000px) {
+  .axis text {
+    font-size: 11px;
+  }
+  .key-label p {
+    font-size: 11px;
+  }
+  .key-image {
+    width: 100px;
+  }
+  .key-image img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 880px) {
+  #side-bar {
+    background-color: rgba(51,51,51, 0.6);
+  }
+  #subtitle-wrapper {
+    visibility: hidden;
+  }
+  #chart-1 {
+    visibility: hidden;
+    height: 80px;
+  }
+
+  #chart-2 {
+    visibility: hidden;
+    height: 0px;
+  }
+
+  .key-image {
+    width: 80px;
+    padding-top: 3px;
+  }
+
+  .key-label {
+    padding-top: 0px;
+  }
+
+  .key-label p {
+    font-size: 10.5px;
+  }
+
+  .selector_menu {
+    z-index: 999999;
+  }
+
+  #selector_menu_1 {
+    top: 150px;
+    left: 20px;
+  }
+  
+  #selector_menu_2 {
+    top: 190px;
+    left: 20px;
+  }
+  
+  #selector_menu_3 {
+    top: 230px;
+    left: 20px;
+  }
+
+  select {
+    width: 160px;
+    height: 30px;
+    font-size: 12.5px;
+    font-weight: normal;
+    padding-left: 6px; 
+  }
+  
+  .selector_menu {
+    opacity: .65;
+  }
+
+  #title {
+    font-size: 28px;
+  }
+
+
+}
+
+@media (max-width: 800px) {
+
+	#mapid { 
+	height: 650px;
+  }
+  
+  #side-bar {
+    height: 650px;
+    width: 26%;
+  }
+
+	.leaflet-popup-content-wrapper .leaflet-popup-content h1 {
+		font-size: 18px;
+		margin-top: 0px
+	}
+	.leaflet-popup-content-wrapper .leaflet-popup-content {
+		font-size: 12.5px;
+		margin: 12px;
+  }
+	.leaflet-popup-content-wrapper {
+		max-width: 280px;
+  }
+
+  .key-label p {
+    font-size: 10px;
+  }
+
+  .key-image {
+    width: 70px;
+    padding-top: 4px;
+  }
+
+  select {
+    width: 135px;
+    font-size: 12px;
+    padding-left: 5px; 
+    padding-right: 25px;
+  }
+
+  /* switch logos as height of tile attribution and height of map changes */
+
+  #logo-laptop {
+    visibility: hidden;
+  }
+  #logo-tablet {
+    visibility: visible;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  
+  .key-image {
+    width: 60px;
+    padding-top: 5px;
+  }
+
+  .key-label p {
+    font-size: 9.5px;
+  }
+
+  #side-bar {
+    width: 27%;
+  }
+
+}
+
+@media (max-width: 640px) {
+
+	#mapid { 
+	height: 470px;
+  }
+
+  /* switch logos as height of map changes */
+
+  #logo-tablet {
+    visibility: hidden;
+  }
+  #logo-phablet {
+    visibility: visible;
+  }
+
+  #side-bar {
+    width: 100%;
+    height: 170px;
+    position: relative;
+    background-color: rgba(51,51,51, 0.85);
+  }
+
+  #key-desktop {
+    visibility: hidden;
+    height: 0px;
+    padding: 0px;
+  }
+
+  #chart-1 {
+    height: 0;
+  }
+
+  #map-wrapper {
+    display: inline-block;
+  }
+
+  select {
+    width: 130px;
+  }
+
+  #selector_menu_2 {
+    top: 110px;
+    left: 20px;
+  }
+
+  #selector_menu_1 {
+    visibility: hidden;
+  }
+  
+  #selector_menu_3 {
+    top: 110px;
+    left: 160px;
+  }
+
+  #subtitle-wrapper {
+    height: 0px;
+  }
+}
+
+@media (max-width: 450px) {
+  #mapid { 
+    height: 410px;
+  }
+  #side-bar {
+    height: 150px;
+  }
+  select {
+    width: 120px;
+  }
+  #selector_menu_2 {
+    top: 100px;
+  }
+  
+  #selector_menu_3 {
+    top: 100px;
+    left: 150px;
+  }
+  #logo-phablet {
+    visibility: hidden;
+  }
+  #logo-mobile {
+    visibility: visible;
+  }
 }

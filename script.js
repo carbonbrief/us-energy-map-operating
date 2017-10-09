@@ -1,4 +1,12 @@
-var map = L.map('mapid', {zoomControl: false}).setView([38, -97], 5)
+// set bounds
+
+var southWest = new L.LatLng(28.8350, -131.5),
+northEast = new L.LatLng(45.514, -76),
+bounds = new L.LatLngBounds(southWest, northEast);
+
+// create map
+
+var map = L.map('mapid', {zoomControl: false}).fitBounds(bounds, {padding: [20, 20]})
 
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -7,6 +15,54 @@ var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/re
 
 var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('http://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+	attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+	bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+	minZoom: 1,
+	maxZoom: 8,
+	format: 'jpg',
+	time: '',
+	tilematrixset: 'GoogleMapsCompatible_Level'
+});
+
+$("#basemaps").change(function () {
+    if (this.value == "Esri_WorldGrayCanvas") {
+        map.removeLayer(Esri_WorldImagery)
+        .removeLayer(NASAGIBS_ViirsEarthAtNight2012)
+        .addLayer(Esri_WorldGrayCanvas);
+
+        //change position of logo as attribution changes
+
+        $("#logo-laptop").css({top: 710});
+        $("#logo-tablet").css({top: 600});
+        $("#logo-phablet").css({top: 590});
+        $("#logo-mobile").css({top: 515});
+    }
+    else if (this.value == "Esri_WorldImagery") {
+        map.removeLayer(Esri_WorldGrayCanvas)
+        .removeLayer(NASAGIBS_ViirsEarthAtNight2012)
+        .addLayer(Esri_WorldImagery);
+
+        console.log("satellite day change");
+
+        $("#logo-laptop").css({top: 710});
+        $("#logo-tablet").css({top: 600});
+        $("#logo-phablet").css({top: 575});
+        $("#logo-mobile").css({top: 480});
+
+    }
+    else if (this.value == "NASAGIBS_ViirsEarthAtNight2012") {
+        map.removeLayer(Esri_WorldGrayCanvas)
+        .removeLayer(Esri_WorldImagery)
+        .addLayer(NASAGIBS_ViirsEarthAtNight2012);
+
+        $("#logo-laptop").css({top: 695});
+        $("#logo-tablet").css({top: 583});
+        $("#logo-phablet").css({top: 575});
+        $("#logo-mobile").css({top: 465});
+    }
 });
 
 //disable scroll wheel zoom
@@ -129,10 +185,10 @@ var varState = "All";
 // set polygon style
 
 var myPolygonStyle = {
-    "color": "#333333",
+    "color": "#999999",
     "weight": 3,
-    "opacity": 0.3,
-    "fillOpacity": 0.02
+    "opacity": 0.9,
+    "fillOpacity": 0.22
 };
 
 //markers
@@ -168,6 +224,12 @@ var refilterLayers = {
                 filter: function (feature, layer) {
                     if (varState == "All") {
                         return(feature.properties["Fuel type"] == "Biomass" || "Coal" || "Gas" || "Geothermal" || "Hydro" || "Nuclear" || "Oil" || "Other" || "Solar" || "Storage"  || "Waste" || "Wind" );
+                    }
+                    else if (varState == "LowCarbon") {
+                        return(feature.properties["LowCarbon"] == "Yes");
+                    }
+                    else if (varState == "HighCarbon") {
+                        return(feature.properties["LowCarbon"] == "No");
                     }
                     else if (varState == "Biomass") {
                         return(feature.properties["Fuel type"] == "Biomass");
@@ -221,7 +283,7 @@ var refilterLayers = {
     
         group.clearLayers();
         allMarkers();
-        map.setView([38, -97], 5);
+        map.fitBounds(bounds, {padding: [20, 20]});
         group.addTo(map);
     },
     Alabama: function (varState) {
@@ -232,6 +294,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "AL");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "AL" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "AL" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AL" && feature.properties["Fuel type"] == "Biomass")
@@ -293,7 +361,7 @@ var refilterLayers = {
         group.clearLayers();
         alabamaPolygon();
         alabamaMarkers();
-        map.setView([32.31, -86.90], 7);
+        map.setView([32.31, -89], 6);
         group.addTo(map);
     
         console.log("refilterLayersAlabama");
@@ -306,6 +374,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "AK");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "AK" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "AK" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AK" && feature.properties["Fuel type"] == "Biomass")
@@ -367,7 +441,7 @@ var refilterLayers = {
         group.clearLayers();
         alaskaPolygon();
         alaskaMarkers();
-        map.setView([64.2, -149.4], 4);
+        map.setView([64.2, -159], 4);
         group.addTo(map);
     
         console.log("refilterLayersAlaska");
@@ -380,6 +454,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "AZ");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "AZ" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "AZ" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AZ" && feature.properties["Fuel type"] == "Biomass")
@@ -441,7 +521,7 @@ var refilterLayers = {
         group.clearLayers();
         arizonaPolygon();
         arizonaMarkers();
-        map.setView([34.048, -111.09], 6);
+        map.setView([34.048, -114.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersArizona");
@@ -454,6 +534,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "AR");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "AR" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "AR" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "AR" && feature.properties["Fuel type"] == "Biomass")
@@ -515,7 +601,7 @@ var refilterLayers = {
         group.clearLayers();
         arkansasPolygon();
         arkansasMarkers();
-        map.setView([35.201, -91.831], 7);
+        map.setView([34.5, -94], 6);
         group.addTo(map);
     
         console.log("refilterLayersArkansas");
@@ -528,6 +614,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "CA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "CA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "CA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "CA" && feature.properties["Fuel type"] == "Biomass")
@@ -589,7 +681,7 @@ var refilterLayers = {
         group.clearLayers();
         californiaPolygon();
         californiaMarkers();
-        map.setView([36.778, -119.417], 6);
+        map.setView([36.778, -123], 5);
         group.addTo(map);
     
         console.log("refilterLayersCalifornia");
@@ -602,6 +694,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "CO");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "CO" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "CO" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "CO" && feature.properties["Fuel type"] == "Biomass")
@@ -663,7 +761,7 @@ var refilterLayers = {
         group.clearLayers();
         coloradoPolygon();
         coloradoMarkers();
-        map.setView([39.55, -105.782], 7);
+        map.setView([39.55, -108], 6);
         group.addTo(map);
     
         console.log("refilterLayersColorado");
@@ -676,6 +774,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "CT");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "CT" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "CT" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "CT" && feature.properties["Fuel type"] == "Biomass")
@@ -737,7 +841,7 @@ var refilterLayers = {
         group.clearLayers();
         connecticutPolygon();
         connecticutMarkers();
-        map.setView([41.603, -73.087], 8);
+        map.setView([41.5, -73.8], 7);
         group.addTo(map);
     
         console.log("refilterLayersConnecticut");
@@ -750,6 +854,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "DE");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "DE" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "DE" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "DE" && feature.properties["Fuel type"] == "Biomass")
@@ -811,7 +921,7 @@ var refilterLayers = {
         group.clearLayers();
         delawarePolygon();
         delawareMarkers();
-        map.setView([38.910, -75.527], 8);
+        map.setView([38.910, -77], 7);
         group.addTo(map);
     
         console.log("refilterLayersDelaware");
@@ -824,6 +934,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "FL");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "FL" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "FL" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "FL" && feature.properties["Fuel type"] == "Biomass")
@@ -885,7 +1001,7 @@ var refilterLayers = {
         group.clearLayers();
         floridaPolygon();
         floridaMarkers();
-        map.setView([27.664, -81.515], 6);
+        map.setView([27.664, -86], 6);
         group.addTo(map);
     
         console.log("refilterLayersFlorida");
@@ -898,6 +1014,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "GA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "GA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "GA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "GA" && feature.properties["Fuel type"] == "Biomass")
@@ -959,7 +1081,7 @@ var refilterLayers = {
         group.clearLayers();
         georgiaPolygon();
         georgiaMarkers();
-        map.setView([32.165, -82.900], 7);
+        map.setView([32.165, -86], 6);
         group.addTo(map);
     
         console.log("refilterLayersGeorgia");
@@ -972,6 +1094,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "HI");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "HI" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "HI" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "HI" && feature.properties["Fuel type"] == "Biomass")
@@ -1033,7 +1161,7 @@ var refilterLayers = {
         group.clearLayers();
         hawaiiPolygon();
         hawaiiMarkers();
-        map.setView([19.896, -156.582], 7);
+        map.setView([20, -158.5], 7);
         group.addTo(map);
     
         console.log("refilterLayersHawaii");
@@ -1046,6 +1174,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "ID");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "ID" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "ID" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "ID" && feature.properties["Fuel type"] == "Biomass")
@@ -1107,7 +1241,7 @@ var refilterLayers = {
         group.clearLayers();
         idahoPolygon();
         idahoMarkers();
-        map.setView([45.068, -114.742], 6);
+        map.setView([45.068, -120], 5);
         group.addTo(map);
     
         console.log("refilterLayersIdaho");
@@ -1120,6 +1254,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "IL");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "IL" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "IL" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "IL" && feature.properties["Fuel type"] == "Biomass")
@@ -1181,7 +1321,7 @@ var refilterLayers = {
         group.clearLayers();
         illinoisPolygon();
         illinoisMarkers();
-        map.setView([40.633, -89.398], 6);
+        map.setView([40, -91], 6);
         group.addTo(map);
     
         console.log("refilterLayersIllinois");
@@ -1194,6 +1334,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "IN");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "IN" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "IN" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "IN" && feature.properties["Fuel type"] == "Biomass")
@@ -1255,7 +1401,7 @@ var refilterLayers = {
         group.clearLayers();
         indianaPolygon();
         indianaMarkers();
-        map.setView([40.267, -86.134], 6);
+        map.setView([40, -88.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersIndiana");
@@ -1268,6 +1414,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "IA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "IA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "IA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "IA" && feature.properties["Fuel type"] == "Biomass")
@@ -1329,7 +1481,7 @@ var refilterLayers = {
         group.clearLayers();
         iowaPolygon();
         iowaMarkers();
-        map.setView([41.878, -93.097], 6);
+        map.setView([41.878, -95], 6);
         group.addTo(map);
     
         console.log("refilterLayersIowa");
@@ -1342,6 +1494,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "KS");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "KS" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "KS" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "KS" && feature.properties["Fuel type"] == "Biomass")
@@ -1403,7 +1561,7 @@ var refilterLayers = {
         group.clearLayers();
         kansasPolygon();
         kansasMarkers();
-        map.setView([39.011, -98.484], 6);
+        map.setView([38.9, -100.8], 6);
         group.addTo(map);
     
         console.log("refilterLayersKansas");
@@ -1416,6 +1574,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "KY");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "KY" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "KY" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "KY" && feature.properties["Fuel type"] == "Biomass")
@@ -1477,7 +1641,7 @@ var refilterLayers = {
         group.clearLayers();
         kentuckyPolygon();
         kentuckyMarkers();
-        map.setView([37.839, -84.270], 6);
+        map.setView([37.839, -88.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersKentucky");
@@ -1490,6 +1654,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "LA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "LA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "LA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "LA" && feature.properties["Fuel type"] == "Biomass")
@@ -1551,7 +1721,7 @@ var refilterLayers = {
         group.clearLayers();
         louisianaPolygon();
         louisianaMarkers();
-        map.setView([30.984, -91.962], 6);
+        map.setView([30.984, -94], 6);
         group.addTo(map);
     
         console.log("refilterLayersLouisiana");
@@ -1564,6 +1734,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "ME");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "ME" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "ME" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "ME" && feature.properties["Fuel type"] == "Biomass")
@@ -1625,7 +1801,7 @@ var refilterLayers = {
         group.clearLayers();
         mainePolygon();
         maineMarkers();
-        map.setView([45.253, -69.445], 6);
+        map.setView([45.253, -72], 6);
         group.addTo(map);
     
         console.log("refilterLayersMaine");
@@ -1638,6 +1814,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MD");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "MD" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "MD" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MD" && feature.properties["Fuel type"] == "Biomass")
@@ -1699,7 +1881,7 @@ var refilterLayers = {
         group.clearLayers();
         marylandPolygon();
         marylandMarkers();
-        map.setView([39.045, -76.641], 7);
+        map.setView([39.045, -78], 7);
         group.addTo(map);
     
         console.log("refilterLayersMaryland");
@@ -1712,6 +1894,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "MA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "MA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MA" && feature.properties["Fuel type"] == "Biomass")
@@ -1773,7 +1961,7 @@ var refilterLayers = {
         group.clearLayers();
         massachusettsPolygon();
         massachusettsMarkers();
-        map.setView([42.407, -71.382], 7);
+        map.setView([42.2, -72.4], 7);
         group.addTo(map);
     
         console.log("refilterLayersMassachusetts");
@@ -1786,6 +1974,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MI");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "MI" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "MI" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MI" && feature.properties["Fuel type"] == "Biomass")
@@ -1847,7 +2041,7 @@ var refilterLayers = {
         group.clearLayers();
         michiganPolygon();
         michiganMarkers();
-        map.setView([44.314, -85.602], 6);
+        map.setView([44.314, -89], 5);
         group.addTo(map);
     
         console.log("refilterLayersMichigan");
@@ -1860,6 +2054,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MN");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "MN" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "MN" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MN" && feature.properties["Fuel type"] == "Biomass")
@@ -1921,7 +2121,7 @@ var refilterLayers = {
         group.clearLayers();
         minnesotaPolygon();
         minnesotaMarkers();
-        map.setView([46.729, -94.685], 6);
+        map.setView([46.729, -96], 5);
         group.addTo(map);
     
         console.log("refilterLayersMinnesota");
@@ -1934,6 +2134,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MS");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "MS" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "MS" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MS" && feature.properties["Fuel type"] == "Biomass")
@@ -1995,7 +2201,7 @@ var refilterLayers = {
         group.clearLayers();
         mississippiPolygon();
         mississippiMarkers();
-        map.setView([32.6, -90.2], 7);
+        map.setView([32.6, -92], 6);
         group.addTo(map);
     
         console.log("refilterLayersMississippi");
@@ -2008,6 +2214,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MO");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "MO" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "MO" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MO" && feature.properties["Fuel type"] == "Biomass")
@@ -2069,7 +2281,7 @@ var refilterLayers = {
         group.clearLayers();
         missouriPolygon();
         missouriMarkers();
-        map.setView([37.964, -92.4], 6);
+        map.setView([37.964, -95], 6);
         group.addTo(map);
     
         console.log("refilterLayersMissouri");
@@ -2082,6 +2294,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "MT");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "MT" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "MT" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "MT" && feature.properties["Fuel type"] == "Biomass")
@@ -2143,7 +2361,7 @@ var refilterLayers = {
         group.clearLayers();
         montanaPolygon();
         montanaMarkers();
-        map.setView([46.879, -110.362], 6);
+        map.setView([46.879, -113], 5);
         group.addTo(map);
     
         console.log("refilterLayersMontana");
@@ -2156,6 +2374,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NE");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "NE" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "NE" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NE" && feature.properties["Fuel type"] == "Biomass")
@@ -2217,7 +2441,7 @@ var refilterLayers = {
         group.clearLayers();
         nebraskaPolygon();
         nebraskaMarkers();
-        map.setView([41.4925, -99.9018], 6);
+        map.setView([41.4925, -102.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersNebraska");
@@ -2230,6 +2454,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NV");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "NV" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "NV" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NV" && feature.properties["Fuel type"] == "Biomass")
@@ -2291,7 +2521,7 @@ var refilterLayers = {
         group.clearLayers();
         nevadaPolygon();
         nevadaMarkers();
-        map.setView([38.8026, -116.4193], 6);
+        map.setView([38.8026, -122], 5);
         group.addTo(map);
     
         console.log("refilterLayersNevada");
@@ -2304,6 +2534,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NH");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "NH" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "NH" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NH" && feature.properties["Fuel type"] == "Biomass")
@@ -2365,7 +2601,7 @@ var refilterLayers = {
         group.clearLayers();
         newHampshirePolygon();
         newHampshireMarkers();
-        map.setView([43.5, -71.572395], 7);
+        map.setView([43.8, -73], 7);
         group.addTo(map);
     
         console.log("refilterLayersNewHampshire");
@@ -2378,6 +2614,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NJ");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "NJ" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "NJ" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NJ" && feature.properties["Fuel type"] == "Biomass")
@@ -2439,7 +2681,7 @@ var refilterLayers = {
         group.clearLayers();
         newJerseyPolygon();
         newJerseyMarkers();
-        map.setView([40.0583, -74.4056], 8);
+        map.setView([40.0583, -76], 7);
         group.addTo(map);
     
         console.log("refilterLayersNewJersey");
@@ -2452,6 +2694,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NM");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "NM" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "NM" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NM" && feature.properties["Fuel type"] == "Biomass")
@@ -2513,7 +2761,7 @@ var refilterLayers = {
         group.clearLayers();
         newMexicoPolygon();
         newMexicoMarkers();
-        map.setView([34.5199, -105.870], 6);
+        map.setView([34.5199, -110], 5);
         group.addTo(map);
     
         console.log("refilterLayersNewMexico");
@@ -2526,6 +2774,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NY");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "NY" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "NY" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NY" && feature.properties["Fuel type"] == "Biomass")
@@ -2587,7 +2841,7 @@ var refilterLayers = {
         group.clearLayers();
         newYorkPolygon();
         newYorkMarkers();
-        map.setView([43, -75], 7);
+        map.setView([43, -77], 6);
         group.addTo(map);
     
         console.log("refilterLayersNewYork");
@@ -2600,6 +2854,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "NC");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "NC" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "NC" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "NC" && feature.properties["Fuel type"] == "Biomass")
@@ -2661,7 +2921,7 @@ var refilterLayers = {
         group.clearLayers();
         northCarolinaPolygon();
         northCarolinaMarkers();
-        map.setView([35.7595, -79.0193], 7);
+        map.setView([35.7595, -82], 6);
         group.addTo(map);
     
         console.log("refilterLayersNorthCarolina");
@@ -2674,6 +2934,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "ND");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "ND" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "ND" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "ND" && feature.properties["Fuel type"] == "Biomass")
@@ -2735,7 +3001,7 @@ var refilterLayers = {
         group.clearLayers();
         northDakotaPolygon();
         northDakotaMarkers();
-        map.setView([47.5514, -101.0020], 6);
+        map.setView([47.5514, -105.5], 5);
         group.addTo(map);
     
         console.log("refilterLayersNorthDakota");
@@ -2748,6 +3014,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "OH");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "OH" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "OH" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "OH" && feature.properties["Fuel type"] == "Biomass")
@@ -2809,7 +3081,7 @@ var refilterLayers = {
         group.clearLayers();
         ohioPolygon();
         ohioMarkers();
-        map.setView([40.4172, -82.907], 7);
+        map.setView([40.4172, -84], 6);
         group.addTo(map);
     
         console.log("refilterLayersOhio");
@@ -2822,6 +3094,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "OK");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "OK" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "OK" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "OK" && feature.properties["Fuel type"] == "Biomass")
@@ -2883,7 +3161,7 @@ var refilterLayers = {
         group.clearLayers();
         oklahomaPolygon();
         oklahomaMarkers();
-        map.setView([35.0077, -97.0928], 6);
+        map.setView([35.0077, -100], 6);
         group.addTo(map);
     
         console.log("refilterLayersOklahoma");
@@ -2896,6 +3174,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "OR");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "OR" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "OR" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "OR" && feature.properties["Fuel type"] == "Biomass")
@@ -2957,7 +3241,7 @@ var refilterLayers = {
         group.clearLayers();
         oregonPolygon();
         oregonMarkers();
-        map.setView([43.8041, -120.554], 6);
+        map.setView([43.8041, -125], 5);
         group.addTo(map);
     
         console.log("refilterLayersOregon");
@@ -2970,6 +3254,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "PA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "PA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "PA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "PA" && feature.properties["Fuel type"] == "Biomass")
@@ -3031,7 +3321,7 @@ var refilterLayers = {
         group.clearLayers();
         pennsylvaniaPolygon();
         pennsylvaniaMarkers();
-        map.setView([41.2033, -77.1945], 7);
+        map.setView([41.2033, -80], 6);
         group.addTo(map);
     
         console.log("refilterLayersPennsylvania");
@@ -3044,6 +3334,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "RI");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "RI" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "RI" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "RI" && feature.properties["Fuel type"] == "Biomass")
@@ -3105,7 +3401,7 @@ var refilterLayers = {
         group.clearLayers();
         rhodeIslandPolygon();
         rhodeIslandMarkers();
-        map.setView([41.5800, -71.47742], 8);
+        map.setView([41.5800, -72.5], 7);
         group.addTo(map);
     
         console.log("refilterLayersRhodeIsland");
@@ -3118,6 +3414,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "SC");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "SC" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "SC" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "SC" && feature.properties["Fuel type"] == "Biomass")
@@ -3179,7 +3481,7 @@ var refilterLayers = {
         group.clearLayers();
         southCarolinaPolygon();
         southCarolinaMarkers();
-        map.setView([33.8360, -81.1637], 7);
+        map.setView([33.8360, -83.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersSouthCarolina");
@@ -3192,6 +3494,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "SD");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "SD" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "SD" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "SD" && feature.properties["Fuel type"] == "Biomass")
@@ -3253,7 +3561,7 @@ var refilterLayers = {
         group.clearLayers();
         southDakotaPolygon();
         southDakotaMarkers();
-        map.setView([43.9695, -99.9018], 6);
+        map.setView([43.9695, -103], 5);
         group.addTo(map);
     
         console.log("refilterLayersSouthDakota");
@@ -3266,6 +3574,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "TN");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "TN" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "TN" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "TN" && feature.properties["Fuel type"] == "Biomass")
@@ -3327,7 +3641,7 @@ var refilterLayers = {
         group.clearLayers();
         tennesseePolygon();
         tennesseeMarkers();
-        map.setView([35.5174, -86.5804], 6);
+        map.setView([35.5174, -88], 6);
         group.addTo(map);
     
         console.log("refilterLayersTennessee");
@@ -3340,6 +3654,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "TX");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "TX" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "TX" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "TX" && feature.properties["Fuel type"] == "Biomass")
@@ -3401,7 +3721,7 @@ var refilterLayers = {
         group.clearLayers();
         texasPolygon();
         texasMarkers();
-        map.setView([31.968, -99.9018], 6);
+        map.setView([31.968, -103], 5);
         group.addTo(map);
     
         console.log("refilterLayersTexas");
@@ -3414,6 +3734,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "UT");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "UT" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "UT" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "UT" && feature.properties["Fuel type"] == "Biomass")
@@ -3475,7 +3801,7 @@ var refilterLayers = {
         group.clearLayers();
         utahPolygon();
         utahMarkers();
-        map.setView([39.3209, -111.3], 6);
+        map.setView([39.3209, -114.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersUtah");
@@ -3488,6 +3814,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "VT");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "VT" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "VT" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "VT" && feature.properties["Fuel type"] == "Biomass")
@@ -3549,7 +3881,7 @@ var refilterLayers = {
         group.clearLayers();
         vermontPolygon();
         vermontMarkers();
-        map.setView([43.7, -72.5778], 7);
+        map.setView([43.7, -74], 7);
         group.addTo(map);
     
         console.log("refilterLayersVermont");
@@ -3562,6 +3894,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "VA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "VA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "VA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "VA" && feature.properties["Fuel type"] == "Biomass")
@@ -3623,7 +3961,7 @@ var refilterLayers = {
         group.clearLayers();
         virginiaPolygon();
         virginiaMarkers();
-        map.setView([37.4315, -78.6568], 7);
+        map.setView([37.4315, -81.5], 6);
         group.addTo(map);
     
         console.log("refilterLayersVirginia");
@@ -3636,6 +3974,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "WA");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "WA" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "WA" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WA" && feature.properties["Fuel type"] == "Biomass")
@@ -3697,7 +4041,7 @@ var refilterLayers = {
         group.clearLayers();
         washingtonPolygon();
         washingtonMarkers();
-        map.setView([47.7510, -120.7401], 7);
+        map.setView([47.7510, -123], 6);
         group.addTo(map);
     
         console.log("refilterLayersWashington");
@@ -3710,6 +4054,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "WV");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "WV" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "WV" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WV" && feature.properties["Fuel type"] == "Biomass")
@@ -3771,7 +4121,7 @@ var refilterLayers = {
         group.clearLayers();
         westVirginiaPolygon();
         westVirginiaMarkers();
-        map.setView([38.5976, -80.4549], 7);
+        map.setView([38.5976, -83], 6);
         group.addTo(map);
     
         console.log("refilterLayersWestVirginia");
@@ -3784,6 +4134,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "WI");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "WI" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "WI" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WI" && feature.properties["Fuel type"] == "Biomass")
@@ -3845,7 +4201,7 @@ var refilterLayers = {
         group.clearLayers();
         wisconsinPolygon();
         wisconsinMarkers();
-        map.setView([44.7844, -89], 7);
+        map.setView([44.7844, -92], 6);
         group.addTo(map);
     
         console.log("refilterLayersWisconsin");
@@ -3858,6 +4214,12 @@ var refilterLayers = {
                     filter: function (feature, layer) {
                         if (varState == "All") {
                             return (feature.properties.State === "WY");
+                        }
+                        else if (varState == "LowCarbon") {
+                            return(feature.properties.State === "WY" && feature.properties["LowCarbon"] == "Yes");
+                        }
+                        else if (varState == "HighCarbon") {
+                            return(feature.properties.State === "WY" && feature.properties["LowCarbon"] == "No");
                         }
                         else if (varState == "Biomass") {
                             return(feature.properties.State === "WY" && feature.properties["Fuel type"] == "Biomass")
@@ -3919,7 +4281,7 @@ var refilterLayers = {
         group.clearLayers();
         wyomingPolygon();
         wyomingMarkers();
-        map.setView([43.0759, -107.290], 6);
+        map.setView([43.0759, -111], 5);
         group.addTo(map);
     
         console.log("refilterLayersWyoming");
@@ -3929,32 +4291,46 @@ var refilterLayers = {
 
 // find radius of marker
 
-
 function getRadius(d) {
-    return d > 6400  ? 29 :
-            d > 3200  ? 26 :
-            d > 1600  ? 23 :
-            d > 800  ? 20 :
-            d > 400  ? 17 :
-            d > 200 ? 14 :
-            d > 100  ? 11 :
-            d > 50  ? 8 :
-                    5;
+    return d > 6400  ? 35.5 :
+            d > 3200  ? 28.5 :
+            d > 1600  ? 22.5 :
+            d > 800  ? 17.5 :
+            d > 400  ? 13.5 :
+            d > 200 ? 9.5 :
+            d > 100  ? 6.5 :
+            d > 50  ? 4.5 :
+                    3.5;
 }
+
+//old scale - new one makes variance in data easier to see
+
+
+// function getRadius(d) {
+//     return d > 6400  ? 35.5 :
+//             d > 3200  ? 31.5 :
+//             d > 1600  ? 27.5 :
+//             d > 800  ? 23.5 :
+//             d > 400  ? 19.5 :
+//             d > 200 ? 15.5 :
+//             d > 100  ? 11.5 :
+//             d > 50  ? 7.5 :
+//                     3.5;
+// }
 
 // colors to be used
 
 var colors = {
     "Coal": "#333333",
-    "Gas": "#0b4572",
+    "Gas": "#216184",
     "Solar": "#EFC530",
     "Nuclear": "#A14A7B",
     "Oil": "#673b9b",
-    "Hydro": "#2f8fce",
+    "Hydro": "#2cb0c1",
     "Wind": "#136400",
     "Biomass": "#A7B734",
-    "Waste": "#dd8a3e",
-    "Storage": "#ffada9",
+    "Waste": "#d67b36",
+    "Storage": "#e58888",
     "Geothermal": "#C7432B",
     "Other": "#7c5641"
 }
@@ -3964,10 +4340,10 @@ var colors = {
 function style(feature) {
     return {
         fillColor: colors[feature.properties["Fuel type"]],
-        weight: 0.3,
-        opacity: 0.3,
-        color: 'white',
-        fillOpacity: 0.65,
+        weight: 0.37,
+        opacity: 0.35,
+        color: '#f3f3f3',
+        fillOpacity: 0.69,
 		radius: getRadius(feature.properties["Capacity (MW)"])
     };
 }
@@ -3977,7 +4353,7 @@ function style(feature) {
 function onEachFeature(feature, layer) {
 	// does this feature have a property named popupContent?
 	if (feature.properties) {
-		layer.bindPopup('<h1 style= color:'+ colors[feature.properties["Fuel type"]] +';><b>'+feature.properties["Plant Name"]+'</h1>Capacity: </b>'+feature.properties["Capacity (MW)"]+'MW <br /><b>Type: </b>'+feature.properties["Fuel type"]+'<br /><b>Year opened: </b>'+feature.properties["Year opened"], {closeButton: false, offset: L.point(0, -20)});
+		layer.bindPopup('<h1 style= color:'+ colors[feature.properties["Fuel type"]] +';><b>'+feature.properties["Plant Name"]+'</h1>Capacity: </b>'+feature.properties["Capacity label"]+' MW<br /><b>Type: </b>'+feature.properties["Fuel type"]+'<br /><b>State: </b>'+feature.properties["State label"]+'<br /><b>Year opened: </b>'+feature.properties["Year opened"], {closeButton: false, offset: L.point(0, -20)});
         layer.on('mouseover', function() { layer.openPopup(); });
         layer.on('mouseout', function() { layer.closePopup(); });
 	};
@@ -3985,7 +4361,7 @@ function onEachFeature(feature, layer) {
 
 // add zoomHome plugin
 
-var zoomHome = L.Control.zoomHome();
+var zoomHome = L.Control.zoomHome({position: 'topright'});
 zoomHome.addTo(map);
 
 // states dropdown menu
@@ -3998,9 +4374,17 @@ $('#selector1').change(function(){
 
     refilterLayers[functionName](varState);
 
+    var newSubtitle = $("#selector1 option:selected").text()
+
+    $("#subtitle").fadeOut(200, function() {
+        $(this).text(newSubtitle).fadeIn(200);
+    });
+
+    updateTotal(functionName);
+
 });
 
-//type dropdown menu
+// fuel type dropdown menu
 
 $('#selector2').change(function() {
 
@@ -4012,10 +4396,557 @@ $('#selector2').change(function() {
 
 })
 
-//reset dropdown on window reload
+// reset dropdown on window reload
 
 $(document).ready(function () {
     $("select").each(function () {
         $(this).val($(this).find('option[selected]').val());
     });
 })
+
+// update total as state changes
+
+var totalsArray = {
+    All: "1,197,676",
+    Alabama: "31,565",
+    Alaska: "3,012",
+    Arizona: "32,980",
+    Arkansas: "16,339",
+    California: "86,563",
+    Colorado: "18,124",
+    Connecticut: "9,937",
+    Delaware: "3,682",
+    Florida: "69,879",
+    Georgia: "39,512",
+    Hawaii: "3,500",
+    Idaho: "5,231",
+    Illinois: "50,813",
+    Indiana: "28,704",
+    Iowa: "19,088",
+    Kansas: "17,077",
+    Kentucky: "23,827",
+    Louisiana: "28,618",
+    Maine: "5,240",
+    Maryland: "15,078",
+    Massachusetts: "15,853",
+    Michigan: "32,175",
+    Minnesota: "18,064",
+    Mississippi: "18,107",
+    Missouri: "23,884",
+    Montana: "6,419",
+    Nebraska: "9,234",
+    Nevada: "13,241",
+    NewHampshire: "4,675",
+    NewJersey: "22,038",
+    NewMexico: "9,675",
+    NewYork: "44,118",
+    NorthCarolina: "35,528",
+    NorthDakota: "8,626",
+    Ohio: "31,715",
+    Oklahoma: "28,307",
+    Oregon: "17,257",
+    Pennsylvania: "48,390",
+    RhodeIsland: "2,130",
+    SouthCarolina: "24,738",
+    SouthDakota: "4,397",
+    Tennessee: "24,175",
+    Texas: "129,784",
+    Utah: "9,952",
+    Vermont: "813",
+    Virginia: "29,198",
+    Washington: "31,826",
+    WestVirginia: "15,996",
+    Wisconsin: "19,111",
+    Wyoming: "9,483"
+}
+
+function updateTotal (functionName) {
+
+    var myTotal = totalsArray[functionName]
+
+    console.log(myTotal);
+
+    $(".total").fadeOut(200, function() {
+        $("#total").text(myTotal);
+        $(".total").fadeIn(200);
+    });
+}
+
+
+// horizontal bar chart
+
+var margin = {top: 50, right: (parseInt(d3.select("#chart-1").style("width"))/13 + 10), bottom: 10, left: (parseInt(d3.select("#chart-1").style("width"))/5 + 30)},
+    width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right,
+    height = 360 - margin.top - margin.bottom;
+
+
+var y = d3.scale.ordinal().rangeRoundBands([0, height * 0.95], .3);
+
+var x = d3.scale.linear().range([0, width]);
+
+var xAxis = d3.svg.axis()
+.scale(x)
+.orient("top")
+.ticks(3);
+
+var yAxis = d3.svg.axis()
+.scale(y)
+.orient("left");
+
+var colorScale = d3.scale.ordinal()
+.domain(["Biomass", "Coal", "Gas", "Geothermal", "Hydro", "Nuclear", "Oil", "Other", "Solar", "Storage", "Waste", "Wind"])
+.range(["#A7B734", "#333333" , "#216184", "#C7432B", "#2cb0c1", "#A14A7B", "#673b9b", "#7c5641", "#EFC530", "#e58888", "#d67b36", "#136400"]);
+
+var commaFormat = d3.format(',');
+
+
+var svg = d3.select("#chart-1").append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.attr("id", "svg-1")
+.append("g")
+.attr("transform", 
+      "translate(" + margin.left + "," + margin.top + ")");
+      
+var div = d3.select("#chart-1")
+.append("div")  // declare the tooltip div 
+.attr("class", "tooltip")              // apply the 'tooltip' class
+.style("opacity", 0);                  // set the opacity to nil
+
+// add x axis label
+
+svg.append("g")
+    .attr("class", "label")
+    .append("text")
+    .attr("x", width)
+    .attr("y", -35)
+    .style("text-anchor", "end")
+    .text("Capacity (MW)");
+
+var state = "";
+
+initialDraw ("All");
+
+// set up initial transition
+
+function initialDraw (state) {
+
+    d3.csv("us-energy-totals.csv", function(error, data) {
+        
+            data.forEach(function(d) {
+                d.Type = d.Type;
+                d[state] = +d[state];
+            });
+        
+            y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+            x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+        
+            svg.append("g")
+            .attr("class", "x axis")
+            .transition()
+            .duration(1000)
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "middle")
+            .attr("dx", "0em")
+            .attr("dy", "-.25em");
+        
+            svg.append("g")
+            .attr("class", "y axis")
+            .transition()
+            .duration(1000)
+            .call(yAxis)
+            .selectAll("text")
+            .attr("dx", "0em")
+            .attr("dy", "0.2em")
+            .style("text-anchor", "end");
+
+            // now deal with bars
+
+            var bar = svg.selectAll(".bar").data(data);
+
+            var barExit = bar.exit().remove();
+
+            var barEnter = bar.enter()
+                .append("g")
+                .attr("class", "bar");
+
+            var barRects = barEnter.append("rect")
+                .attr("rx", 4)
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("width", function(d) { return x(0); })
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand() * 0.78)
+                .style("fill",function(d) {return colorScale(d.Type);})
+                .on("mouseover", function(d) {		
+                    div.transition()
+                        .duration(500)	
+                        .style("opacity", 0);
+                    div.transition()
+                        .duration(200)	
+                        .style("opacity", 1);	
+                    div	.html("<b>Capacity: </b>" + commaFormat(d[state]) + " MW")	 
+                        .style("left", (d3.event.pageX) + "px")			 
+                        .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function(d) {		
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                });
+                
+
+            var barRectUpdate = bar.select("rect")
+                .transition()
+                .duration(1800)
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand() * 0.78)
+                .attr("width", function (d) { return x(d[state])})
+                .style("fill",function(d) {return colorScale(d.Type);});                   
+            
+    })
+
+}
+
+// link chart to change with state dropdown
+
+d3.select("#selector1").on("change", selectState)
+
+function selectState() {
+
+    var state = this.options[this.selectedIndex].value
+
+    draw(state);
+
+    console.log("update bar chart")
+
+    drawChart2(state);
+
+    console.log("update bar chart 2")
+    
+}
+
+function draw (state) {
+
+    d3.csv("us-energy-totals.csv", function(error, data) {
+      
+
+            data.forEach(function(d) {
+                d.Type = d.Type;
+                d[state] = +d[state];
+            });
+        
+            y.domain(data.sort(function(a,b){return b[state]-a[state];}).map(function(d) { return d.Type; }));
+            x.domain([0, d3.max(data, function(d) { return d[state] * 1.1;})]);
+
+            // remove and call axes
+
+            svg.select(".y.axis").remove();
+            svg.select(".x.axis").remove();
+        
+            svg.append("g")
+            .attr("class", "x axis")
+            .transition()
+            .duration(1000)
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "middle")
+            .attr("dx", "0em")
+            .attr("dy", "-.25em");
+        
+            svg.append("g")
+            .attr("class", "y axis")
+            .transition()
+            .duration(1000)
+            .call(yAxis)
+            .selectAll("text")
+            .attr("dx", "0em")
+            .attr("dy", "0.2em")
+            .style("text-anchor", "end");
+
+            // now deal with bars
+
+            var bar = svg.selectAll(".bar").data(data);
+
+            var barExit = bar.exit().remove();
+
+            var barEnter = bar.enter()
+                .append("g")
+                .attr("class", "bar");
+
+            var barRects = barEnter.append("rect")
+                .attr("rx", 4)
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("width", function (d) { return x(d[state])})
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand() * 0.78)
+                .style("fill",function(d) {return colorScale(d.Type);});
+
+            var barRectUpdate = bar.select("rect")
+                .transition()
+                .duration(900)
+                .attr("y", function(d) { return y(d.Type); })
+                .attr("x", function(d) { return x(0); })
+                .attr("height", y.rangeBand() * 0.78)
+                .attr("width", function (d) { return x(d[state])})
+                .style("fill",function(d) {return colorScale(d.Type);});
+
+            // ensure that tooltip changes with data
+                
+            var tooltipUpdate = bar.select("rect")
+                .on("mouseover", function(d) {		
+                    div.transition()
+                        .duration(500)	
+                        .style("opacity", 0);
+                    div.transition()
+                        .duration(200)	
+                        .style("opacity", 1);	
+                    div	.html("<span id='#capacity'><b>Capacity: </b></span>" + commaFormat(d[state]) + " MW")	 
+                        .style("left", (d3.event.pageX) + "px")			 
+                        .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                .on("mouseout", function(d) {		
+                    div.transition()		
+                        .duration(500)		
+                        .style("opacity", 0);	
+                });
+    
+    })
+
+}
+
+// redraw d3 graphs on window resize - currently not working particularly well but at least with this version the width of the svg itself updates
+
+$(window).on("resize", function () {
+
+    var width = parseInt(d3.select("#chart-1").style("width")) - margin.left - margin.right;
+
+    d3.select("#chart-1").select("#svg-1").attr("width", width + margin.left + margin.right);
+
+    d3.select("#chart-2").select("#svg-2").attr("width", width + margin.left + margin.right);
+
+});
+
+// second chart, a single normalised horizontal bar chart
+
+function drawChart2 (state) {
+
+    // remove any previous svg
+
+    d3.selectAll('#chart-2 svg').remove();
+
+    //Width and height
+    var margin = {top: 30, right: (parseInt(d3.select("#chart-2").style("width"))/13 + 10), bottom: 20, left: 30},
+        width = parseInt(d3.select("#chart-2").style("width")) - margin.left - margin.right,
+        height = 80 - margin.top - margin.bottom;
+
+    //Set up stack method
+    var stack = d3.layout.stack(); 
+
+    var yScale = d3.scale.ordinal();
+    var xScale = d3.scale.linear().range([0, width]);
+                
+    //Colors correspond to index of stacked data
+
+    var colors = d3.scale.linear()
+        .domain([0, 1 ])
+        .range(["#2cb0c1", "#333333"]);
+
+
+    d3.csv("LowCarbonPercentage.csv", function(data) {
+
+        // filter data depending on state
+
+        filteredData = data.filter(function(row) {
+            return row['State'] == state
+        })
+
+        console.log(filteredData);
+        
+        //Create a new array to hold restructured dataset
+        var dataset = [
+            
+            { type: "LowCarbon",
+            details: []	
+            },
+            { type: "HighCarbon",
+            details: []
+            }				
+        ];		
+        //Loop once for each row in data
+        for (var i = 0; i < dataset.length; i++) {
+            
+            for (var j = 0; j < filteredData.length; j++) {
+                if (dataset[i].type == "LowCarbon") {
+                    dataset[i].details.push({
+                        State: filteredData[j].State,
+                        Amount: filteredData[j].LowCarbon
+                    });
+                }	
+                else if (dataset[i].type == "HighCarbon") {
+                    dataset[i].details.push({
+                        State: filteredData[j].State,
+                        Amount: filteredData[j].HighCarbon
+                    });
+                }
+            }
+        };
+
+        
+        // Create array with each color group for a color legend
+        series = dataset.map(function (d) {
+                return d.type;	
+            });
+                
+        dataset = dataset.map(function (d) {
+                return d.details.map(function (o, i) {
+                    // Structure it so that your numeric
+                    // axis (the stacked amount) is y
+                    return {
+                        y: +o.Amount,
+                        x: o.State
+                    };
+                });
+            }),	
+        
+    console.log(dataset);
+            
+    //Data, stacked		
+    stack(dataset);
+
+    var dataset = dataset.map(function (group) {
+        return group.map(function (d) {
+            // Invert the x and y values, and y0 becomes x0
+            return {
+                x: +d.y,
+                y: d.x,
+                x0: +d.y0
+            };
+        });
+    });
+
+    //Set up scales
+
+    // Array of state names for domain
+    var lowCarbonByState = dataset[0].map(function (d) {
+            return d.y;
+        });
+
+    yScale.domain(lowCarbonByState)
+        .rangeRoundBands([0, height], 0);
+
+    xScale.domain([0,				
+        d3.max(dataset, function(group) {
+            return d3.max(group, function(d) {
+                return d.x + d.x0 ;
+            });
+        })
+    ])
+    .range([0, width]);
+
+    //Create SVG element
+    var svg = d3.select("#chart-2")
+                .append("svg")
+                .attr("id", "svg-2")
+                .attr("width", width + margin.left + margin.right )
+                .attr("height", height + margin.bottom + margin.top);
+
+    var div = d3.select("#chart-2")
+        .append("div")  // declare the tooltip div 
+        .attr("class", "tooltip")              // apply the 'tooltip' class
+        .style("opacity", 0);// set the opacity to nil
+
+    var formatAsPercentage = d3.format("%");
+
+    var formatAsPercentage2 = d3.format(".1%");
+                
+    var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient('bottom')
+            .ticks(2)
+            .tickFormat(formatAsPercentage);
+                
+    var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient('left')
+            .tickValues([]);
+
+    // Add a group for each row of data
+
+    var groups = svg.selectAll("g")
+        .data(dataset)
+        .enter()
+        .append("g")
+        .style("fill", function(d, i) {
+            return colors(i);
+        });
+
+    // Add a rect for each data value
+
+    var rects = groups.selectAll("rect")
+        .data(function(d) { return d; })
+        .enter()
+        .append("rect")
+        .attr("rx", 4)
+        .attr("class", "bar")
+        .attr("x", function(d) {
+            return xScale(d.x0) + margin.left;
+        })
+        .attr("width", function(d) {
+            return xScale(d.x);
+        })
+        .attr("y", function(d) { return (y(d.State) + margin.top); })
+        .attr("height", y.rangeBand() * 0.85)
+        .on("mouseover", function() { tooltip.style("display", null); })
+        .on("mouseout", function() { tooltip.style("display", "none"); })
+        .on("mouseover", function(d) {		
+            div.transition()
+                .duration(500)	
+                .style("opacity", 0);
+            div.transition()
+                .duration(200)	
+                .style("opacity", 1);	
+            div	.html(formatAsPercentage2(d.x))	 
+                .style("left", (d3.event.pageX) + "px")			 
+                .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {		
+            div.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        });
+        
+    svg.append('g')
+            .attr('class', 'axis')
+            .attr('transform', 'translate(' + margin.left + ',' + (margin.top + height) + ')')
+            .call(xAxis);
+
+    svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .call(yAxis);
+    
+    svg.append("text")
+        .attr("class", "label-2")
+        .attr('x', margin.left + 5)
+        .attr('y', 20)
+        .style("fill", "#2cb0c1")
+        .text("Low carbon");
+
+    svg.append("text")
+        .attr("class", "label-2")
+        .attr('x', width + margin.left - 5)
+        .attr('y', 20)
+        .style("text-anchor", "end")
+        .style("fill", "#898989")
+        .text("High carbon");
+    
+});
+
+}
+
+// timeout seems to fix issue of it sometimes rendering improperly initially
+
+setTimeout(drawChart2("All"), 400);
+
