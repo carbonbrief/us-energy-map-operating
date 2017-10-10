@@ -11,7 +11,7 @@ var map = L.map('mapid', {zoomControl: false}).fitBounds(bounds, {padding: [20, 
 var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
 	maxZoom: 16
-}).addTo(map);
+});
 
 var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -25,7 +25,7 @@ var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('http://map1.vis.earthdata.nasa
 	format: 'jpg',
 	time: '',
 	tilematrixset: 'GoogleMapsCompatible_Level'
-});
+}).addTo(map);
 
 $("#basemaps").change(function () {
     if (this.value == "Esri_WorldGrayCanvas") {
