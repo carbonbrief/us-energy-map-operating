@@ -4942,11 +4942,11 @@ function drawChart2 (state) {
         .style("fill", "#898989")
         .text("High carbon");
     
-});
+    });
 
 }
 
 // timeout seems to fix issue of it sometimes rendering improperly initially
 
-setTimeout(drawChart2("All"), 400);
+setTimeout(drawChart2("All"), 600);
 

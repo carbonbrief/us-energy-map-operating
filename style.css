@@ -1,5 +1,5 @@
 #mapid { 
-  height: 770px; 
+  height: 800px; 
 }
 
 #container {
@@ -15,7 +15,7 @@
 #side-bar {
   display: inline-block;
   position: absolute;
-	height: 770px;
+	height: 800px;
 	width: 25%;
 	z-index: 314159;
   background-color: rgba(51,51,51, 0.86);
