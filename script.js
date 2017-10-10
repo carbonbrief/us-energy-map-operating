@@ -4343,7 +4343,7 @@ function style(feature) {
         weight: 0.37,
         opacity: 0.35,
         color: '#f3f3f3',
-        fillOpacity: 0.69,
+        fillOpacity: 0.7,
 		radius: getRadius(feature.properties["Capacity (MW)"])
     };
 }
