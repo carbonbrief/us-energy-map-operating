@@ -4341,9 +4341,9 @@ function style(feature) {
     return {
         fillColor: colors[feature.properties["Fuel type"]],
         weight: 0.4,
-        opacity: 0.35,
+        opacity: 0.37,
         color: '#f3f3f3',
-        fillOpacity: 0.7,
+        fillOpacity: 0.71,
 		radius: getRadius(feature.properties["Capacity (MW)"])
     };
 }
