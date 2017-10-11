@@ -4340,7 +4340,7 @@ var colors = {
 function style(feature) {
     return {
         fillColor: colors[feature.properties["Fuel type"]],
-        weight: 0.37,
+        weight: 0.4,
         opacity: 0.35,
         color: '#f3f3f3',
         fillOpacity: 0.7,
