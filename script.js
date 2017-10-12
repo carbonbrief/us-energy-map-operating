@@ -4948,5 +4948,12 @@ function drawChart2 (state) {
 
 // timeout seems to fix issue of it sometimes rendering improperly initially
 
-setTimeout(drawChart2("All"), 600);
+setTimeout(drawChart2("All"), 700);
 
+// jquery for toggle button
+
+$(".toggle").click(function() {
+    $('.side-bar').toggleClass('side-open');
+    $('.arrow-right-hidden').toggleClass('arrow-right');
+    $('.arrow-left').toggleClass('arrow-left-hidden');
+});

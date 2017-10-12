@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="leaflet.zoomhome.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+        <link rel="stylesheet" href="font-awesome.min.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="leaflet.js"></script>
@@ -19,33 +20,123 @@
             
     </head>
     <body>
-        <div id="container">
-                <div id="side-bar">
-                        <div id="title-wrapper">
-                            <h1 id="title">US electricity sources</h1>
+        <div id="container">             
+            <div id="side-bar" class="side-bar">
+                    <div id="side-bar-toggle">
+                            <a href="#" class="toggle"><span class="arrow-right-hidden">&#10095;</span><span class="arrow-left">&#10094;</span></a>
+                    </div>
+                    <div class="links-container">
+                        <div class='selector_menu'id="selector_menu_1">
+                            <select id='selector1'>
+                                <option value='All' selected='selected'>All states</option>
+                                <option value='Alabama' >Alabama</option>
+                                <option value='Alaska' >Alaska</option>
+                                <option value='Arizona' >Arizona</option>
+                                <option value='Arkansas' >Arkansas</option>
+                                <option value='California' >California</option>
+                                <option value='Colorado' >Colorado</option>
+                                <option value='Connecticut' >Connecticut</option>
+                                <option value='Delaware' >Delaware</option>
+                                <option value='Florida' >Florida</option>
+                                <option value='Georgia' >Georgia</option>
+                                <option value='Hawaii' >Hawaii</option>
+                                <option value='Idaho' >Idaho</option>
+                                <option value='Illinois' >Illinois</option>
+                                <option value='Indiana' >Indiana</option>
+                                <option value='Iowa' >Iowa</option>
+                                <option value='Kansas' >Kansas</option>
+                                <option value='Kentucky' >Kentucky</option>
+                                <option value='Louisiana' >Louisiana</option>
+                                <option value='Maine' >Maine</option>
+                                <option value='Maryland' >Maryland</option>
+                                <option value='Massachusetts' >Massachusetts</option>
+                                <option value='Michigan' >Michigan</option>
+                                <option value='Minnesota' >Minnesota</option>
+                                <option value='Mississippi' >Mississippi</option>
+                                <option value='Missouri' >Missouri</option>
+                                <option value='Montana' >Montana</option>
+                                <option value='Nebraska' >Nebraska</option>
+                                <option value='Nevada' >Nevada</option>
+                                <option value='NewHampshire' >New Hampshire</option>
+                                <option value='NewJersey' >New Jersey</option>
+                                <option value='NewMexico' >New Mexico</option>
+                                <option value='NewYork' >New York</option>
+                                <option value='NorthCarolina' >North Carolina</option>
+                                <option value='NorthDakota' >North Dakota</option>
+                                <option value='Ohio' >Ohio</option>
+                                <option value='Oklahoma' >Oklahoma</option>
+                                <option value='Oregon' >Oregon</option>
+                                <option value='Pennsylvania' >Pennsylvania</option>
+                                <option value='RhodeIsland' >Rhode Island</option>
+                                <option value='SouthCarolina' >South Carolina</option>
+                                <option value='SouthDakota' >South Dakota</option>
+                                <option value='Tennessee' >Tennessee</option>
+                                <option value='Texas' >Texas</option>
+                                <option value='Utah' >Utah</option>
+                                <option value='Vermont' >Vermont</option>
+                                <option value='Virginia' >Virginia</option>
+                                <option value='Washington' >Washington</option>
+                                <option value='WestVirginia' >West Virginia</option>
+                                <option value='Wisconsin' >Wisconsin</option>
+                                <option value='Wyoming' >Wyoming</option>
+                            </select>
+                    
                         </div>
-                        <div id="rainbow-wrapper">
-                            <div class="rainbow" id="r12"></div><div class="rainbow" id="r11"></div><div class="rainbow" id="r10"></div><div class="rainbow" id="r9"></div><div class="rainbow" id="r8"></div><div class="rainbow" id="r7"></div><div class="rainbow" id="r6"></div><div class="rainbow" id="r5"></div><div class="rainbow" id="r4"></div><div class="rainbow" id="r3"></div><div class="rainbow" id="r2"></div><div class="rainbow" id="r1"></div>
+                        <div class='selector_menu'id="selector_menu_2">
+                            <select id='selector2'>
+                                <option value='All' selected='selected'>All types</option>
+                                <option value='LowCarbon' >Low carbon</option>
+                                <option value='HighCarbon' >High carbon</option>
+                                <option value='Biomass' >Biomass</option>
+                                <option value='Coal' >Coal</option>
+                                <option value='Gas' >Gas</option>
+                                <option value='Geothermal' >Geothermal</option>
+                                <option value='Hydro' >Hydro</option>
+                                <option value='Nuclear' >Nuclear</option>
+                                <option value='Oil' >Oil</option>
+                                <option value='Other' >Other</option>
+                                <option value='Solar' >Solar</option>
+                                <option value='Storage' >Storage</option>
+                                <option value='Waste' >Waste</option>
+                                <option value='Wind' >Wind</option>
+                            </select>
+                    
                         </div>
-                        <div id="subtitle-wrapper">
-                            <h2 id="subtitle">All states</h2>
-                            <div id="state-icon"></div>
-                            <p><span class="total" id="total">1,197,676</span><span class="total" id="total-label"> MW</span></p>
+                        <div class='selector_menu' id="selector_menu_3">
+                            <select id="basemaps">
+                                <option value="NASAGIBS_ViirsEarthAtNight2012" selected="selected">Satellite imagery night</option>
+                                <option value="Esri_WorldGrayCanvas">Grayscale</option>
+                                <option value="Esri_WorldImagery">Satellite imagery day</option>
+                            </select>
                         </div>
-                        <div id="chart-1">
+                    </div>
+                    <div id="title-wrapper">
+                        <h1 id="title">US electricity sources</h1>
+                    </div>
+                    
+                    <div id="rainbow-wrapper">
+                        <div class="rainbow" id="r12"></div><div class="rainbow" id="r11"></div><div class="rainbow" id="r10"></div><div class="rainbow" id="r9"></div><div class="rainbow" id="r8"></div><div class="rainbow" id="r7"></div><div class="rainbow" id="r6"></div><div class="rainbow" id="r5"></div><div class="rainbow" id="r4"></div><div class="rainbow" id="r3"></div><div class="rainbow" id="r2"></div><div class="rainbow" id="r1"></div>
+                    </div>
+                    <div id="subtitle-wrapper">
+                        <h2 id="subtitle">All states</h2>
+                        <div id="state-icon"></div>
+                        <p><span class="total" id="total">1,197,676</span><span class="total" id="total-label"> MW</span></p>
+                    </div>
+                    <div id="chart-1">
+                    </div>
+                    <div id="chart-2">
+                    </div>
+                    <div id="key-desktop">
+                        <h3 id="key-title">Capacity</h3>
+                        <div id="key-wrapper">
+                            <div class="key-label"><p>6,495 MW</p></div>
+                            <div class="key-image"><img src="key-desktop.png" alt="map key"/></div>
+                            <div class="key-label"><p>0 MW</p></div>
                         </div>
-                        <div id="chart-2">
-                        </div>
-                        <div id="key-desktop">
-                            <h3 id="key-title">Capacity</h3>
-                            <div id="key-wrapper">
-                                <div class="key-label"><p>6,495 MW</p></div>
-                                <div class="key-image"><img src="key-desktop.png" alt="map key"/></div>
-                                <div class="key-label"><p>0 MW</p></div>
-                            </div>
-                        </div>
-                        <p id="credit">Map by Rosamund Pearce for Carbon Brief</p>
-                </div>
+                    </div>
+                    <p id="credit">Map by Rosamund Pearce for Carbon Brief</p>
+            </div>
+            
                 <div id="map-wrapper">
                         <div id="mapid"></div>
                 </div>
@@ -54,89 +145,6 @@
                 <div id="logo-tablet"></div>
                 <div id="logo-laptop"></div>
                 <div id="logo-desktop"></div>
-                <div class='selector_menu'id="selector_menu_1">
-                    <select id='selector1'>
-                        <option value='All' selected='selected'>All states</option>
-                        <option value='Alabama' >Alabama</option>
-                        <option value='Alaska' >Alaska</option>
-                        <option value='Arizona' >Arizona</option>
-                        <option value='Arkansas' >Arkansas</option>
-                        <option value='California' >California</option>
-                        <option value='Colorado' >Colorado</option>
-                        <option value='Connecticut' >Connecticut</option>
-                        <option value='Delaware' >Delaware</option>
-                        <option value='Florida' >Florida</option>
-                        <option value='Georgia' >Georgia</option>
-                        <option value='Hawaii' >Hawaii</option>
-                        <option value='Idaho' >Idaho</option>
-                        <option value='Illinois' >Illinois</option>
-                        <option value='Indiana' >Indiana</option>
-                        <option value='Iowa' >Iowa</option>
-                        <option value='Kansas' >Kansas</option>
-                        <option value='Kentucky' >Kentucky</option>
-                        <option value='Louisiana' >Louisiana</option>
-                        <option value='Maine' >Maine</option>
-                        <option value='Maryland' >Maryland</option>
-                        <option value='Massachusetts' >Massachusetts</option>
-                        <option value='Michigan' >Michigan</option>
-                        <option value='Minnesota' >Minnesota</option>
-                        <option value='Mississippi' >Mississippi</option>
-                        <option value='Missouri' >Missouri</option>
-                        <option value='Montana' >Montana</option>
-                        <option value='Nebraska' >Nebraska</option>
-                        <option value='Nevada' >Nevada</option>
-                        <option value='NewHampshire' >New Hampshire</option>
-                        <option value='NewJersey' >New Jersey</option>
-                        <option value='NewMexico' >New Mexico</option>
-                        <option value='NewYork' >New York</option>
-                        <option value='NorthCarolina' >North Carolina</option>
-                        <option value='NorthDakota' >North Dakota</option>
-                        <option value='Ohio' >Ohio</option>
-                        <option value='Oklahoma' >Oklahoma</option>
-                        <option value='Oregon' >Oregon</option>
-                        <option value='Pennsylvania' >Pennsylvania</option>
-                        <option value='RhodeIsland' >Rhode Island</option>
-                        <option value='SouthCarolina' >South Carolina</option>
-                        <option value='SouthDakota' >South Dakota</option>
-                        <option value='Tennessee' >Tennessee</option>
-                        <option value='Texas' >Texas</option>
-                        <option value='Utah' >Utah</option>
-                        <option value='Vermont' >Vermont</option>
-                        <option value='Virginia' >Virginia</option>
-                        <option value='Washington' >Washington</option>
-                        <option value='WestVirginia' >West Virginia</option>
-                        <option value='Wisconsin' >Wisconsin</option>
-                        <option value='Wyoming' >Wyoming</option>
-                    </select>
-            
-                </div>
-                <div class='selector_menu'id="selector_menu_2">
-                    <select id='selector2'>
-                        <option value='All' selected='selected'>All types</option>
-                        <option value='LowCarbon' >Low carbon</option>
-                        <option value='HighCarbon' >High carbon</option>
-                        <option value='Biomass' >Biomass</option>
-                        <option value='Coal' >Coal</option>
-                        <option value='Gas' >Gas</option>
-                        <option value='Geothermal' >Geothermal</option>
-                        <option value='Hydro' >Hydro</option>
-                        <option value='Nuclear' >Nuclear</option>
-                        <option value='Oil' >Oil</option>
-                        <option value='Other' >Other</option>
-                        <option value='Solar' >Solar</option>
-                        <option value='Storage' >Storage</option>
-                        <option value='Waste' >Waste</option>
-                        <option value='Wind' >Wind</option>
-                    </select>
-            
-                </div>
-                <div class='selector_menu' id="selector_menu_3">
-                    <select id="basemaps">
-                        <option value="NASAGIBS_ViirsEarthAtNight2012" selected="selected">Satellite imagery night</option>
-                        <option value="Esri_WorldGrayCanvas">Grayscale</option>
-                        <option value="Esri_WorldImagery">Satellite imagery day</option>
-                    </select>
-                </div>
         </div>
         <script type="text/javascript" src="script.js"></script>
     </body>
