@@ -353,7 +353,7 @@ select {
 
 #logo-mobile {
     position: absolute;
-    top: 515px;
+    top: 465px;
     right: 7px;
     z-index: 9000;
     height: 25px;
@@ -365,7 +365,7 @@ select {
 
 #logo-phablet {
   position: absolute;
-  top: 590px;
+  top: 555px;
   right: 7px;
   z-index: 9000;
   height: 30px;
@@ -377,7 +377,7 @@ select {
 
 #logo-tablet {
   position: absolute;
-  top: 600px;
+  top: 580px;
   right: 7px;
   z-index: 9000;
   height: 30px;
@@ -389,7 +389,7 @@ select {
 
 #logo-laptop {
   position: absolute;
-  top: 745px;
+  top: 725px;
   right: 7px;
   z-index: 9000;
   height: 45px;

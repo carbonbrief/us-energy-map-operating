@@ -35,7 +35,7 @@ $("#basemaps").change(function () {
 
         //change position of logo as attribution changes
 
-        $("#logo-laptop").css({top: 710});
+        $("#logo-laptop").css({top: 745});
         $("#logo-tablet").css({top: 600});
         $("#logo-phablet").css({top: 590});
         $("#logo-mobile").css({top: 515});
@@ -47,7 +47,7 @@ $("#basemaps").change(function () {
 
         console.log("satellite day change");
 
-        $("#logo-laptop").css({top: 710});
+        $("#logo-laptop").css({top: 745});
         $("#logo-tablet").css({top: 600});
         $("#logo-phablet").css({top: 575});
         $("#logo-mobile").css({top: 480});
@@ -58,9 +58,9 @@ $("#basemaps").change(function () {
         .removeLayer(Esri_WorldImagery)
         .addLayer(NASAGIBS_ViirsEarthAtNight2012);
 
-        $("#logo-laptop").css({top: 695});
-        $("#logo-tablet").css({top: 583});
-        $("#logo-phablet").css({top: 575});
+        $("#logo-laptop").css({top: 725});
+        $("#logo-tablet").css({top: 580});
+        $("#logo-phablet").css({top: 555});
         $("#logo-mobile").css({top: 465});
     }
 });
