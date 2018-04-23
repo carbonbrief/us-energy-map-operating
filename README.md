@@ -4,6 +4,4 @@ The US electricity system is often described as the world’s largest machine. I
 
 Carbon Brief has plotted the nation’s power stations in an interactive map (above) to show how and where the US generates electricity.
 
-(Visit the map.)[https://www.carbonbrief.org/mapped-how-the-us-generates-electricity]
-
-![Preview of map](https://www.carbonbrief.org/mapped-how-the-us-generates-electricity)
+[Visit the map.](https://www.carbonbrief.org/mapped-how-the-us-generates-electricity)
